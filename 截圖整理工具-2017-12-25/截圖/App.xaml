@@ -1,0 +1,22 @@
+﻿<Application x:Class="截圖.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:截圖"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="style/style_color.xaml" />
+                <ResourceDictionary Source="style/style_1.xaml" />
+                <ResourceDictionary Source="style/style_menu.xaml" />
+                <ResourceDictionary Source="style/style_button.xaml" />
+                
+                <ResourceDictionary Source="style/style_window.xaml" />
+
+                <ResourceDictionary Source="style/style_scrollBar.xaml" />
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
