@@ -7,11 +7,11 @@
 
 <br><br>
 截圖<br>
-<img src="https://i.imgur.com/xMk5U26.gif">
+<img src="https://i.imgur.com/KnyJp3Y.gif">
 
 <br><br>
 拖曳直接上傳<br>
-<img src="https://i.imgur.com/nZORCMo.gif">
+<img src="https://i.imgur.com/Shi1hbJ.gif">
 
 <br><br>
 自定義快速鍵，可用alt、shift、ctrl 的複合式快速鍵<br>
