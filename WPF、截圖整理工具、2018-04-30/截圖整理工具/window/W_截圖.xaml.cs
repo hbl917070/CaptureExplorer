@@ -26,43 +26,52 @@ namespace 截圖 {
         private double[] d_xywh = { 0, 0, 0, 0 };
         private System.Drawing.Point d_滑鼠xy = new System.Drawing.Point();
         private Boolean bool_初始 = true;
-        int left_0 = 0;
-        int top_0 = 0;
+
         private System.Drawing.Bitmap bimg = null;
 
-        public double d_解析度比例_x = 1;
-        public double d_解析度比例_y = 1;
+        private int int_螢幕起始坐標_x = 0;
+        private int int_螢幕起始坐標_y = 0;
+        private double d_解析度比例_x = 1;
+        private double d_解析度比例_y = 1;
+        private double d_螢幕_w = 0;
+        private double d_螢幕_h = 0;
+
+        private MainWindow M;
 
 
-        MainWindow M;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="m"></param>
         public W_截圖(MainWindow m) {
 
 
 
-
- 
-
-
-
-            //取得螢幕總left
-            left_0 = 0;
+            //取得螢幕總其實坐標、總大小
+            int_螢幕起始坐標_x = 0;
             foreach (var screen in System.Windows.Forms.Screen.AllScreens) {//列出所有螢幕資訊     
-                if (screen.Bounds.X < left_0)
-                    left_0 = screen.Bounds.X;
-            }
+                if (screen.Bounds.X < int_螢幕起始坐標_x)
+                    int_螢幕起始坐標_x = screen.Bounds.X;
+                if (screen.Bounds.Y < int_螢幕起始坐標_y)
+                    int_螢幕起始坐標_y = screen.Bounds.Y;
 
-            //取得螢幕總top
-             top_0 = 0;
-            foreach (var screen in System.Windows.Forms.Screen.AllScreens) {//列出所有螢幕資訊     
-                if (screen.Bounds.Y < top_0)
-                    top_0 = screen.Bounds.Y;
+                int yy = screen.Bounds.Y + screen.Bounds.Height;
+                if (yy > d_螢幕_h)
+                    d_螢幕_h = yy;
+
+                int xx = screen.Bounds.X + screen.Bounds.Width;
+                if (xx > d_螢幕_w)
+                    d_螢幕_w = xx;
             }
+            d_螢幕_w -= int_螢幕起始坐標_x;
+            d_螢幕_h -= int_螢幕起始坐標_y;
 
 
 
 
             this.M = m;
+
             bimg = CaptureScreen();//全螢幕截圖
 
             InitializeComponent();
@@ -73,35 +82,38 @@ namespace 截圖 {
             d_解析度比例_y = source.CompositionTarget.TransformToDevice.M22;
 
 
+
             this.Background = new ImageBrush(ToBitmapSource(bimg));//設定背景
 
             this.Focus();
 
             //程式最大化
-            this.Width = System.Windows.Forms.Cursor.Clip.Size.Width/ d_解析度比例_x;
-            this.Height = System.Windows.Forms.Cursor.Clip.Size.Height/ d_解析度比例_y;
+            this.Width = d_螢幕_w / d_解析度比例_x;
+            this.Height = d_螢幕_h / d_解析度比例_y;
             //var Work = System.Windows.Forms.Screen.GetBounds(new System.Drawing.Point((int)this.Left, (int)this.Top));
 
-      
+
+            //MessageBox.Show(d_螢幕_h + "\n" + System.Windows.Forms.Cursor.Clip.Size.Height + "");
 
 
-            this.Left = left_0;
-            this.Top = top_0;
+            this.Left = int_螢幕起始坐標_x;
+            this.Top = int_螢幕起始坐標_y;
 
             //啟動計時器
             t = new System.Windows.Forms.Timer();
             t.Interval = 10;
             t.Tick += T_Tick;
             t.Start();
+            T_Tick(null, null);//立刻執行，避免使用者開啟截圖後立即點擊
 
-           fun_重新();
+            func_重新();
 
             Rectangle[] ar = { b_中心拖曳, b_左上, b_中上, b_右上, b_右中, b_右下, b_中下, b_左下, b_左中 };
 
             for (int i = 0; i < ar.Length; i++) {
                 ar[i].MouseLeftButtonDown += (object sender, MouseButtonEventArgs e) => {
                     st_按鈕群.Visibility = Visibility.Hidden;
-                    d_滑鼠xy = fun_取得滑鼠();
+                    d_滑鼠xy = func_取得滑鼠();
                     t.Start();
                 };
             }
@@ -153,7 +165,7 @@ namespace 截圖 {
             this.MouseLeftButtonUp += (object sender, MouseButtonEventArgs e) => {
 
                 if (b_中心拖曳.ActualHeight < 1 && b_中心拖曳.ActualWidth < 1) {
-                    fun_重新();
+                    func_重新();
                     return;
                 }
 
@@ -175,10 +187,10 @@ namespace 截圖 {
 
                 if (bool_初始) {
 
-                    b_左上.Margin = new Thickness(fun_取得滑鼠().X - 10, fun_取得滑鼠().Y - 10, 0, 0);
+                    b_左上.Margin = new Thickness(func_取得滑鼠().X - 10, func_取得滑鼠().Y - 10, 0, 0);
 
                     d_xywh = new double[] { b_左上.Margin.Left, b_左上.Margin.Top, b_左上.ActualWidth, b_左上.ActualHeight };
-                    d_滑鼠xy = fun_取得滑鼠();
+                    d_滑鼠xy = func_取得滑鼠();
                     t.Start();
                     int_拖曳模式 = 3;
                     bool_初始 = false;
@@ -212,7 +224,7 @@ namespace 截圖 {
                     if (e.Key == Key.Space) {
                         bool_空白鍵記錄 = true;
                         d_xywh = new double[] { b_中心拖曳.Margin.Left, b_中心拖曳.Margin.Top, b_中心拖曳.ActualWidth, b_中心拖曳.ActualHeight };
-                        d_滑鼠xy = fun_取得滑鼠();
+                        d_滑鼠xy = func_取得滑鼠();
                         int_空白鍵記錄 = int_拖曳模式;
                         int_拖曳模式 = 0;
                     }
@@ -248,7 +260,7 @@ namespace 截圖 {
                     }
 
                     d_xywh = new double[] { r.Margin.Left, r.Margin.Top, r.ActualWidth, r.ActualHeight };
-                    d_滑鼠xy = fun_取得滑鼠();
+                    d_滑鼠xy = func_取得滑鼠();
 
                     int_拖曳模式 = int_空白鍵記錄;
                     this.Title = "**";
@@ -266,7 +278,7 @@ namespace 截圖 {
 
                     this.Close();
                 } else {
-                    fun_重新();
+                    func_重新();
                 }
                 this.Title = "+++";
             };
@@ -280,7 +292,7 @@ namespace 截圖 {
             };
 
             button_重新.Click += (object sender, RoutedEventArgs e) => {
-                fun_重新();
+                func_重新();
             };
 
             button_確認_png.Click += (object sender, RoutedEventArgs e) => {
@@ -506,7 +518,7 @@ namespace 截圖 {
         /// <summary>
         /// 
         /// </summary>
-        public void fun_重新() {
+        public void func_重新() {
 
 
             //計算遮罩位置
@@ -534,16 +546,16 @@ namespace 截圖 {
         /// <summary>
         /// 
         /// </summary>
-        public System.Drawing.Point fun_取得滑鼠() {
+        public System.Drawing.Point func_取得滑鼠() {
 
             var Work = System.Windows.Forms.Screen.GetBounds(new System.Drawing.Point((int)this.Left, (int)this.Top));
 
             //從螢幕的最左上角開始計算，否則多螢幕可能會出錯
             var mmm = System.Windows.Forms.Cursor.Position;
-            mmm.X -= Work.Left;
-            mmm.Y -= Work.Top;
+            mmm.X -= int_螢幕起始坐標_x;
+            mmm.Y -= int_螢幕起始坐標_y;
 
-            mmm.X =(int)( mmm.X / d_解析度比例_x);
+            mmm.X = (int)(mmm.X / d_解析度比例_x);
             mmm.Y = (int)(mmm.Y / d_解析度比例_y);
 
 
@@ -561,11 +573,11 @@ namespace 截圖 {
 
 
             if (int_拖曳模式 == -1) {//初始狀態（僅顯示十字線）
-                b_左中.Margin = new Thickness(fun_取得滑鼠().X - 10, 0, 0, 0);
-                b_中上.Margin = new Thickness(0, fun_取得滑鼠().Y - 10, 0, 0);
+                b_左中.Margin = new Thickness(func_取得滑鼠().X - 10, 0, 0, 0);
+                b_中上.Margin = new Thickness(0, func_取得滑鼠().Y - 10, 0, 0);
 
                 //讓這個物件跟隨，就會顯示十字游標
-                rect_游標.Margin = new Thickness(fun_取得滑鼠().X - 30, fun_取得滑鼠().Y - 30, 0, 0);
+                rect_游標.Margin = new Thickness(func_取得滑鼠().X - 30, func_取得滑鼠().Y - 30, 0, 0);
 
                 return;
             }
@@ -581,8 +593,8 @@ namespace 截圖 {
 
 
                 b_中心拖曳.Margin = new Thickness(
-                      fun_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
-                      fun_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
+                      func_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
+                      func_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
                       0, 0
                 );
 
@@ -596,7 +608,7 @@ namespace 截圖 {
 
             if (int_拖曳模式 == 10) {
 
-                b_中上.Margin = new Thickness(0, fun_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1], 0, 0);
+                b_中上.Margin = new Thickness(0, func_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1], 0, 0);
                 b_左上.Margin = new Thickness(
                     b_左上.Margin.Left,
                     b_中上.Margin.Top,
@@ -610,7 +622,7 @@ namespace 截圖 {
 
             } else if (int_拖曳模式 == 20) {
 
-                b_中下.Margin = new Thickness(0, fun_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1], 0, 0);
+                b_中下.Margin = new Thickness(0, func_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1], 0, 0);
                 b_右下.Margin = new Thickness(
                       b_右下.Margin.Left,
                       b_中下.Margin.Top,
@@ -627,13 +639,13 @@ namespace 截圖 {
 
             if (int_拖曳模式 == 30) {
 
-                b_右中.Margin = new Thickness(fun_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0], 0, 0, 0);
+                b_右中.Margin = new Thickness(func_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0], 0, 0, 0);
                 b_右上.Margin = new Thickness(b_右中.Margin.Left, b_右上.Margin.Top, 0, 0);
                 b_右下.Margin = new Thickness(b_右中.Margin.Left, b_右下.Margin.Top, 0, 0);
 
             } else if (int_拖曳模式 == 40) {
 
-                b_左中.Margin = new Thickness(fun_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0], 0, 0, 0);
+                b_左中.Margin = new Thickness(func_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0], 0, 0, 0);
                 b_左上.Margin = new Thickness(b_左中.Margin.Left, b_左上.Margin.Top, 0, 0);
                 b_左下.Margin = new Thickness(b_左中.Margin.Left, b_左下.Margin.Top, 0, 0);
             }
@@ -641,8 +653,8 @@ namespace 截圖 {
 
             if (int_拖曳模式 == 1) {
                 b_左上.Margin = new Thickness(
-                      fun_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
-                      fun_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
+                      func_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
+                      func_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
                       0, 0
                 );
                 b_中上.Margin = new Thickness(0, b_左上.Margin.Top, 0, 0);//同步移動
@@ -651,8 +663,8 @@ namespace 截圖 {
             } else if (int_拖曳模式 == 2) {
 
                 b_右上.Margin = new Thickness(
-                      fun_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
-                      fun_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
+                      func_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
+                      func_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
                       0, 0
                 );
                 b_中上.Margin = new Thickness(0, b_右上.Margin.Top, 0, 0);//同步移動
@@ -661,8 +673,8 @@ namespace 截圖 {
             } else if (int_拖曳模式 == 3) {
 
                 b_右下.Margin = new Thickness(
-                      fun_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
-                      fun_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
+                      func_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
+                      func_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
                       0, 0
                 );
                 b_中下.Margin = new Thickness(0, b_右下.Margin.Top, 0, 0);//同步移動
@@ -671,8 +683,8 @@ namespace 截圖 {
             } else if (int_拖曳模式 == 4) {
 
                 b_左下.Margin = new Thickness(
-                      fun_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
-                      fun_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
+                      func_取得滑鼠().X - d_滑鼠xy.X + d_xywh[0],
+                      func_取得滑鼠().Y - d_滑鼠xy.Y + d_xywh[1],
                       0, 0
                 );
                 b_中下.Margin = new Thickness(0, b_左下.Margin.Top, 0, 0);//同步移動
@@ -721,19 +733,18 @@ namespace 截圖 {
         private System.Drawing.Bitmap CaptureScreen() {
             /// new a bitmap with screen width and height
             var b = new System.Drawing.Bitmap(
-                    (int)System.Windows.Forms.Cursor.Clip.Size.Width,
-                    (int)System.Windows.Forms.Cursor.Clip.Size.Height);
-           
+                    (int)d_螢幕_w,
+                    (int)d_螢幕_h);
+
             //從螢幕的最左上角開始計算
-            var Work = System.Windows.Forms.Screen.GetBounds(new System.Drawing.Point(left_0, top_0));
+            var Work = System.Windows.Forms.Screen.GetBounds(new System.Drawing.Point(int_螢幕起始坐標_x, int_螢幕起始坐標_y));
 
             /// copy screen through .net form api
             using (var g = System.Drawing.Graphics.FromImage(b)) {
-                g.CopyFromScreen(Work.Left, Work.Top, 0, 0,
+                g.CopyFromScreen(int_螢幕起始坐標_x, int_螢幕起始坐標_y, 0, 0,
                     b.Size, System.Drawing.CopyPixelOperation.SourceCopy);
             }
 
-   
 
             return b;
         }
@@ -743,18 +754,19 @@ namespace 截圖 {
         /// <summary>
         /// 儲存圖片
         /// </summary>
-        void func_SaveBitmap(System.Drawing.Bitmap b, String type, string f) {
+        void func_SaveBitmap(System.Drawing.Bitmap b, String type, string path) {
+
 
             //png
             if (type == "png") {
-                b.Save(f);
+                b.Save(path);
                 return;
             }
 
             //------------
+
+
             //jpg
-
-
 
             var jpgEncoder = GetEncoder(System.Drawing.Imaging.ImageFormat.Jpeg);
 
@@ -770,7 +782,7 @@ namespace 截圖 {
 
             var myEncoderParameter = new System.Drawing.Imaging.EncoderParameter(myEncoder, 98L);
             myEncoderParameters.Param[0] = myEncoderParameter;
-            b.Save(f, jpgEncoder, myEncoderParameters);
+            b.Save(path, jpgEncoder, myEncoderParameters);
 
 
 
@@ -824,15 +836,15 @@ namespace 截圖 {
         /// <param name="iWidth">寬度</param>
         /// <param name="iHeight">高度</param>
         /// <returns>剪裁後的Bitmap</returns>
-        public  System.Drawing.Bitmap KiCut(System.Drawing.Bitmap b, int StartX, int StartY, int iWidth, int iHeight) {
+        public System.Drawing.Bitmap KiCut(System.Drawing.Bitmap b, int StartX, int StartY, int iWidth, int iHeight) {
             if (b == null) {
                 return null;
             }
 
             //int w = (int)(b.Width / d_解析度比例_x);
             //int h = (int)(b.Height / d_解析度比例_y);
-            int w = (b.Width );
-            int h = (b.Height );
+            int w = (b.Width);
+            int h = (b.Height);
 
 
             if (StartX >= w || StartY >= h) {
@@ -841,30 +853,30 @@ namespace 截圖 {
 
             if (StartX + iWidth > w) {
                 iWidth = w - StartX;
-              
+
             }
 
             if (StartY + iHeight > h) {
                 iHeight = h - StartY;
-               
+
             }
 
             try {
 
-       
+
                 StartX = (int)(StartX * d_解析度比例_x);
                 StartY = (int)(StartY * d_解析度比例_y);
                 iWidth = (int)(iWidth * d_解析度比例_x);
                 iHeight = (int)(iHeight * d_解析度比例_y);
-        
+
 
                 var bmpOut = new System.Drawing.Bitmap(iWidth, iHeight, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
 
-        
+
                 var g = System.Drawing.Graphics.FromImage(bmpOut);
 
                 g.DrawImage(b,
-                    new System.Drawing.Rectangle(0, 0, iWidth, iHeight), 
+                    new System.Drawing.Rectangle(0, 0, iWidth, iHeight),
                     new System.Drawing.Rectangle(StartX, StartY, iWidth, iHeight),
                     System.Drawing.GraphicsUnit.Pixel
                 );
