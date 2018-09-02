@@ -1,0 +1,255 @@
+.fen_ge_xian {
+  float: left;
+  width: 1px;
+  height: 24px;
+  background: #333;
+  margin: 8px 10px;
+}
+
+html,
+body {
+  margin: 0px;
+  padding: 0px;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(40, 40, 40);
+  /*IE自動隱藏捲軸*/
+  /* -ms-overflow-style:-ms-autohiding-scrollbar; */
+
+  scrollbar-track-color: #4a4a4a;
+  scrollbar-arrow-color: rgb(187, 187, 187);
+  scrollbar-face-color: #696969;
+  scrollbar-shadow-color: #4a4a4a;
+}
+#div_top {
+  /* height:50px; */
+  background-color: rgb(83, 83, 83);
+  width: 100%;
+  /* overflow: auto; */
+  position: fixed;
+  z-index: 999;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+.div_center {
+  overflow: auto;
+  width: 100vw;
+  height: 100vh;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+.div_center_box {
+  padding: 50px;
+  padding-top: 100px;
+  background-color: rgba(255, 255, 0, 0);
+  display: inline-block;
+}
+#wPaint {
+  /* background: rgb(255, 255, 255); */
+  border-image: none;
+  /* width: 1600px;
+  height: 900px; */
+  position: relative;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.6);
+}
+
+/*選單按鈕*/
+._wPaint_icon,
+._wPaint_dropDown,
+._wPaint_colorPicker {
+  width: 40px !important;
+  height: 40px !important;
+  padding: 0px !important;
+}
+._wPaint_icon:hover,
+._wPaint_dropDown:hover,
+._wPaint_colorPicker:hover {
+  background-color: rgb(66, 66, 66);
+}
+
+._wPaint_menu {
+  /* background: rgb(239, 239, 239); */
+
+  width: auto !important;
+
+  /*覆寫*/
+  position: static !important;
+  float: left !important;
+  /* height: 40px; */
+}
+
+._wPaint_options {
+  float: left;
+}
+._wPaint_icon {
+  background-position: center;
+
+  float: left;
+  position: relative;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+._wPaint_dropDown {
+  background-position: center;
+  float: left;
+  position: relative;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+._wPaint_colorPicker {
+  background-position: center;
+
+  float: left;
+  position: relative;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
+._wPaint_lineWidth {
+  padding: 3px 0px;
+  width: 24px;
+}
+._wPaint_fontSize {
+  padding: 3px 0px;
+  width: 24px;
+}
+._wPaint_lineWidth {
+  overflow: hidden;
+}
+._wPaint_fontSize {
+  overflow: hidden;
+}
+._wPaint_fontFamily {
+  overflow: hidden;
+}
+._wPaint_dropDown select {
+  border: currentColor;
+  border-image: none;
+
+  width: 60px;
+  height: 30px;
+  margin-top: 5px;
+  cursor: pointer;
+  background-color: #6f6f6f;
+  color: #fff;
+  font-size: 14px;
+  padding-left: 4px;
+  font-family: "Microsoft JhengHei";
+}
+._wPaint_dropDown::after {
+  content: "";
+  display: block;
+  border: 8px solid rgb(83, 83, 83);
+
+  width: 30px;
+  height: 24px;
+  z-index: 999;
+  position: absolute;
+  top: 0px;
+  left: -4px;
+  pointer-events: none;
+}
+._wPaint_dropDown_cover {
+  /* top: 0px;
+  width: 4px;
+  height: 18px;
+  right: 0px;
+  position: absolute;
+  background-color: rgb(239, 239, 239); */
+}
+
+._wPaint_icon.active {
+  background-color: #383838;
+}
+._wPaint_handle {
+  /* background: rgb(175, 175, 175);
+  border-radius: 3px 0px 0px 3px;
+  width: 10px;
+  height: 30px;
+  float: left;
+  cursor: pointer; */
+}
+._wPaint_textInput {
+  background: none;
+  margin: 0px;
+  padding: 0px;
+  border: none !important;
+  outline: 3px ridge    rgb(255, 0, 0);
+  /* margin-top: 4px; */
+
+  border-image: none;
+  overflow: hidden;
+  position: absolute;
+  -ms-word-wrap: break-word;
+}
+._wPaint_colorPicker {
+  padding: 0px;
+  width: 24px;
+  height: 24px;
+}
+._wColorPicker_buttonBorder {
+  border: currentColor;
+  border-image: none;
+}
+._wColorPicker_buttonColor {
+  width: 28px !important;
+  height: 28px !important;
+}
+._wPaint_colorPicker {
+  float: left;
+}
+
+._wPaint_menu_vertical ._wPaint_dropDown {
+}
+._wPaint_menu_vertical ._wPaint_colorPicker {
+}
+._wPaint_menu_vertical ._wPaint_handle {
+  border-radius: 3px 3px 0px 0px;
+  width: 30px;
+  height: 10px;
+}
+._wPaint_handle {
+  background-image: url("./images/menu_handle.png");
+}
+._wPaint_undo {
+  background-image: url("./images/undo_inactive.png");
+}
+._wPaint_undo.uactive {
+  background-image: url("./images/undo.png");
+}
+._wPaint_redo {
+  background-image: url("./images/redo_inactive.png");
+}
+._wPaint_redo.uactive {
+  background-image: url("./images/redo.png");
+}
+._wPaint_clear {
+  background-image: url("./images/clear.png");
+}
+._wPaint_rectangle {
+  background-image: url("./images/icon_rectangle.png");
+}
+._wPaint_ellipse {
+  background-image: url("./images/icon_ellipse.png");
+}
+._wPaint_line {
+  background-image: url("./images/icon_line.png");
+}
+._wPaint_pencil {
+  background-image: url("./images/icon_pencil.png");
+}
+._wPaint_text {
+  background-image: url("./images/icon_text.png");
+}
+._wPaint_eraser {
+  background-image: url("./images/icon_eraser.png");
+}
+._wPaint_bold {
+  background-image: url("./images/icon_bold.png");
+}
+._wPaint_italic {
+  background-image: url("./images/icon_italic.png");
+}
+._wPaint_underline {
+  background-image: url("./images/icon_underline.png");
+}

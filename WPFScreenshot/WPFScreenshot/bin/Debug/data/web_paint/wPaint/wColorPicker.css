@@ -1,0 +1,251 @@
+._wColorPicker_custom #_wColorPicker_color_1 {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsSAAALEgHS3X78AAAAN0lEQVRIie3NsQ0AIAwEsR+V/ZcIAokNotD4miud6SpZdTfYQ8/HVCgUCoVCoVAoFApt6AuaZAMHwYtLhlklPwAAAABJRU5ErkJggg==);
+
+}
+._wColorPicker_buttonColor {
+  background-size: 40px 40px;
+  background-position:  center center;
+  z-index: 99999999999;
+}
+
+._wPaint_strokeColorPicker ._wColorPicker_buttonColor::after{
+  content: "";
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  display: block;
+  background-color:  #6f6f6f;
+ border: 1px solid #d7d7d7;
+}
+
+._wColorPicker_holder {
+  display: inline-block;
+  position: static;
+  z-index: 999999;
+  cursor: default;
+}
+._wColorPicker_outer {
+  position: relative;
+}
+._wColorPicker_inner {
+  position: relative;
+}
+._wColorPicker_bg {
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+._wColorPicker_content {
+  position: relative;
+}
+._wColorPicker_custom {
+  margin-bottom: 10px;
+}
+._wColorPicker_noColor {
+  padding-top: 6px;
+  float: left;
+}
+._wColorPicker_customTarget {
+  margin: 0px 5px 0px 10px;
+  border: 1px solid black;
+  border-image: none;
+  width: 40px;
+  height: 18px;
+  float: left;
+}
+._wColorPicker_customInput {
+  padding: 0px 5px;
+  border: 1px solid black;
+  border-image: none;
+  width: 65px;
+  height: 18px;
+  line-height: 18px;
+  font-family: arial;
+  font-size: 10px;
+  float: left;
+  position: relative;
+}
+._wColorPicker_palette_simple {
+  line-height: 0px;
+  font-size: 0px;
+  float: left;
+}
+._wColorPicker_palette_mixed {
+  line-height: 0px;
+  font-size: 0px;
+  float: left;
+}
+._wColorPicker_palette_simple {
+  margin-right: 10px;
+}
+._wColorPicker_color {
+  border-width: 1px;
+  border-style: solid;
+  width: 30px;
+  height: 30px;
+  line-height: 0px;
+  font-size: 0px;
+  margin-top: -1px;
+  margin-left: -1px;
+  float: left;
+  cursor: pointer;
+}
+._wColorPicker_holder {
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 6px;
+}
+._wColorPicker_outer {
+  border-width: 1px;
+  border-style: solid;
+  margin: 1px;
+  border-radius: 5px;
+}
+._wColorPicker_content {
+  padding: 5px;
+  line-height: 15px;
+  font-family: verdana;
+  font-size: 11px;
+  font-weight: bold;
+}
+._wColorPicker_color {
+  border-color: rgb(0, 0, 0);
+}
+._wColorPicker_color.active {
+  border-color: rgb(255, 0, 0);
+}
+._wColorPicker_color.activeLeft {
+  border-left-color: rgb(255, 0, 0);
+}
+._wColorPicker_color.activeTop {
+  border-top-color: rgb(255, 0, 0);
+}
+._wColorPicker_buttonHolder {
+  display: inline-block;
+  cursor: pointer;
+}
+._wColorPicker_buttonBorder {
+  border-radius: 3px;
+  border: 1px solid #d7d7d7;
+  border-image: none;
+}
+._wColorPicker_buttonColor {
+  margin: 5px;
+  border-radius: 0px;
+  border: 1px solid #d7d7d7;
+}
+._wColorPicker_paletteHolder {
+  z-index: 999999;
+}
+._wColorPicker_red {
+  border-color: rgb(206, 111, 111);
+}
+._wColorPicker_red ._wColorPicker_outer {
+  border-color: rgb(206, 111, 111);
+}
+._wColorPicker_red ._wColorPicker_bg {
+  background-color: rgb(247, 153, 146);
+}
+._wColorPicker_red ._wColorPicker_inner {
+  color: rgb(156, 47, 47);
+}
+._wColorPicker_green {
+  border-color: rgb(169, 219, 102);
+}
+._wColorPicker_green ._wColorPicker_outer {
+  border-color: rgb(169, 219, 102);
+}
+._wColorPicker_green ._wColorPicker_bg {
+  background-color: rgb(205, 230, 172);
+}
+._wColorPicker_green ._wColorPicker_inner {
+  color: rgb(88, 121, 46);
+}
+._wColorPicker_blue {
+  border-color: rgb(173, 217, 237);
+}
+._wColorPicker_blue ._wColorPicker_outer {
+  border-color: rgb(173, 217, 237);
+}
+._wColorPicker_blue ._wColorPicker_bg {
+  background-color: rgb(229, 246, 254);
+}
+._wColorPicker_blue ._wColorPicker_inner {
+  color: rgb(77, 159, 191);
+}
+._wColorPicker_white {
+  border-color: rgb(226, 226, 226);
+}
+._wColorPicker_white ._wColorPicker_outer {
+  border-color: rgb(226, 226, 226);
+}
+._wColorPicker_white ._wColorPicker_bg {
+  background-color: rgb(255, 255, 255);
+}
+._wColorPicker_white ._wColorPicker_inner {
+  color: rgb(69, 69, 69);
+}
+._wColorPicker_black {
+  border-color: rgb(48, 48, 48);
+}
+._wColorPicker_black ._wColorPicker_outer {
+  border-color: rgb(48, 48, 48);
+}
+._wColorPicker_black ._wColorPicker_bg {
+  background-color: rgb(80, 80, 80);
+}
+._wColorPicker_black ._wColorPicker_inner {
+  color: rgb(243, 243, 243);
+}
+._wColorPicker_cream {
+  border-color: rgb(249, 233, 142);
+}
+._wColorPicker_cream ._wColorPicker_outer {
+  border-color: rgb(249, 233, 142);
+}
+._wColorPicker_cream ._wColorPicker_bg {
+  background-color: rgb(251, 247, 170);
+}
+._wColorPicker_cream ._wColorPicker_inner {
+  color: rgb(162, 125, 53);
+}
+._wColorPicker_yellow {
+  border-color: rgb(233, 211, 21);
+}
+._wColorPicker_yellow ._wColorPicker_outer {
+  border-color: rgb(233, 211, 21);
+}
+._wColorPicker_yellow ._wColorPicker_bg {
+  background-color: rgb(249, 242, 186);
+}
+._wColorPicker_yellow ._wColorPicker_inner {
+  color: rgb(91, 83, 22);
+}
+._wColorPicker_orange {
+  border-color: rgb(229, 103, 23);
+}
+._wColorPicker_orange ._wColorPicker_outer {
+  border-color: rgb(229, 103, 23);
+}
+._wColorPicker_orange ._wColorPicker_bg {
+  background-color: rgb(248, 114, 23);
+}
+._wColorPicker_orange ._wColorPicker_inner {
+  color: rgb(156, 47, 47);
+}
+._wColorPicker_plum {
+  border-color: rgb(126, 53, 77);
+}
+._wColorPicker_plum ._wColorPicker_outer {
+  border-color: rgb(126, 53, 77);
+}
+._wColorPicker_plum ._wColorPicker_bg {
+  background-color: rgb(185, 59, 143);
+}
+._wColorPicker_plum ._wColorPicker_inner {
+  color: rgb(249, 183, 255);
+}
