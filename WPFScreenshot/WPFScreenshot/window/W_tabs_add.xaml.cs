@@ -47,14 +47,14 @@ namespace WPFScreenshot.window {
 
             M.fun_鎖定視窗(true);
 
-            this.Closed += (object sender, EventArgs e) => {
+            this.Closed += (sender, e) => {
                 M.fun_鎖定視窗(false);
             };
 
-            but_no.Click += (object sender, RoutedEventArgs e) => {
+            but_no.Click += (sender, e) => {
                 this.Close();
             };
-            but_yes.Click += (object sender, RoutedEventArgs e) => {
+            but_yes.Click += (sender, e) => {
                 act();
             };
 
@@ -63,7 +63,7 @@ namespace WPFScreenshot.window {
             //---------------
 
             //讓視窗可以拖曳
-            this.MouseLeftButtonDown += ((object sender, MouseButtonEventArgs e) => {
+            this.MouseLeftButtonDown += ((sender, e) => {
                 this.DragMove();
             });
 
@@ -76,7 +76,7 @@ namespace WPFScreenshot.window {
             }
 
             //--------
-            this.KeyDown += (object sender, KeyEventArgs e) => {
+            this.KeyDown += ( sender,  e) => {
                 if (e.Key == Key.Escape)
                     this.Close();
                 else if (e.Key == Key.Enter)
@@ -137,7 +137,7 @@ namespace WPFScreenshot.window {
                     return;
                 }
 
-         
+
 
                 //避免非法字元
                 String[] ff = { "/", "\\", ":", "*", "?", "\"", "<", ">", "|" };
@@ -168,7 +168,7 @@ namespace WPFScreenshot.window {
         /// <param name="s"></param>
         private void fun_新建一個頁籤(String s) {
 
-            String str_新檔名 = M.func_exe_path() + "/" + M.s_筆記路徑 + "/" + s;
+            String str_新檔名 = M.func_取得儲存根目錄() + "\\" + s;
 
             if (Directory.Exists(str_新檔名) == false) {
                 Directory.CreateDirectory(str_新檔名);
@@ -189,7 +189,7 @@ namespace WPFScreenshot.window {
         /// </summary>
         public void fun_修改() {
 
-            this.Loaded += (object sender2, RoutedEventArgs e2) => {
+            this.Loaded += ( sender2,  e2) => {
                 //顯示目前名字
                 try {
                     textBox_tabName.Text = M.c_分頁.b_but_text.Text + "";
@@ -219,7 +219,7 @@ namespace WPFScreenshot.window {
                         return;
                     }
 
-                    
+
                     //避免名字空白
                     if (textBox_tabName.Text.Replace(".", "") == "") {
                         new W_對話(M).fun_一般訊息(this, "名字不要空白啦");
@@ -241,8 +241,8 @@ namespace WPFScreenshot.window {
                     }
 
 
-                    String str_原檔名 = M.func_exe_path() + "/" + M.s_筆記路徑 + "/" + M.c_分頁.b_but_text.Text;
-                    String str_新檔名 = M.func_exe_path() + "/" + M.s_筆記路徑 + "/" + textBox_tabName.Text;
+                    String str_原檔名 = M.func_取得儲存根目錄() + "\\" + M.c_分頁.b_but_text.Text;
+                    String str_新檔名 = M.func_取得儲存根目錄() + "\\" + textBox_tabName.Text;
 
                     //再次檢查檔名是否存在
                     if (Directory.Exists(str_原檔名) == false) {
@@ -278,7 +278,7 @@ namespace WPFScreenshot.window {
         /// </summary>
         public void fun_刪除() {
 
-            this.Loaded += (object sender2, RoutedEventArgs e2) => {
+            this.Loaded += (sender2, e2) => {
 
                 //顯示目前名字
                 try {
@@ -295,7 +295,7 @@ namespace WPFScreenshot.window {
                 act = new Action(() => {
 
 
-                    String str_新檔名 = M.func_exe_path() + "/" + M.s_筆記路徑 + "/" + M.c_分頁.b_but_text.Text;
+                    String str_新檔名 = M.func_取得儲存根目錄() + "\\" + M.c_分頁.b_but_text.Text;
 
                     //再次檢查檔名沒有重複
                     if (Directory.Exists(str_新檔名) == false) {

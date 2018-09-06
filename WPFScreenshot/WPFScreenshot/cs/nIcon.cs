@@ -25,7 +25,7 @@ namespace WPFScreenshot {
             StreamResourceInfo sri = Application.GetResourceStream(uri);
             nIcon.Icon = new System.Drawing.Icon(sri.Stream);
 
-            nIcon.Text = "TiefSee 快速啟動";
+            nIcon.Text = "WPFScreenshot";
             nIcon.Visible = true;
 
 

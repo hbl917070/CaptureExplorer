@@ -12,7 +12,8 @@
         WindowStyle="None"
         ResizeMode="CanMinimize"
         Background="#02000000"
-        Topmost="True" ShowInTaskbar="False">
+        Topmost="True" ShowInTaskbar="False"
+        InputMethod.IsInputMethodEnabled="False">
     <Window.Resources>
 
         <Style TargetType="{x:Type ToolTip}">
@@ -43,7 +44,7 @@
                     </CombinedGeometry.Geometry1>
                     <CombinedGeometry.Geometry2>
                         <RectangleGeometry x:Name="transparentRect"
-                                           Rect="100,100,100,100" />
+                                           Rect="200,200,20,20" />
                     </CombinedGeometry.Geometry2>
                 </CombinedGeometry>
             </Path.Data>

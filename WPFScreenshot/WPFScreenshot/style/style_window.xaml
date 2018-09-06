@@ -4,14 +4,10 @@
 
     <BooleanToVisibilityConverter x:Key="bool2VisibilityConverter" />
 
-    <!--<Color x:Key="WindowBackgroundColor">#FF2D2D30</Color>-->
-    <Color x:Key="WindowBackgroundColor">#ee000000</Color>
-    <!--右上角的按鈕移入時-->
-    <Color x:Key="HighlightColor">#994BC8FF</Color>
-    <!--<Color x:Key="BlueColor">#FF007ACC</Color>-->
+    <Color x:Key="WindowBackgroundColor">#FF2D2D30</Color>
+    <Color x:Key="HighlightColor">#7F4BC8FF</Color>
     <Color x:Key="BlueColor">#FF4BC8FF</Color>
-    <!--<Color x:Key="ForegroundColor">#FFF4F4F5</Color>-->
-    <Color x:Key="ForegroundColor">#FFFFFFFF</Color>
+    <Color x:Key="ForegroundColor">#FFF4F4F5</Color>
 
     <SolidColorBrush x:Key="WindowBackgroundColorBrush"
                      Color="{StaticResource WindowBackgroundColor}" />
@@ -73,32 +69,101 @@
 
 
     <Style x:Key="MyWindowStyle"
-           TargetType="local:MainWindow">
+           TargetType="{x:Type local:MainWindow}">
         <Setter Property="Foreground"
                 Value="{DynamicResource ForegroundColorBrush}" />
-        <!--<Setter Property="Background" Value="{DynamicResource WindowBackgroundBrush}"/>-->
+
         <Setter Property="ResizeMode"
                 Value="CanResizeWithGrip" />
         <Setter Property="UseLayoutRounding"
                 Value="True" />
         <Setter Property="TextOptions.TextFormattingMode"
                 Value="Display" />
-
-
+        <!--<Setter Property="AllowsTransparency"
+                Value="True"></Setter>-->
 
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="local:MainWindow">
+                <ControlTemplate TargetType="{x:Type local:MainWindow}">
                     <Border x:Name="WindowBorder"
                             Margin="{Binding Source={x:Static SystemParameters.WindowNonClientFrameThickness}}"
-                            Background="{TemplateBinding Background}">
+                            Background="{x:Null}">
                         <Grid>
-                            <Border BorderThickness="1">
+                            <Border BorderThickness="0">
                                 <AdornerDecorator>
                                     <Grid x:Name="LayoutRoot">
 
-                                        <ContentPresenter />
-                                        <!--<Rectangle x:Name="HeaderBackground" Height="Auto" Fill="{DynamicResource WindowBackgroundColorBrush}" VerticalAlignment="Stretch" Grid.Row="0"/>-->
+                                        <ContentPresenter Grid.Row="1"
+                                                          Grid.RowSpan="2"
+                                                          Margin="0" />
+
+
+
+                                        <!--<StackPanel DockPanel.Dock="Right"
+                                                    Orientation="Horizontal">
+
+                                         
+                                            <Button Command="{Binding Source={x:Static SystemCommands.MinimizeWindowCommand}}"
+                                                    ToolTip="最小化"
+                                                    Style="{StaticResource but_title}"
+                                                    IsTabStop="False"
+                                                    Height="30"
+                                                    Width="50">
+                                                <Path Data="M0,6 L8,6 Z"
+                                                      Width="8"
+                                                      Height="7"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"
+                                                      Stroke="{DynamicResource sol_白}"
+                                                      StrokeThickness="2" />
+                                            </Button>
+                                            <Grid Height="30"
+                                                  Width="50">
+                                                <Button x:Name="Restore"
+                                                        Command="{Binding Source={x:Static SystemCommands.RestoreWindowCommand}}"
+                                                        ToolTip="視窗化"
+                                                        Visibility="Collapsed"
+                                                        IsTabStop="False"
+                                                        Style="{StaticResource WindowButtonStyle}">
+                                                    <Path Data="M2,0 L8,0 L8,6 M0,3 L6,3 M0,2 L6,2 L6,8 L0,8 Z"
+                                                          Width="8"
+                                                          Height="8"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"
+                                                          Stroke="{DynamicResource sol_白}"
+                                                          StrokeThickness="1" />
+                                                </Button>
+                                                <Button x:Name="Maximize"
+                                                        Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
+                                                        ToolTip="最大化"
+                                                        IsTabStop="False"
+                                                        Style="{StaticResource but_title}">
+                                                    <Path Data="M0,1 L9,1 L9,8 L0,8 Z"
+                                                          Width="9"
+                                                          Height="8"
+                                                          VerticalAlignment="Center"
+                                                          HorizontalAlignment="Center"
+                                                          Stroke="{DynamicResource sol_白}"
+                                                          StrokeThickness="2" />
+                                                </Button>
+                                            </Grid>
+                                            <Button Command="{Binding Source={x:Static SystemCommands.CloseWindowCommand}}"
+                                                    ToolTip="關閉"
+                                                    Style="{StaticResource but_title}"
+                                                    IsTabStop="False"
+                                                    Height="30"
+                                                    Width="50">
+                                                <Path Data="M0,0 L8,7 M8,0 L0,7 Z"
+                                                      Width="8"
+                                                      Height="7"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Center"
+                                                      StrokeThickness="1.5"
+                                                      Stroke="{DynamicResource sol_白}" />
+                                            </Button>
+                                        </StackPanel>-->
+
+
 
                                         <StackPanel Orientation="Horizontal"
                                                     HorizontalAlignment="Right"
@@ -111,7 +176,7 @@
                                                     ToolTip="minimize"
                                                     Style="{StaticResource but_title}"
                                                     IsTabStop="False"
-                                                    Width="40" BorderBrush="#00707070">
+                                                    Width="40">
                                                 <Path Data="M-99.5,97.75 L-80.968254,97.75"
                                                       HorizontalAlignment="Center"
                                                       Height="2"
@@ -128,7 +193,7 @@
                                                         ToolTip="restore"
                                                         Visibility="Collapsed"
                                                         IsTabStop="False"
-                                                        Style="{StaticResource but_title}" BorderBrush="#00707070">
+                                                        Style="{StaticResource but_title}">
                                                     <Grid HorizontalAlignment="Center"
                                                           Height="8.941"
                                                           VerticalAlignment="Center"
@@ -144,7 +209,7 @@
                                                         Command="{Binding Source={x:Static SystemCommands.MaximizeWindowCommand}}"
                                                         ToolTip="maximize"
                                                         IsTabStop="False"
-                                                        Style="{StaticResource but_title}" BorderBrush="#00707070">
+                                                        Style="{StaticResource but_title}">
                                                     <Rectangle HorizontalAlignment="Center"
                                                                Height="10"
                                                                Stroke="White"
@@ -156,7 +221,7 @@
                                                     ToolTip="close"
                                                     Style="{StaticResource but_title}"
                                                     IsTabStop="False"
-                                                    Width="40" BorderBrush="#00707070">
+                                                    Width="40">
                                                 <Grid HorizontalAlignment="Center"
                                                       Height="10"
                                                       VerticalAlignment="Center"
@@ -182,9 +247,7 @@
                                             </Button>
                                         </StackPanel>
 
-
-                                        <!--<TextBlock x:Name="WindowTitleTextBlock" Grid.Row="0" Text="{TemplateBinding Title}" HorizontalAlignment="Left" TextTrimming="CharacterEllipsis" VerticalAlignment="Center"  Margin="5,0,0,0"  Foreground="{TemplateBinding Foreground}" FontSize="18.667"/>-->
-                                        <Grid>
+                                        <Grid Grid.Row="2">
                                             <Path x:Name="ResizeGrip"
                                                   Visibility="Collapsed"
                                                   Width="12"
@@ -200,19 +263,21 @@
                                 </AdornerDecorator>
                             </Border>
 
-                            <!--邊框顏色-未被選取-->
-                            <Border BorderBrush="#FF4D4D4D"
-                                    BorderThickness="1" />
+                            <!--未選中的顏色-->
+                            <!--<Border BorderThickness="1.3"
+                                    BorderBrush="#FF006A86"></Border>-->
 
-                            <!--邊框顏色-已選取-->
-                            <!--<Border BorderBrush="{StaticResource BlueColorBrush}"
-                                    BorderThickness="1"
-                                    Visibility="{Binding IsActive,
-                                RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Converter={StaticResource bool2VisibilityConverter}}" />-->
+                            <!--選中的顏色-->
+                            <!--<Border BorderBrush="{DynamicResource BlueColorBrush}"
+                                    BorderThickness="1.3"
+                                    Visibility="{Binding IsActive, 
+                                                        Converter={StaticResource bool2VisibilityConverter},
+                                                        RelativeSource={RelativeSource FindAncestor, 
+                                                        AncestorType={x:Type Window}}}" />-->
+
 
                         </Grid>
                     </Border>
-
                     <ControlTemplate.Triggers>
                         <Trigger Property="WindowState"
                                  Value="Maximized">
@@ -225,15 +290,19 @@
                             <Setter TargetName="LayoutRoot"
                                     Property="Margin"
                                     Value="7" />
+                            <!--<Setter TargetName="WindowBorder"
+                                    Property="Width"
+                                    Value="1600" />-->
+
                         </Trigger>
                         <Trigger Property="WindowState"
                                  Value="Normal">
-                            <Setter TargetName="Maximize"
+                            <!--<Setter TargetName="Maximize"
                                     Property="Visibility"
                                     Value="Visible" />
                             <Setter TargetName="Restore"
                                     Property="Visibility"
-                                    Value="Collapsed" />
+                                    Value="Collapsed" />-->
                         </Trigger>
                         <MultiTrigger>
                             <MultiTrigger.Conditions>
@@ -247,26 +316,28 @@
                                     Value="Visible" />
                         </MultiTrigger>
                     </ControlTemplate.Triggers>
-
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
 
         <Setter Property="WindowChrome.WindowChrome">
             <Setter.Value>
+
+                <!--<WindowChrome CornerRadius="0"
+                              GlassFrameThickness="1"
+                              UseAeroCaptionButtons="True"
+                              ResizeBorderThickness="8"
+                              CaptionHeight="0"
+                              NonClientFrameEdges="None" />-->
                 <WindowChrome CornerRadius="0"
-                               ResizeBorderThickness="7"
-                               CaptionHeight="0" 
-                               GlassFrameThickness="{Binding BorderThickness, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
-                           
-                               UseAeroCaptionButtons="True"
-                              NonClientFrameEdges="None"
-                              
-                             
-                             />
+                              ResizeBorderThickness="8"
+                              CaptionHeight="0"
+                              GlassFrameThickness="{Binding BorderThickness, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type local:MainWindow}}}"
+                              UseAeroCaptionButtons="True"
+                              NonClientFrameEdges="None" />
             </Setter.Value>
         </Setter>
-
     </Style>
+
 
 </ResourceDictionary>

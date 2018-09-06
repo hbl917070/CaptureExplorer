@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,13 +12,13 @@ namespace WPFScreenshot {
     public class C_setting {
 
 
-        private String XML_NAME = "imgs/setting.xml";//儲存的檔名
-        private String XML_NAME_預設 = "imgs/setting-preset.xml";//預設路徑
+        private String XML_NAME = "data/setting.xml";//儲存的檔名
+        private String XML_NAME_預設 = "data/setting-preset.xml";//預設路徑
 
         public MainWindow M;
 
-        public String s_目前選取的資料夾="";
-        public String s_資料夾順序="";
+        public String s_目前選取的資料夾 = "";
+        public String s_資料夾順序 = "";
 
         //
         public C_setting(MainWindow m) {
@@ -94,19 +95,17 @@ namespace WPFScreenshot {
             //
 
 
-            fun_儲存(X, M.checkBox_自動存入剪貼簿.Name, M.checkBox_自動存入剪貼簿.IsChecked.Value.ToString());
+            fun_儲存(X, "bool_auto_copy", M.checkBox_自動存入剪貼簿.IsChecked.Value.ToString());
             //fun_儲存(X, M.checkBox_視窗置頂.Name, M.checkBox_視窗置頂.IsChecked.Value.ToString());
 
-            fun_儲存(X, "s_快速鍵", M.s_快速鍵);
+            fun_儲存(X, "s_kb", M.s_快速鍵);
+            fun_儲存(X, "s_kb_all", M.s_快速鍵_全螢幕);
+            fun_儲存(X, "s_kb_focus", M.s_快速鍵_目前視窗);
+            fun_儲存(X, "bool_specified_save_path", M.bool_自定儲存路徑.ToString());
+            fun_儲存(X, "s_specified_save_path", M.s_自定儲存路徑);
 
-
-            //儲存資料夾順序
-            String sum = "";
-            foreach (var item in M.stackPanel_1.Children) {
-                U_分頁_item u = (U_分頁_item)item;
-                sum += u.Text + "\t";
-            }
-            fun_儲存(X, "sub_folder", sum);
+          
+            fun_儲存(X, "sub_folder", M.func_取得資料夾順序());
 
             //儲存目前選取的資料夾
             fun_儲存(X, "sub_folder_select", M.c_分頁.b_but_text.Text);
@@ -155,12 +154,28 @@ namespace WPFScreenshot {
                 foreach (XmlNode item in NodeLists) {
 
 
-                    fun_讀取項目(item, M.checkBox_自動存入剪貼簿);
+                    fun_讀取項目(item, "bool_auto_copy");
                     //fun_讀取項目(item, M.checkBox_視窗置頂);
 
-                    if (item.Attributes["name"].Value == "s_快速鍵")
-                        M.s_快速鍵 = item.InnerText;
 
+                    //截圖快速鍵
+                    if (item.Attributes["name"].Value == "s_kb")
+                        M.s_快速鍵 = item.InnerText;
+                    if (item.Attributes["name"].Value == "s_kb_all")
+                        M.s_快速鍵_全螢幕 = item.InnerText;
+                    if (item.Attributes["name"].Value == "s_kb_focus")
+                        M.s_快速鍵_目前視窗 = item.InnerText;
+
+                    //自定義儲存路徑
+                    if (item.Attributes["name"].Value == "bool_specified_save_path")
+                        M.bool_自定儲存路徑 = item.InnerText.ToUpper() == "TRUE";
+                    if (item.Attributes["name"].Value == "s_specified_save_path")
+                        M.s_自定儲存路徑 = item.InnerText;
+
+
+
+
+                    //上次的資料夾順序
                     if (item.Attributes["name"].Value == "sub_folder_select")
                         s_目前選取的資料夾 = item.InnerText;
                     if (item.Attributes["name"].Value == "sub_folder")

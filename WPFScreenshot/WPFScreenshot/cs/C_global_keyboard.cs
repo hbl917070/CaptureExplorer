@@ -33,15 +33,36 @@ namespace WPFScreenshot {
         /// <param name="e"></param>
         private void HookManager_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
 
+
+            if (M.w_截圖 != null) {
+                if (e.KeyCode == Keys.Escape) {
+                    M.w_截圖.func_關閉程式();
+                    e.Handled = true;
+                    return;
+                }
+            }
+
             if (M.w_設定 != null)
                 if (M.w_設定.IsActive == true) {
 
-                    if (M.w_設定.textBox_截圖快速鍵.IsFocused == true && M.web_資料夾.Focused == false) {
+                    String s = fun_取得按鍵(e);
 
-                        String s = fun_取得按鍵(e);
+                    if (M.w_設定.textBox_截圖快速鍵.IsFocused == true && M.web_資料夾.Focused == false) {
                         M.w_設定.textBox_截圖快速鍵.Text = s;
                         M.s_快速鍵 = s;
-                        //e.Handled = true;
+                        return;
+                    }
+
+
+                    if (M.w_設定.textBox_截圖快速鍵_全螢幕.IsFocused == true && M.web_資料夾.Focused == false) {
+                        M.w_設定.textBox_截圖快速鍵_全螢幕.Text = s;
+                        M.s_快速鍵_全螢幕 = s;
+                        return;
+                    }
+
+                    if (M.w_設定.textBox_截圖快速鍵_目前視窗.IsFocused == true && M.web_資料夾.Focused == false) {
+                        M.w_設定.textBox_截圖快速鍵_目前視窗.Text = s;
+                        M.s_快速鍵_目前視窗 = s;
                         return;
                     }
                 }
@@ -53,8 +74,17 @@ namespace WPFScreenshot {
             if (k == M.s_快速鍵) {
                 M.func_截圖();
                 e.Handled = true;
-            }
+            } else
 
+            if (k == M.s_快速鍵_全螢幕) {
+                M.func_截圖_全螢幕();
+                e.Handled = true;
+            } else
+
+            if (k == M.s_快速鍵_目前視窗) {
+                M.func_截圖_目前視窗();
+                e.Handled = true;
+            }
         }
 
 
@@ -89,7 +119,7 @@ namespace WPFScreenshot {
                  .Replace("LMenu", "LAlt").Replace("RMenu", "RAlt")
                  .Replace("PrintScreen", "PrtScrSysRq");
 
-             
+
             if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.LeftShift) && (e.KeyCode != Keys.LShiftKey)) {
                 k = "LShift + " + k;
             }
@@ -181,7 +211,7 @@ namespace WPFScreenshot {
             if (System.Windows.Input.Keyboard.IsKeyDown(System.Windows.Input.Key.End) && (e.KeyCode != Keys.End)) {
                 k = "End + " + k;
             }
-         
+
 
 
 

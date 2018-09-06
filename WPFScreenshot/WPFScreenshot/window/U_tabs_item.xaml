@@ -6,9 +6,10 @@
              xmlns:local="clr-namespace:WPFScreenshot.window"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Border  BorderBrush="#19FFFFFF" Height="35">
+   
+        <Border  BorderBrush="#19FFFFFF" Height="35"
+                 Background="#00000000">
             <TextBlock x:Name="tex" Text="Tex" Foreground="{DynamicResource sol_白}" VerticalAlignment="Center" TextTrimming="WordEllipsis" Margin="10,0" FontSize="18"/>
         </Border>
-    </Grid>
+    
 </UserControl>

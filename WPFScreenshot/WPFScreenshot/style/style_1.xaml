@@ -54,6 +54,7 @@
                 Value="{StaticResource sol_白}" />
     </Style>
 
+    
     <Style  TargetType="{x:Type TextBox}">
 
         <!--外距-->
@@ -85,6 +86,8 @@
         <!---->
 		<Setter Property="Padding" Value="3"/>
 	</Style>
+    
+    
     <Style TargetType="{x:Type DatePicker}">
         <Setter Property="Foreground" Value="#FF333333"/>
         <Setter Property="IsTodayHighlighted" Value="True"/>
@@ -343,5 +346,23 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <ControlTemplate x:Key="TextBox_01" TargetType="{x:Type TextBoxBase}">
+        <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True">
+            <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="BorderBrush" TargetName="border" Value="#FF007ACC"/>
+            </Trigger>
+            <Trigger Property="IsKeyboardFocused" Value="True">
+                <Setter Property="BorderBrush" TargetName="border" Value="#FF007ACC"/>
+                <Setter Property="BorderThickness" TargetName="border" Value="2"/>
+          
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
     
 </ResourceDictionary>

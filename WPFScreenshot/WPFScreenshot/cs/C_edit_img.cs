@@ -101,7 +101,7 @@ namespace WPFScreenshot {
             webBrowser1.Navigate(System.Windows.Forms.Application.StartupPath + "\\data\\web_paint\\index.html");
             webBrowser1.ObjectForScripting = new C_web呼叫javaScript(this);//讓網頁允許存取C#
             webBrowser1.IsWebBrowserContextMenuEnabled = false;//禁止右鍵選單
-            webBrowser1.AllowNavigation = false;
+            webBrowser1.AllowNavigation = false;//載入完成後，禁止瀏覽其他網頁
             webBrowser1.BackColor = Color.FromArgb(40,40,40);
 
             this.ClientSize = new System.Drawing.Size(800, 450);

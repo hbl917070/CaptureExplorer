@@ -46,6 +46,7 @@
 
         </UniformGrid>
         <TextBox x:Name="textBox"
+            
                  VerticalAlignment="Top"
                  DockPanel.Dock="Top"
                  Margin="0,0,0,10"

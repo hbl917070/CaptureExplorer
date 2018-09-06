@@ -237,10 +237,10 @@
                     <Grid>
 
                         <Border Name="b1"
-                                Background="#66000000"
+                                Background="#00000000"
                                 Opacity="1"
                                 BorderThickness="1"
-                                BorderBrush="{DynamicResource sol_白80}" />
+                                BorderBrush="{DynamicResource sol_白40}" />
                         <!--<Border Name="b2"
                                 Background="#7F4BC8FF"
                                 Opacity="0" />

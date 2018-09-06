@@ -69,15 +69,32 @@ namespace WPFScreenshot {
 
             //重複點選就不執行
             if (b_but_text != but) {
-                ac_click(but.Text);             
-            } 
+                ac_click(but.Text);
+            }
 
             b_but_text = but;
 
             func_修改顏色_選中(but);
 
-          
+
         }
+
+        /// <summary>
+        /// 刪除所有項目
+        /// </summary>
+        public void fun_delete_all() {
+
+            var ar = sp_容器.Children;
+
+            if (ar.Count == 0) {
+                return;
+            }
+            ar.RemoveRange(0,ar.Count);
+           
+            b_but_text = null;
+
+        }
+
 
 
         /// <summary>
@@ -112,7 +129,7 @@ namespace WPFScreenshot {
                 fun_SetSelect((U_分頁_item)ar[x + 1]);
             }
             sp_容器.Children.RemoveAt(x);
-          
+
         }
 
 

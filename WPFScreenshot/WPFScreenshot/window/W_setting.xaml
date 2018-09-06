@@ -6,9 +6,10 @@
         xmlns:local="clr-namespace:WPFScreenshot.window"
         mc:Ignorable="d"
         Title="設定"
-        Height="464.467"
-        Width="375.667"
+        Height="529.993"
+        Width="536.167"
         Background="#FF252526"
+        xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         WindowStartupLocation="CenterOwner"
         ResizeMode="CanResizeWithGrip">
 
@@ -73,8 +74,119 @@
 
 
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  Focusable="False">
+    <TabControl x:Name="tabControl_1"
+                TabStripPlacement="Left">
+
+        <TabControl.Resources>
+
+            <!-- TabControl的樣式 -->
+            <Style TargetType="{x:Type TabControl}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabControl}">
+                            <DockPanel>
+
+
+                                <!--button-->
+                                <Border Grid.Row="0"
+                                        Grid.Column="0"
+                                        Background="#FF2D2D30">
+
+                                    <TabPanel IsItemsHost="True" />
+                                </Border>
+                                <Rectangle Height="Auto"
+                                           VerticalAlignment="Stretch"
+                                           Width="5"
+                                           Margin="0,0,-5,0">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush EndPoint="1,0"
+                                                             StartPoint="0,0">
+                                            <GradientStop Color="Black"
+                                                          Offset="0" />
+                                            <GradientStop Color="#00000000"
+                                                          Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+
+                                <!--內容-->
+                                <Border BorderBrush="{DynamicResource sol_白}"
+                                        Grid.Column="1">
+                                    <ContentPresenter ContentSource="SelectedContent"
+                                                      x:Name="PART_SelectedContentHost" />
+                                </Border>
+                            </DockPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!--button-->
+            <Style TargetType="{x:Type TabItem}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TabItem}">
+
+                            <Border x:Name="Border"
+                                    BorderBrush="{StaticResource sol_白}"
+                                    Margin="0,3,0,0"
+                                    Padding="5">
+
+                                <ContentPresenter x:Name="ContentSite"
+                                                  HorizontalAlignment="Center"
+                                                  ContentSource="Header"
+                                                  Margin="10,8,10,3"
+                                                  VerticalAlignment="Center" />
+
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <!--未選-->
+                                <Trigger Property="IsSelected"
+                                         Value="False">
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="#00000000" />
+                                </Trigger>
+                                <!--滑鼠移入-->
+                                <Trigger Property="IsMouseOver"
+                                         Value="true">
+                                    <Setter TargetName="Border"
+                                            Property="BorderBrush"
+                                            Value="{StaticResource sol_淺藍}" />
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource sol_淺綠40}" />
+                                </Trigger>
+                                <!--選中-->
+                                <Trigger Property="IsSelected"
+                                         Value="True">
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{StaticResource sol_淺藍40}" />
+                                    <Setter TargetName="Border"
+                                            Property="BorderBrush"
+                                            Value="{StaticResource sol_淺藍}" />
+
+                                </Trigger>
+
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </TabControl.Resources>
+
+        <TabItem Background="{DynamicResource sol_白40}"
+                 FontSize="18">
+            <TabItem.Header>
+                <Label Content="快速鍵設定"
+                       Padding="0"
+                       Foreground="{DynamicResource sol_白}" />
+            </TabItem.Header>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                          Focusable="False">
 
 
 
@@ -82,83 +194,286 @@
 
 
 
-        <StackPanel
-                    Height="Auto"
-                    VerticalAlignment="Top"
-                    Width="Auto"
-                    Margin="15">
-            <Label Content="截圖快速鍵"
-                   FontSize="24" />
+                <StackPanel Height="Auto"
+                            VerticalAlignment="Top"
+                            Width="Auto"
+                            Margin="15">
+                    <Label Content="快速鍵"
+                           FontSize="24" />
 
-            <TextBlock x:Name="label"
-                   Text="點選文字框後，直接透過鍵盤來設定快速鍵，可使用複合快速鍵。例如：Ctrl + F2"
-                   VerticalAlignment="Center"
-                   Margin="0,10,0,3" Foreground="#FFD1D1D1" FontSize="16" TextWrapping="Wrap" HorizontalAlignment="Left"
-                    />
-            <Grid>
-                <TextBox x:Name="textBox_截圖快速鍵"
-                         Text="PrtScrSysRq"
-                         VerticalAlignment="Stretch"
-                         HorizontalContentAlignment="Left"
-                         Padding="5,0,30,0"
-                         IsReadOnly="True"
-                         ToolTip="點擊文字框後，直接點擊鍵盤來設定快速鍵"
-                         IsTabStop="False"
-                         Height="40" Background="#FF333337" BorderBrush="#66FFFFFF" Foreground="White" />
-                <Button x:Name="button_截圖快速鍵"
-                          Style="{DynamicResource but_title}"
-                        Width="40"
-                        Height="40"
-                        DockPanel.Dock="Right"
-                        Margin="0"
-                        Background="#FF4B8DF8"
-                        BorderBrush="{x:Null}"
-                        ToolTip="不使用快速鍵" HorizontalAlignment="Right">
-                    <Image x:Name="image"
-                           
-                           Height="24"
-                           Width="24"
-                           Source="/WPFScreenshot;component/imgs/no.png" />
-                </Button>
-            </Grid>
-            <Label Content="關於"
-                   FontSize="24"
-                   BorderThickness="0,30,0,0" />
-            <TextBox x:Name="text_關於"
-                     TextWrapping="Wrap"
-                     Text="TextBox"
-                     VerticalAlignment="Top"
-                     BorderBrush="{x:Null}"
-                     Foreground="{DynamicResource sol_白}"
-                     Background="{x:Null}"
-                     HorizontalAlignment="Left"
-                     IsReadOnlyCaretVisible="True"
-                     Padding="0"
-                     HorizontalContentAlignment="Left"
-                     VerticalContentAlignment="Top"
-                     AcceptsReturn="True"
-                     IsReadOnly="True"
-                     Margin="0,10,0,0" />
-            <StackPanel Orientation="Horizontal"
-                        Margin="0,40,0,0" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <Button x:Name="but_小屋"
-                          Style="{DynamicResource but_一般}"
-                      
-                        Height="40"
-                        Margin="0,0,20,0"
-                        Width="100" BorderBrush="{DynamicResource sol_白40}" >
-                    <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Normal">作者小屋</Label>
-                </Button>
-                <Button x:Name="but_討論區"
-                          Style="{DynamicResource but_一般}"
-                      
-                        Height="40"
-                        
-                        Width="100" BorderBrush="{DynamicResource sol_白40}" >
-                    <Label VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Normal">討論區</Label>
-                </Button>
-            </StackPanel>
-        </StackPanel>
+                    <TextBlock x:Name="label"
+                               Text="點選文字框後，直接透過鍵盤來設定快速鍵，可使用複合快速鍵。例如：Ctrl + F2"
+                               VerticalAlignment="Center"
+                               Margin="0,0,0,3"
+                               Foreground="#FFD1D1D1"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Left" />
+                    <TextBlock Text="選取截圖"
+                               VerticalAlignment="Center"
+                               Margin="0,15,0,3"
+                               Foreground="#FFD1D1D1"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Left" />
+                    <Grid>
+                        <TextBox x:Name="textBox_截圖快速鍵"
+                                 Text="PrtScrSysRq"
+                                 VerticalAlignment="Stretch"
+                                 HorizontalContentAlignment="Left"
+                                 Padding="5,0,40,0"
+                                 IsReadOnly="True"
+                                 ToolTip="點擊文字框後，直接點擊鍵盤來設定快速鍵"
+                                 IsTabStop="False"
+                                 Height="40"
+                                 Background="#FF333337"
+                                 BorderBrush="#66FFFFFF"
+                                 Foreground="White"
+                                 Template="{DynamicResource TextBox_01}" />
+                        <Button x:Name="button_截圖快速鍵"
+                                Style="{DynamicResource but_title}"
+                                Width="40"
+                                Height="40"
+                                DockPanel.Dock="Right"
+                                Margin="0"
+                                Background="#FF4B8DF8"
+                                BorderBrush="{x:Null}"
+                                ToolTip="不使用快速鍵"
+                                HorizontalAlignment="Right">
+                            <Image x:Name="image"
+                                   Height="24"
+                                   Width="24"
+                                   Source="/WPFScreenshot;component/imgs/no.png" />
+                        </Button>
+                    </Grid>
+                    <TextBlock Text="全螢幕截圖"
+                               VerticalAlignment="Center"
+                               Margin="0,15,0,3"
+                               Foreground="#FFD1D1D1"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Left" />
+                    <Grid>
+                        <TextBox x:Name="textBox_截圖快速鍵_全螢幕"
+                                 Template="{DynamicResource TextBox_01}"
+                                 Text="PrtScrSysRq"
+                                 VerticalAlignment="Stretch"
+                                 HorizontalContentAlignment="Left"
+                                 Padding="5,0,40,0"
+                                 IsReadOnly="True"
+                                 ToolTip="點擊文字框後，直接點擊鍵盤來設定快速鍵"
+                                 IsTabStop="False"
+                                 Height="40"
+                                 Background="#FF333337"
+                                 BorderBrush="#66FFFFFF"
+                                 Foreground="White" />
+                        <Button x:Name="button_截圖快速鍵_全螢幕"
+                                Style="{DynamicResource but_title}"
+                                Width="40"
+                                Height="40"
+                                DockPanel.Dock="Right"
+                                Margin="0"
+                                Background="#FF4B8DF8"
+                                BorderBrush="{x:Null}"
+                                ToolTip="不使用快速鍵"
+                                HorizontalAlignment="Right">
+                            <Image x:Name="image1"
+                                   Height="24"
+                                   Width="24"
+                                   Source="/WPFScreenshot;component/imgs/no.png" />
+                        </Button>
+                    </Grid>
+                    <TextBlock Text="目前視窗截圖"
+                               VerticalAlignment="Center"
+                               Margin="0,15,0,3"
+                               Foreground="#FFD1D1D1"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               HorizontalAlignment="Left" />
+                    <Grid>
+                        <TextBox x:Name="textBox_截圖快速鍵_目前視窗"
+                                 Template="{DynamicResource TextBox_01}"
+                                 Text="PrtScrSysRq"
+                                 VerticalAlignment="Stretch"
+                                 HorizontalContentAlignment="Left"
+                                 Padding="5,0,40,0"
+                                 IsReadOnly="True"
+                                 ToolTip="點擊文字框後，直接點擊鍵盤來設定快速鍵"
+                                 IsTabStop="False"
+                                 Height="40"
+                                 Background="#FF333337"
+                                 BorderBrush="#66FFFFFF"
+                                 Foreground="White" />
+                        <Button x:Name="button_截圖快速鍵_目前視窗"
+                                Style="{DynamicResource but_title}"
+                                Width="40"
+                                Height="40"
+                                DockPanel.Dock="Right"
+                                Margin="0"
+                                Background="#FF4B8DF8"
+                                BorderBrush="{x:Null}"
+                                ToolTip="不使用快速鍵"
+                                HorizontalAlignment="Right">
+                            <Image x:Name="image2"
+                                   Height="24"
+                                   Width="24"
+                                   Source="/WPFScreenshot;component/imgs/no.png" />
+                        </Button>
+                    </Grid>
 
-    </ScrollViewer>
+
+                </StackPanel>
+
+            </ScrollViewer>
+
+        </TabItem>
+
+        <TabItem Background="{DynamicResource sol_白40}"
+                 FontSize="18">
+            <TabItem.Header>
+                <Label Content="其他設定"
+                       Padding="0"
+                       Foreground="{DynamicResource sol_白}" />
+            </TabItem.Header>
+
+            <ScrollViewer VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="20">
+                    <Label Content="儲存路徑"
+                           FontSize="24" />
+                    <RadioButton x:Name="radio_儲存路徑_預設"
+                                 Margin="0,10,0,0"
+                                 IsChecked="True">
+                        <TextBlock Foreground="White">預設：程式旁邊的「imgs」資料夾</TextBlock>
+                    </RadioButton>
+                    <RadioButton x:Name="radio_儲存路徑_自定"
+                                 Margin="0,10,0,0">
+                        <TextBlock Foreground="White">自定：</TextBlock>
+
+                    </RadioButton>
+                    <Grid>
+                        <TextBox x:Name="text_自定儲存路徑"
+                                 Text="D:\imgs"
+                                 VerticalAlignment="Stretch"
+                                 HorizontalContentAlignment="Left"
+                                 Margin="24,3,0,0"
+                                 Padding="5,0,40,0"
+                                 ToolTip="點擊文字框後，直接點擊鍵盤來設定快速鍵"
+                                 IsTabStop="False"
+                                 Height="40"
+                                 Background="#FF333337"
+                                 BorderBrush="#66FFFFFF"
+                                 Foreground="White"
+                                 Template="{DynamicResource TextBox_01}" />
+                        <Button x:Name="but_自定路徑_選資料夾"
+                                Style="{DynamicResource but_title}"
+                                Width="40"
+                                Height="40"
+                                DockPanel.Dock="Right"
+                                Margin="0"
+                                Background="#FF4B8DF8"
+                                BorderBrush="{x:Null}"
+                                ToolTip="選擇資料夾"
+                                HorizontalAlignment="Right">
+                            <Image Source="/WPFScreenshot;component/imgs/directory.png"
+                                   Width="25"
+                                   Height="25"></Image>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+
+        </TabItem>
+        <TabItem Background="{DynamicResource sol_白40}"
+                 FontSize="18">
+            <TabItem.Header>
+                <Label Content="使用說明"
+                       Padding="0"
+                       Foreground="{DynamicResource sol_白}" />
+            </TabItem.Header>
+
+            <WindowsFormsHost Margin="10,0,0,0">
+                <Forms:WebBrowser x:Name="web_說明" />
+            </WindowsFormsHost>
+
+            <!--<WebBrowser x:Name="web_說明"
+                        Margin="10,0,0,0"></WebBrowser>-->
+        </TabItem>
+        <TabItem Background="{DynamicResource sol_白40}"
+                 FontSize="18">
+            <TabItem.Header>
+                <Label Content="關於"
+                       Padding="0"
+                       Foreground="{DynamicResource sol_白}" />
+            </TabItem.Header>
+
+            <ScrollViewer VerticalAlignment="Center"
+                          VerticalScrollBarVisibility="Auto">
+                <StackPanel Margin="20">
+                    <Image Margin="0,10"
+                           Source="/WPFScreenshot;component/imgs/ICON.png"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Stretch="None" />
+                    <TextBox FontSize="24"
+                             Margin="0,0,0,30"
+                             Text="WPFScreenshot"
+                             BorderBrush="{x:Null}"
+                             Foreground="{DynamicResource sol_白}"
+                             Background="{x:Null}"
+                             IsReadOnlyCaretVisible="True"
+                             HorizontalContentAlignment="Center"
+                             IsReadOnly="True"
+                             BorderThickness="0" />
+                    <TextBox x:Name="text_關於"
+                             TextWrapping="Wrap"
+                             Text="TextBox"
+                             VerticalAlignment="Top"
+                             BorderBrush="{x:Null}"
+                             Foreground="{DynamicResource sol_白}"
+                             Background="{x:Null}"
+                             HorizontalAlignment="Center"
+                             IsReadOnlyCaretVisible="True"
+                             Padding="0"
+                             HorizontalContentAlignment="Left"
+                             VerticalContentAlignment="Top"
+                             AcceptsReturn="True"
+                             IsReadOnly="True"
+                             Margin="0,10,0,0"
+                             BorderThickness="0" />
+                    <StackPanel Orientation="Horizontal"
+                                Margin="0,40,0,0"
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center">
+                        <Button x:Name="but_小屋"
+                                Style="{DynamicResource but_一般}"
+                                Height="40"
+                                Margin="0,0,20,0"
+                                Width="100"
+                                BorderBrush="{DynamicResource sol_白40}">
+                            <Label VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Normal"
+                                   Content="作者小屋" />
+                        </Button>
+                        <Button x:Name="but_討論區"
+                                Style="{DynamicResource but_一般}"
+                                Height="40"
+                                Width="100"
+                                BorderBrush="{DynamicResource sol_白40}">
+                            <Label VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Normal"
+                                   Content="討論區" />
+                        </Button>
+                    </StackPanel>
+
+                </StackPanel>
+            </ScrollViewer>
+
+        </TabItem>
+
+    </TabControl>
+
+
+
 </Window>

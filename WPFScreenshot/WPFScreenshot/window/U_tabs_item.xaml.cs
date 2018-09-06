@@ -46,12 +46,10 @@ namespace WPFScreenshot.window {
                 M.func_開啟資料夾();
             });
             u_menu_用外部程式開啟.func_add_menu("複製路徑", null, () => {
-                String s = M.func_目前資料夾();
-            
+                String s = M.func_取得儲存資料夾();           
                 try {
                     Clipboard.SetData(DataFormats.UnicodeText, s);
-                } catch  {    }
-            
+                } catch  {}   
             });
 
             u_menu_用外部程式開啟.func_add_menu("重新命名", null, () => {

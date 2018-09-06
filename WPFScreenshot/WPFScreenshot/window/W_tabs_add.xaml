@@ -29,7 +29,7 @@
                     VerticalAlignment="Center"
                 
                     Background="{x:Null}"
-                    BorderBrush="{DynamicResource sol_白40}" Margin="0,0,5,0">
+                    Margin="0,0,5,0">
                 <StackPanel Orientation="Horizontal"
                             Margin="10,5,5,5">
                     <Image Height="24"
@@ -57,11 +57,13 @@
 
         </Grid>
         <TextBox x:Name="textBox_tabName"
+                 Template="{DynamicResource TextBox_01}"
                  Text="TextBox"
                  Margin="0,0,0,10"
                  VerticalAlignment="Stretch"
                  VerticalContentAlignment="Center"
-                 BorderBrush="{x:Null}" Background="#FF333337" Foreground="{DynamicResource sol_白}" FontSize="18">
+                 BorderBrush="{DynamicResource sol_白40}"
+                 Background="#FF333337" Foreground="{DynamicResource sol_白}" FontSize="18">
             <!--使用捲軸樣式的話，就會導致文字框無法垂直置中文字，所以需要用內嵌樣式複寫-->
             <TextBox.Resources>
                 <Style TargetType="ScrollViewer">

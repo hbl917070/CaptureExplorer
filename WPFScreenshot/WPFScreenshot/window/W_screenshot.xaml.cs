@@ -17,6 +17,13 @@ using System.Windows.Shapes;
 
 
 namespace WPFScreenshot {
+
+
+    public enum e_截圖類型 {
+        選取截圖 = 0,
+        全螢幕截圖_png = 1
+    }
+
     /// <summary>
     /// W_截圖.xaml 的互動邏輯
     /// </summary>
@@ -47,16 +54,25 @@ namespace WPFScreenshot {
         SolidColorBrush color_原始 = new SolidColorBrush { Color = Color.FromArgb(50, 100, 250, 255) };
 
 
+
+
         /// <summary>
         /// 
         /// </summary>
         /// <param name="m"></param>
-        public W_截圖(MainWindow m) {
+        public W_截圖(MainWindow m, e_截圖類型 e_type) {
+
 
 
             this.M = m;
             InitializeComponent();
             this.Top = -5000;
+            this.Show();
+           
+            st_按鈕群.Visibility = Visibility.Hidden;
+
+          
+
 
 
             //截圖前記錄視窗狀態
@@ -71,15 +87,22 @@ namespace WPFScreenshot {
             M.Top = -5000;
 
 
-            func_初始化();
-
-
             this.Closed += (object sender, EventArgs e) => {
                 M.Top = d_記錄視窗位子;
                 M.WindowState = ws_全螢幕前的狀態;
                 M.WindowStyle = System.Windows.WindowStyle.SingleBorderWindow;
                 M.fun_鎖定視窗(false);
             };
+
+
+            /*var tim = new System.Windows.Forms.Timer();
+            tim.Interval = 100;
+            tim.Tick += (sender, e) => {*/
+            func_初始化(e_type);
+            /*tim.Stop();
+            };
+            tim.Start();*/
+
         }
 
 
@@ -89,21 +112,11 @@ namespace WPFScreenshot {
         /// <summary>
         /// 
         /// </summary>
-        private void func_初始化() {
+        private void func_初始化(e_截圖類型 e_type) {
 
 
-            lab_size.Visibility = Visibility.Hidden;//隱藏szie資訊
 
-            //初始化顏色
-            b_上.Fill = color_原始;
-            b_下.Fill = color_原始;
-            b_右.Fill = color_原始;
-            b_左.Fill = color_原始;
-            b_右上.Stroke = color_原始;
-            b_右下.Stroke = color_原始;
-            b_左上.Stroke = color_原始;
-            b_左下.Stroke = color_原始;
-
+    
 
 
 
@@ -129,6 +142,38 @@ namespace WPFScreenshot {
 
 
             bimg = CaptureScreen();//全螢幕截圖
+
+
+            if (e_type == e_截圖類型.全螢幕截圖_png) {
+           
+                String s_儲存路徑 = M.func_取得儲存檔名("png");
+
+                bimg.Save(s_儲存路徑);
+
+                //自動存入剪貼簿
+                try {
+                    if (M.checkBox_自動存入剪貼簿.IsChecked.Value) {
+                        Clipboard.SetData(DataFormats.Bitmap, bimg);
+                    }
+                } catch { }
+
+                func_關閉程式();
+                return;
+            }
+
+
+
+            lab_size.Visibility = Visibility.Hidden;//隱藏szie資訊
+
+            //初始化顏色
+            b_上.Fill = color_原始;
+            b_下.Fill = color_原始;
+            b_右.Fill = color_原始;
+            b_左.Fill = color_原始;
+            b_右上.Stroke = color_原始;
+            b_右下.Stroke = color_原始;
+            b_左上.Stroke = color_原始;
+            b_左下.Stroke = color_原始;
 
 
 
@@ -191,6 +236,12 @@ namespace WPFScreenshot {
                         }
                     }
                 };
+                ar[i].MouseDown += (sender, e) => {
+                    if (sender == b_上 || sender == b_右 || sender == b_下 || sender == b_左) {
+
+                        ((Rectangle)sender).Fill = color_滑鼠移入;
+                    }
+                };
 
                 ar[i].MouseEnter += (sender, e) => {
                     if (sender == b_左上 || sender == b_左下 || sender == b_右上 || sender == b_右下) {
@@ -202,6 +253,12 @@ namespace WPFScreenshot {
                     if (sender == b_左上 || sender == b_左下 || sender == b_右上 || sender == b_右下) {
                         if (t_拖曳中.Enabled == false)
                             ((Rectangle)sender).Stroke = color_原始;
+                    }
+                };
+                ar[i].MouseDown += (sender, e) => {
+                    if (sender == b_左上 || sender == b_左下 || sender == b_右上 || sender == b_右下) {
+
+                        ((Rectangle)sender).Stroke = color_滑鼠移入;
                     }
                 };
             }
@@ -290,12 +347,13 @@ namespace WPFScreenshot {
             Boolean bool_空白鍵記錄 = false;
 
 
-            this.KeyDown += (object sender, KeyEventArgs e) => {
+
+
+            this.KeyDown += (sender, e) => {
 
                 if (e.Key == Key.Escape) { //按esc結束
-
-                    func_關閉程式();
-
+                    //func_關閉程式();
+                    //改在全域按鍵偵測，避免程式在沒有焦點的情況下無法使用快速鍵
                 } else if (e.Key == Key.Enter) {
                     fun_確認儲存("png");
                 }
@@ -357,40 +415,37 @@ namespace WPFScreenshot {
             this.MouseRightButtonUp += (object sender, MouseButtonEventArgs e) => {
                 if (int_拖曳模式 == 拖曳模式.none) {
 
-                    bimg.Dispose();
-                    bimg = null;
-
-                    this.Close();
+                    func_關閉程式();
                 } else {
                     func_重新();
                 }
                 this.Title = "+++";
             };
 
-            button_關閉.Click += ( sender,  e) => {
+            button_關閉.Click += (sender, e) => {
                 func_關閉程式();
             };
 
-            button_重新.Click += ( sender,  e) => {
+            button_重新.Click += (sender, e) => {
                 func_重新();
             };
 
-            button_確認_png.Click += ( sender,  e) => {
+            button_確認_png.Click += (sender, e) => {
                 fun_確認儲存("png");
             };
-            button_確認_jpg.Click += ( sender,  e) => {
+            button_確認_jpg.Click += (sender, e) => {
                 fun_確認儲存("jpg");
             };
-            button_確認_copy.Click += ( sender,  e) => {
+            button_確認_copy.Click += (sender, e) => {
                 fun_確認儲存("copy");
             };
 
-            button_編輯.Click += ( sender,  e) => {
+            button_編輯.Click += (sender, e) => {
                 fun_確認儲存("edit");
             };
 
-            but_複製顏色_16.Click += ( sender,  e) => {
-                Clipboard.SetText(lab_複製顏色_16.Content+"");
+            but_複製顏色_16.Click += (sender, e) => {
+                Clipboard.SetText(lab_複製顏色_16.Content + "");
                 func_關閉程式();
             };
             but_複製顏色_rgb.Click += (sender, e) => {
@@ -428,7 +483,7 @@ namespace WPFScreenshot {
             //判斷是「吸取顏色」，還是「截圖」
             if (rect.Width == 1 && rect.Height == 1) {
 
-                var c = bimg.GetPixel((int)rect.Left, (int)rect.Top);
+                var c = bimg.GetPixel((int)(rect.Left * d_解析度比例_x), (int)(rect.Top * d_解析度比例_y));
 
                 lab_複製顏色_16.Content = "#" + Convert.ToString(c.R, 16).ToUpper() + Convert.ToString(c.G, 16).ToUpper() + Convert.ToString(c.B, 16).ToUpper();
                 lab_複製顏色_rgb.Content = $"rgb({c.R},{c.G},{c.B})";
@@ -549,12 +604,9 @@ namespace WPFScreenshot {
 
             img = Resize(img, d_放大倍率);*/
 
-            if (Directory.Exists(M.func_目前資料夾()) == false) {
-                Directory.CreateDirectory(M.func_目前資料夾());
-                M.func_重新整理資料夾();
-            }
+           
 
-            String s_儲存路徑 = M.func_目前資料夾() + "/" + DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss") + "." + type;
+            String s_儲存路徑 =M. func_取得儲存檔名(type)  ;
 
             if (type == "jpg" || type == "png") {
 
@@ -573,7 +625,7 @@ namespace WPFScreenshot {
 
             } else if (type == "edit") {
 
-               var c_edit_img=  new C_edit_img(new System.Drawing.Bitmap(img), s_儲存路徑);
+                var c_edit_img = new C_edit_img(new System.Drawing.Bitmap(img), s_儲存路徑);
 
                 //如果原視窗是置頂，就讓編輯視窗也置頂
                 if (M.Topmost) {
@@ -602,7 +654,10 @@ namespace WPFScreenshot {
         /// <summary>
         /// 
         /// </summary>
-        void func_關閉程式() {
+      public  void func_關閉程式() {
+
+            M.w_截圖 = null;
+
             bimg.Dispose();
             bimg = null;
             M.fun_清理記憶體();
@@ -856,6 +911,7 @@ namespace WPFScreenshot {
 
             var rect = transparentRect.Rect;
             var mouse = func_取得滑鼠();
+
 
             String size = "";
             if (int_拖曳模式 == 拖曳模式.none) {
