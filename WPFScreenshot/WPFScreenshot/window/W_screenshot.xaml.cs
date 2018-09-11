@@ -35,6 +35,7 @@ namespace WPFScreenshot {
         private double[] d_xywh = { 0, 0, 0, 0 };
         private System.Drawing.Point d_滑鼠xy = new System.Drawing.Point();
         private Boolean bool_初始 = true;
+        private Rectangle re_目前拖曳物件;
 
         private System.Drawing.Bitmap bimg = null;
 
@@ -68,10 +69,10 @@ namespace WPFScreenshot {
             InitializeComponent();
             this.Top = -5000;
             this.Show();
-           
+
             st_按鈕群.Visibility = Visibility.Hidden;
 
-          
+
 
 
 
@@ -116,7 +117,7 @@ namespace WPFScreenshot {
 
 
 
-    
+
 
 
 
@@ -145,7 +146,7 @@ namespace WPFScreenshot {
 
 
             if (e_type == e_截圖類型.全螢幕截圖_png) {
-           
+
                 String s_儲存路徑 = M.func_取得儲存檔名("png");
 
                 bimg.Save(s_儲存路徑);
@@ -163,7 +164,7 @@ namespace WPFScreenshot {
 
 
 
-            lab_size.Visibility = Visibility.Hidden;//隱藏szie資訊
+            st_size與放大鏡.Visibility = Visibility.Hidden;//隱藏szie資訊
 
             //初始化顏色
             b_上.Fill = color_原始;
@@ -214,6 +215,7 @@ namespace WPFScreenshot {
             //滑鼠按下
             for (int i = 0; i < ar.Length; i++) {
                 ar[i].MouseLeftButtonDown += (object sender, MouseButtonEventArgs e) => {
+                    re_目前拖曳物件 = (Rectangle)sender;
                     st_按鈕群.Visibility = Visibility.Hidden;
                     d_滑鼠xy = func_取得滑鼠();
                     t_拖曳中.Start();
@@ -463,7 +465,7 @@ namespace WPFScreenshot {
 
 
 
-            lab_size.Visibility = Visibility.Hidden;//隱藏size資訊
+            st_size與放大鏡.Visibility = Visibility.Hidden;//隱藏size資訊
 
 
             //避免結束拖曳後，顏色尚未恢復
@@ -604,9 +606,9 @@ namespace WPFScreenshot {
 
             img = Resize(img, d_放大倍率);*/
 
-           
 
-            String s_儲存路徑 =M. func_取得儲存檔名(type)  ;
+
+            String s_儲存路徑 = M.func_取得儲存檔名(type);
 
             if (type == "jpg" || type == "png") {
 
@@ -654,7 +656,7 @@ namespace WPFScreenshot {
         /// <summary>
         /// 
         /// </summary>
-      public  void func_關閉程式() {
+        public void func_關閉程式() {
 
             M.w_截圖 = null;
 
@@ -738,11 +740,64 @@ namespace WPFScreenshot {
 
 
 
+        public System.Drawing.Point func_目前拖曳物件的坐標() {
+
+            System.Drawing.Point p = new System.Drawing.Point();
+            var mou = func_取得滑鼠();
+
+            p.X = mou.X;
+            p.Y = mou.Y;
+
+            Rectangle sender = re_目前拖曳物件;
+
+            if (sender == b_上 || sender == b_下) {
+                p.X = mou.X;
+                p.Y = (int)(sender.Margin.Top + (sender.ActualHeight / 2));
+            }
+
+            if (sender == b_右 || sender == b_左) {
+                p.X = (int)(sender.Margin.Left + (sender.ActualWidth / 2));
+                p.Y = mou.Y;
+            }
+
+            if (sender == b_左上 || sender == b_左下 || sender == b_右上 || sender == b_右下) {
+                p.X = (int)(sender.Margin.Left + (sender.ActualWidth / 2));
+                p.Y = (int)(sender.Margin.Top + (sender.ActualHeight / 2));
+            }
+
+
+            return p;
+        }
+
+
         /// <summary>
         /// 拖曳、改變大小
         /// </summary>
         private void T_Tick(object sender, EventArgs e) {
 
+            if (int_拖曳模式 != 拖曳模式.中心) {
+
+                var mou = func_目前拖曳物件的坐標();
+                using (System.Drawing.Bitmap img = KiCut(bimg, (int)(mou.X - 15), (int)(mou.Y - 15), (int)(31), (int)(31))) {
+                    if (img == null) {
+                        return;
+                    }
+                    using (var img2 = new System.Drawing.Bitmap(img, (int)(img.Width / d_解析度比例_x), (int)(img.Height / d_解析度比例_y))) {
+
+                        if (img == null || img2 == null)
+                            return;
+                        img_放大鏡.Source = ToBitmapSource(img2);
+                    }
+                }
+                border_放大鏡.Visibility = Visibility.Visible;
+            } else {
+                border_放大鏡.Visibility = Visibility.Collapsed;
+            }
+
+            //border_放大鏡.Margin = new Thickness(mou.X+155, mou.Y+155, 0,0);
+
+            //lab_size.Content += img.Height + "";
+            //System.Console.WriteLine(img.Width + "  "+ img.Height);
 
             if (int_拖曳模式 == 拖曳模式.none) {//初始狀態（僅顯示十字線）
                 b_左.Margin = new Thickness(func_取得滑鼠().X - 10, 0, 0, 0);
@@ -935,8 +990,8 @@ namespace WPFScreenshot {
                 y = mouse.Y + int_邊距;
             }
 
-            double lw = lab_size.ActualWidth;
-            double lh = lab_size.ActualHeight;
+            double lw = st_size與放大鏡.ActualWidth;
+            double lh = st_size與放大鏡.ActualHeight;
 
             //在矩形選取範圍內
             if (mouse.X + 15 >= rect.Left &&
@@ -974,10 +1029,10 @@ namespace WPFScreenshot {
             }
 
 
-            lab_size.Margin = new Thickness(x, y, 0, 0);
+            st_size與放大鏡.Margin = new Thickness(x, y, 0, 0);
 
 
-            lab_size.Visibility = Visibility.Visible;
+            st_size與放大鏡.Visibility = Visibility.Visible;
 
         }
 

@@ -38,3 +38,4 @@ D:\GitHub\WPF_Screenshot_tools\WPFScreenshot\WPFScreenshot\obj\Debug\WPFScreensh
 D:\GitHub\WPF_Screenshot_tools\WPFScreenshot\WPFScreenshot\obj\Debug\WPFScreenshot.csproj.CoreCompileInputs.cache
 D:\GitHub\WPF_Screenshot_tools\WPFScreenshot\WPFScreenshot\obj\Debug\WPFScreenshot.exe
 D:\GitHub\WPF_Screenshot_tools\WPFScreenshot\WPFScreenshot\obj\Debug\WPFScreenshot.pdb
+D:\GitHub\WPF_Screenshot_tools\WPFScreenshot\WPFScreenshot\obj\Debug\WPFScreenshot.csprojResolveAssemblyReference.cache

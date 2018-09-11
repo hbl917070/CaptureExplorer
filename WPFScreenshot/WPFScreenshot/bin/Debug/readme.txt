@@ -19,7 +19,7 @@ net 4.7.1 載點 https://www.microsoft.com/zh-TW/download/details.aspx?id=56116
 2.0.2
 新增目前視窗截圖
 新增自定儲存路徑
-
+新增放大鏡功能
 
 2.0.1
 新增全螢幕截圖

@@ -12,7 +12,8 @@
         WindowStyle="None"
         ResizeMode="CanMinimize"
         Background="#02000000"
-        Topmost="True" ShowInTaskbar="False"
+        Topmost="True"
+        ShowInTaskbar="False"
         InputMethod.IsInputMethodEnabled="False">
     <Window.Resources>
 
@@ -55,13 +56,15 @@
                    Height="20"
                    Stroke="#020FFFB7"
                    StrokeThickness="19"
-                   Cursor="SizeNS" StrokeLineJoin="Round" RenderTransformOrigin="0.5,0.5" >
+                   Cursor="SizeNS"
+                   StrokeLineJoin="Round"
+                   RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
+                    <ScaleTransform ScaleX="1.1" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
@@ -71,13 +74,14 @@
                    Height="20"
                    Stroke="#020FFFB7"
                    StrokeThickness="19"
-                   Cursor="SizeNS" RenderTransformOrigin="0.5,0.5" >
+                   Cursor="SizeNS"
+                   RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleX="1.1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
+                    <ScaleTransform ScaleX="1.1" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
@@ -87,13 +91,14 @@
                    Width="20"
                    StrokeThickness="19"
                    Stroke="#00000000"
-                   Cursor="SizeWE" RenderTransformOrigin="0.5,0.5" >
+                   Cursor="SizeWE"
+                   RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleY="1.1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
+                    <ScaleTransform ScaleY="1.1" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
@@ -103,13 +108,14 @@
                    Width="20"
                    StrokeThickness="19"
                    Stroke="#00000000"
-                   Cursor="SizeWE" RenderTransformOrigin="0.5,0.5" >
+                   Cursor="SizeWE"
+                   RenderTransformOrigin="0.5,0.5">
             <Rectangle.RenderTransform>
                 <TransformGroup>
-                    <ScaleTransform ScaleY="1.1"/>
-                    <SkewTransform/>
-                    <RotateTransform/>
-                    <TranslateTransform/>
+                    <ScaleTransform ScaleY="1.1" />
+                    <SkewTransform />
+                    <RotateTransform />
+                    <TranslateTransform />
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
@@ -157,31 +163,36 @@
                    RadiusY="20"
                    Cursor="SizeAll"
                    Stroke="#3363FBFF" />
-        <Border x:Name="st_按鈕群" Background="#E51E1E1E" BorderThickness="1" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="5" BorderBrush="#7F63FBFF"
-                    >
-            <StackPanel 
-                Orientation="Horizontal" Height="40">
+        <Border x:Name="st_按鈕群"
+                Background="#E51E1E1E"
+                BorderThickness="1"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Padding="5"
+                BorderBrush="#7F63FBFF">
+            <StackPanel Orientation="Horizontal"
+                        Height="40">
 
                 <StackPanel.Resources>
                     <Style TargetType="{x:Type Button}">
 
                         <Setter Property="Foreground"
-                            Value="{DynamicResource sol_白}" />
+                                Value="{DynamicResource sol_白}" />
                         <Setter Property="FontSize"
-                            Value="18" />
+                                Value="18" />
 
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="{x:Type Button}">
                                     <Grid>
                                         <Border x:Name="b3"
-                                            BorderBrush="{x:Null}"
-                                            Background="#00000000" />
+                                                BorderBrush="{x:Null}"
+                                                Background="#00000000" />
                                         <!--內容-->
                                         <ContentPresenter  HorizontalAlignment="Center"
-                                            VerticalAlignment="Center"
-                                            IsHitTestVisible="False"
-                                            Margin="{TemplateBinding Padding}" />
+                                                           VerticalAlignment="Center"
+                                                           IsHitTestVisible="False"
+                                                           Margin="{TemplateBinding Padding}" />
 
                                     </Grid>
 
@@ -190,10 +201,10 @@
 
                                         <!--移入-->
                                         <Trigger Property="IsMouseOver"
-                                            Value="true">
+                                                 Value="true">
                                             <Setter TargetName="b3"
-                                                Property="Background"
-                                                Value="#19FFFFFF" />
+                                                    Property="Background"
+                                                    Value="#19FFFFFF" />
                                         </Trigger>
 
                                     </ControlTemplate.Triggers>
@@ -205,202 +216,244 @@
                 </StackPanel.Resources>
 
                 <Button x:Name="button_關閉"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Width="40"
-                    Height="40"
-                    BorderBrush="White"
-                    Foreground="Black"
-                    Background="#7F000000"
-                    ToolTip="關閉" Margin="0,0,5,0">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="40"
+                        Height="40"
+                        BorderBrush="White"
+                        Foreground="Black"
+                        Background="#7F000000"
+                        ToolTip="關閉"
+                        Margin="0,0,5,0">
                     <Path Stretch="Fill"
-                        Fill="#FFBF0000"
-                        Data="F1 M 51.3284,-16.611L 48.5002,-19.4391L 22.0556,7.00513L -4.38911,-19.4391L -7.21724,-16.611L 19.2275,9.83326L -7.21724,36.2777L -4.38911,39.1058L 22.0556,12.6614L 48.5002,39.1058L 51.3284,36.2777L 24.8837,9.83326L 51.3284,-16.611 Z "
-                        Height="30"
-                        Width="30" Stroke="#FFBF0000" />
+                          Fill="#FFBF0000"
+                          Data="F1 M 51.3284,-16.611L 48.5002,-19.4391L 22.0556,7.00513L -4.38911,-19.4391L -7.21724,-16.611L 19.2275,9.83326L -7.21724,36.2777L -4.38911,39.1058L 22.0556,12.6614L 48.5002,39.1058L 51.3284,36.2777L 24.8837,9.83326L 51.3284,-16.611 Z "
+                          Height="30"
+                          Width="30"
+                          Stroke="#FFBF0000" />
                 </Button>
                 <Button x:Name="button_重新"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Width="40"
-                    Height="40"
-                    BorderBrush="White"
-                    Foreground="Black"
-                    Background="#7F000000"
-                    ToolTip="重新抓取" Margin="0,0,5,0">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="40"
+                        Height="40"
+                        BorderBrush="White"
+                        Foreground="Black"
+                        Background="#7F000000"
+                        ToolTip="重新抓取"
+                        Margin="0,0,5,0">
                     <Path Stretch="Fill"
-                        Fill="#FFE4E4E4"
-                        Data="F1 M 30.6634,1.54564L 49.0697,4.39338L 51.9095,-13.9661L 47.9563,-14.5774L 46.0947,-2.54023C 43.8774,-7.2541 40.4077,-11.331 36.0306,-14.2284C 29.6713,-18.4388 22.0527,-19.9198 14.5769,-18.3997C 7.10286,-16.8794 0.667936,-12.5396 -3.543,-6.17957C -12.2344,6.9499 -8.62373,24.7026 4.50579,33.3946C 9.34632,36.5984 14.8125,38.1296 20.2239,38.1296C 29.4915,38.1296 38.5918,33.6342 44.0801,25.3451C 45.2506,23.5756 46.2233,21.6836 46.9694,19.7215L 43.2325,18.2983C 42.5891,19.9858 41.7519,21.614 40.7441,23.1375C 33.2714,34.4291 18.0046,37.5327 6.71419,30.0587C -4.5762,22.5847 -7.68168,7.31844 -0.207064,-3.97129C 7.26752,-15.261 22.5345,-18.3665 33.8222,-10.8925C 37.6422,-8.36409 40.659,-4.79169 42.5609,-0.66156L 31.2754,-2.40675L 30.6634,1.54564 Z "
-                        Height="30"
-                        Width="30" />
+                          Fill="#FFE4E4E4"
+                          Data="F1 M 30.6634,1.54564L 49.0697,4.39338L 51.9095,-13.9661L 47.9563,-14.5774L 46.0947,-2.54023C 43.8774,-7.2541 40.4077,-11.331 36.0306,-14.2284C 29.6713,-18.4388 22.0527,-19.9198 14.5769,-18.3997C 7.10286,-16.8794 0.667936,-12.5396 -3.543,-6.17957C -12.2344,6.9499 -8.62373,24.7026 4.50579,33.3946C 9.34632,36.5984 14.8125,38.1296 20.2239,38.1296C 29.4915,38.1296 38.5918,33.6342 44.0801,25.3451C 45.2506,23.5756 46.2233,21.6836 46.9694,19.7215L 43.2325,18.2983C 42.5891,19.9858 41.7519,21.614 40.7441,23.1375C 33.2714,34.4291 18.0046,37.5327 6.71419,30.0587C -4.5762,22.5847 -7.68168,7.31844 -0.207064,-3.97129C 7.26752,-15.261 22.5345,-18.3665 33.8222,-10.8925C 37.6422,-8.36409 40.659,-4.79169 42.5609,-0.66156L 31.2754,-2.40675L 30.6634,1.54564 Z "
+                          Height="30"
+                          Width="30" />
                 </Button>
                 <Button x:Name="button_編輯"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Center"
-                    Width="40"
-                    Height="40"
-                    BorderBrush="White"
-                    Foreground="Black"
-                    Background="#7F000000"
-                    ToolTip="編輯" Margin="0,0,5,0">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Width="40"
+                        Height="40"
+                        BorderBrush="White"
+                        Foreground="Black"
+                        Background="#7F000000"
+                        ToolTip="編輯"
+                        Margin="0,0,5,0">
 
-                    <Canvas Width="30" Height="28.7515">
-                        <Path Width="20" Height="20" Canvas.Left="10.2391" Canvas.Top="0.395154" Stretch="Fill" Fill="#FFFFC912" Data="F1 M 11.6755,14.4685C 11.1132,15.0879 10.9753,15.5322 10.2391,16.6959C 10.7146,17.0279 11.6304,17.7958 12.2649,19.1179C 13.532,18.391 14.1228,18.2801 14.7943,17.7147C 19.1776,14.0229 29.9141,0.789757 29.5444,0.406944C 29.1539,0 15.535,10.2352 11.6755,14.4685 Z " Stroke="#FFFFC912" StrokeThickness="0"/>
-                        <Path Width="11" Height="10" Canvas.Left="0" Canvas.Top="17.6691" Stretch="Fill" Fill="#FFFFC912" Data="F1 M 8.97239,17.7239C 7.06768,17.3872 5.18888,18.5913 3.93394,21.5998C 2.67721,24.6079 0.434708,25.8124 0,25.7387C 2.34081,26.5855 9.4781,28.7515 11.2523,20.5059C 10.4998,18.5284 8.97239,17.7239 8.97239,17.7239 Z " Stroke="#FFFFC912" StrokeThickness="0"/>
+                    <Canvas Width="30"
+                            Height="28.7515">
+                        <Path Width="20"
+                              Height="20"
+                              Canvas.Left="10.2391"
+                              Canvas.Top="0.395154"
+                              Stretch="Fill"
+                              Fill="#FFFFC912"
+                              Data="F1 M 11.6755,14.4685C 11.1132,15.0879 10.9753,15.5322 10.2391,16.6959C 10.7146,17.0279 11.6304,17.7958 12.2649,19.1179C 13.532,18.391 14.1228,18.2801 14.7943,17.7147C 19.1776,14.0229 29.9141,0.789757 29.5444,0.406944C 29.1539,0 15.535,10.2352 11.6755,14.4685 Z "
+                              Stroke="#FFFFC912"
+                              StrokeThickness="0" />
+                        <Path Width="11"
+                              Height="10"
+                              Canvas.Left="0"
+                              Canvas.Top="17.6691"
+                              Stretch="Fill"
+                              Fill="#FFFFC912"
+                              Data="F1 M 8.97239,17.7239C 7.06768,17.3872 5.18888,18.5913 3.93394,21.5998C 2.67721,24.6079 0.434708,25.8124 0,25.7387C 2.34081,26.5855 9.4781,28.7515 11.2523,20.5059C 10.4998,18.5284 8.97239,17.7239 8.97239,17.7239 Z "
+                              Stroke="#FFFFC912"
+                              StrokeThickness="0" />
                     </Canvas>
 
                 </Button>
                 <Button x:Name="button_確認_copy"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Width="40"
-                    Height="40"
-                
-                    Foreground="Black"
-                    Background="#7F000000"
-                    ToolTip="複製" Margin="0,0,5,0">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="40"
+                        Height="40"
+                        Foreground="Black"
+                        Background="#7F000000"
+                        ToolTip="複製"
+                        Margin="0,0,5,0">
                     <Viewbox Height="28"
-                        Width="28">
+                             Width="28">
                         <Canvas Width="58.0905"
-                            Height="59.056">
+                                Height="59.056">
                             <Path Width="58.0905"
-                                Height="59.056"
-                                Canvas.Left="0"
-                                Canvas.Top="0"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 58.0905,0L 19.8132,0L 19.8132,10.2721L 0,10.2721L 0,59.056L 38.278,59.056L 38.278,48.7839L 58.0905,48.7839L 58.0905,0 Z M 34.278,55.056L 4,55.056L 4,14.2721L 21.8132,14.2721L 34.278,14.2721L 34.278,16.7995L 34.278,26.5495L 34.278,36.2995L 34.278,46.7839L 34.278,55.056 Z M 54.0905,44.7839L 38.278,44.7839L 38.278,38.2995L 49.1179,38.2995L 49.1179,34.2995L 38.278,34.2995L 38.278,28.5495L 49.1179,28.5495L 49.1179,24.5495L 38.278,24.5495L 38.278,18.7995L 49.1179,18.7995L 49.1179,14.7995L 38.278,14.7995L 38.278,10.2721L 23.8132,10.2721L 23.8132,4L 54.0905,4L 54.0905,44.7839 Z " />
+                                  Height="59.056"
+                                  Canvas.Left="0"
+                                  Canvas.Top="0"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 58.0905,0L 19.8132,0L 19.8132,10.2721L 0,10.2721L 0,59.056L 38.278,59.056L 38.278,48.7839L 58.0905,48.7839L 58.0905,0 Z M 34.278,55.056L 4,55.056L 4,14.2721L 21.8132,14.2721L 34.278,14.2721L 34.278,16.7995L 34.278,26.5495L 34.278,36.2995L 34.278,46.7839L 34.278,55.056 Z M 54.0905,44.7839L 38.278,44.7839L 38.278,38.2995L 49.1179,38.2995L 49.1179,34.2995L 38.278,34.2995L 38.278,28.5495L 49.1179,28.5495L 49.1179,24.5495L 38.278,24.5495L 38.278,18.7995L 49.1179,18.7995L 49.1179,14.7995L 38.278,14.7995L 38.278,10.2721L 23.8132,10.2721L 23.8132,4L 54.0905,4L 54.0905,44.7839 Z " />
                             <Path Width="20.3327"
-                                Height="4"
-                                Canvas.Left="8.97267"
-                                Canvas.Top="25.0716"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 8.97267,25.0716L 8.97267,29.0716L 21.8132,29.0716L 29.3053,29.0716L 29.3053,25.0716L 21.8132,25.0716L 8.97267,25.0716 Z " />
+                                  Height="4"
+                                  Canvas.Left="8.97267"
+                                  Canvas.Top="25.0716"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 8.97267,25.0716L 8.97267,29.0716L 21.8132,29.0716L 29.3053,29.0716L 29.3053,25.0716L 21.8132,25.0716L 8.97267,25.0716 Z " />
                             <Path Width="20.3327"
-                                Height="4"
-                                Canvas.Left="8.97267"
-                                Canvas.Top="34.8216"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 8.97267,34.8216L 8.97267,38.8216L 21.8132,38.8216L 29.3053,38.8216L 29.3053,34.8216L 21.8132,34.8216L 8.97267,34.8216 Z " />
+                                  Height="4"
+                                  Canvas.Left="8.97267"
+                                  Canvas.Top="34.8216"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 8.97267,34.8216L 8.97267,38.8216L 21.8132,38.8216L 29.3053,38.8216L 29.3053,34.8216L 21.8132,34.8216L 8.97267,34.8216 Z " />
                             <Path Width="20.3327"
-                                Height="4"
-                                Canvas.Left="8.97267"
-                                Canvas.Top="44.5716"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 8.97267,44.5716L 8.97267,48.5716L 21.8132,48.5716L 29.3053,48.5716L 29.3053,44.5716L 21.8132,44.5716L 8.97267,44.5716 Z " />
+                                  Height="4"
+                                  Canvas.Left="8.97267"
+                                  Canvas.Top="44.5716"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 8.97267,44.5716L 8.97267,48.5716L 21.8132,48.5716L 29.3053,48.5716L 29.3053,44.5716L 21.8132,44.5716L 8.97267,44.5716 Z " />
                         </Canvas>
                     </Viewbox>
                 </Button>
                 <Button x:Name="button_確認_png"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Width="40"
-                    Height="40"
-                
-                    Foreground="Black"
-                    Background="#7F000000"
-                    ToolTip="儲存成 PNG 格式" Margin="0,0,5,0">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="40"
+                        Height="40"
+                        Foreground="Black"
+                        Background="#7F000000"
+                        ToolTip="儲存成 PNG 格式"
+                        Margin="0,0,5,0">
                     <Viewbox Height="32"
-                        Width="32">
+                             Width="32">
                         <Canvas Width="51.7057"
-                            Height="57.7278">
+                                Height="57.7278">
                             <Path Width="51.7057"
-                                Height="34.7343"
-                                Canvas.Left="0"
-                                Canvas.Top="0"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 48.8777,0L 19.7989,29.0781L 2.82813,12.1073L 0,14.9355L 19.7989,34.7343L 51.7057,2.82813L 48.8777,0 Z " />
+                                  Height="34.7343"
+                                  Canvas.Left="0"
+                                  Canvas.Top="0"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 48.8777,0L 19.7989,29.0781L 2.82813,12.1073L 0,14.9355L 19.7989,34.7343L 51.7057,2.82813L 48.8777,0 Z " />
                             <Path Width="11.3405"
-                                Height="17.7415"
-                                Canvas.Left="1.10027"
-                                Canvas.Top="39.6484"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 10.8782,41.0064C 9.8334,40.1055 8.3106,39.6484 6.35087,39.6484L 1.10027,39.6484L 1.10027,57.3899L 3.78907,57.3899L 3.78907,50.3939L 6.35087,50.3939C 8.35087,50.3939 9.8782,49.9368 10.8913,49.0351C 11.9193,48.1281 12.4407,46.7799 12.4407,45.0273C 12.4407,44.1875 12.3158,43.4205 12.069,42.7487C 11.819,42.0689 11.4193,41.4831 10.8782,41.0064 Z M 3.78907,41.9172L 6.35087,41.9172C 7.41273,41.9172 8.23313,42.1881 8.78967,42.7232C 9.35873,43.2629 9.64713,44.0337 9.64713,45.0156C 9.64713,45.9973 9.35873,46.7681 8.78967,47.3079C 8.52673,47.5559 8.19273,47.7564 7.79687,47.9023C 7.39847,48.0501 6.9114,48.1249 6.35087,48.1249L 3.78907,48.1249L 3.78907,41.9172 Z " />
+                                  Height="17.7415"
+                                  Canvas.Left="1.10027"
+                                  Canvas.Top="39.6484"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 10.8782,41.0064C 9.8334,40.1055 8.3106,39.6484 6.35087,39.6484L 1.10027,39.6484L 1.10027,57.3899L 3.78907,57.3899L 3.78907,50.3939L 6.35087,50.3939C 8.35087,50.3939 9.8782,49.9368 10.8913,49.0351C 11.9193,48.1281 12.4407,46.7799 12.4407,45.0273C 12.4407,44.1875 12.3158,43.4205 12.069,42.7487C 11.819,42.0689 11.4193,41.4831 10.8782,41.0064 Z M 3.78907,41.9172L 6.35087,41.9172C 7.41273,41.9172 8.23313,42.1881 8.78967,42.7232C 9.35873,43.2629 9.64713,44.0337 9.64713,45.0156C 9.64713,45.9973 9.35873,46.7681 8.78967,47.3079C 8.52673,47.5559 8.19273,47.7564 7.79687,47.9023C 7.39847,48.0501 6.9114,48.1249 6.35087,48.1249L 3.78907,48.1249L 3.78907,41.9172 Z " />
                             <Path Width="11.4695"
-                                Height="17.7415"
-                                Canvas.Left="19.8678"
-                                Canvas.Top="39.6484"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 28.7291,53.2995L 23.1315,39.6484L 19.8678,39.6484L 19.8678,57.3899L 22.4753,57.3899L 22.4753,43.7389L 28.0729,57.3899L 31.3373,57.3899L 31.3373,39.6484L 28.7291,39.6484L 28.7291,53.2995 Z " />
+                                  Height="17.7415"
+                                  Canvas.Left="19.8678"
+                                  Canvas.Top="39.6484"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 28.7291,53.2995L 23.1315,39.6484L 19.8678,39.6484L 19.8678,57.3899L 22.4753,57.3899L 22.4753,43.7389L 28.0729,57.3899L 31.3373,57.3899L 31.3373,39.6484L 28.7291,39.6484L 28.7291,53.2995 Z " />
                             <Path Width="12.0157"
-                                Height="18.394"
-                                Canvas.Left="38.5898"
-                                Canvas.Top="39.3339"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 45.4922,50.3939L 48.0222,50.3939L 48.0222,54.8223C 47.8893,54.9244 47.7474,55.0129 47.6002,55.0859C 47.4349,55.1699 47.2578,55.2435 47.0781,55.304C 46.7005,55.4225 46.2578,55.4824 45.763,55.4824C 44.2643,55.4824 43.1889,54.9355 42.4766,53.8105C 42.1146,53.2467 41.8398,52.5299 41.6589,51.6796C 41.4753,50.8183 41.3829,49.7688 41.3829,48.5599C 41.3829,46.2031 41.7617,44.4251 42.5105,43.276C 43.2539,42.134 44.3294,41.5793 45.7982,41.5793C 46.1341,41.5793 46.4818,41.6119 46.8294,41.6757C 47.1719,41.7395 47.513,41.8437 47.8411,41.9849C 48.125,42.1119 48.4323,42.2837 48.7565,42.4967C 49.0742,42.7063 49.4023,42.9707 49.7305,43.2819L 50.0117,43.5501L 50.0117,40.6595L 49.9389,40.61C 49.3229,40.192 48.6575,39.8671 47.957,39.6439C 47.2761,39.4381 46.5378,39.3339 45.763,39.3339C 43.5351,39.3339 41.7617,40.1516 40.4895,41.7643C 39.2291,43.3645 38.5898,45.6471 38.5898,48.5481C 38.5898,51.4029 39.2174,53.6692 40.4557,55.2844C 41.0665,56.0787 41.8217,56.6913 42.7018,57.106C 43.5781,57.5188 44.5963,57.7278 45.7291,57.7278C 46.6797,57.7278 47.5703,57.5709 48.3737,57.263C 49.1706,56.968 49.9037,56.5129 50.5521,55.9115L 50.6055,55.8619L 50.6055,48.1249L 45.4922,48.1249L 45.4922,50.3939 Z " />
+                                  Height="18.394"
+                                  Canvas.Left="38.5898"
+                                  Canvas.Top="39.3339"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 45.4922,50.3939L 48.0222,50.3939L 48.0222,54.8223C 47.8893,54.9244 47.7474,55.0129 47.6002,55.0859C 47.4349,55.1699 47.2578,55.2435 47.0781,55.304C 46.7005,55.4225 46.2578,55.4824 45.763,55.4824C 44.2643,55.4824 43.1889,54.9355 42.4766,53.8105C 42.1146,53.2467 41.8398,52.5299 41.6589,51.6796C 41.4753,50.8183 41.3829,49.7688 41.3829,48.5599C 41.3829,46.2031 41.7617,44.4251 42.5105,43.276C 43.2539,42.134 44.3294,41.5793 45.7982,41.5793C 46.1341,41.5793 46.4818,41.6119 46.8294,41.6757C 47.1719,41.7395 47.513,41.8437 47.8411,41.9849C 48.125,42.1119 48.4323,42.2837 48.7565,42.4967C 49.0742,42.7063 49.4023,42.9707 49.7305,43.2819L 50.0117,43.5501L 50.0117,40.6595L 49.9389,40.61C 49.3229,40.192 48.6575,39.8671 47.957,39.6439C 47.2761,39.4381 46.5378,39.3339 45.763,39.3339C 43.5351,39.3339 41.7617,40.1516 40.4895,41.7643C 39.2291,43.3645 38.5898,45.6471 38.5898,48.5481C 38.5898,51.4029 39.2174,53.6692 40.4557,55.2844C 41.0665,56.0787 41.8217,56.6913 42.7018,57.106C 43.5781,57.5188 44.5963,57.7278 45.7291,57.7278C 46.6797,57.7278 47.5703,57.5709 48.3737,57.263C 49.1706,56.968 49.9037,56.5129 50.5521,55.9115L 50.6055,55.8619L 50.6055,48.1249L 45.4922,48.1249L 45.4922,50.3939 Z " />
                         </Canvas>
                     </Viewbox>
                 </Button>
                 <Button x:Name="button_確認_jpg"
-                    HorizontalAlignment="Left"
-                    VerticalAlignment="Top"
-                    Width="40"
-                    Height="40"
-                    BorderBrush="White"
-                    Foreground="Black"
-                    Background="#7F000000"
-                    ToolTip="儲存成 JPG 格式" Margin="0">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top"
+                        Width="40"
+                        Height="40"
+                        BorderBrush="White"
+                        Foreground="Black"
+                        Background="#7F000000"
+                        ToolTip="儲存成 JPG 格式"
+                        Margin="0">
                     <Viewbox Height="32"
-                        Width="32">
+                             Width="32">
                         <Canvas Width="52.1771"
-                            Height="57.9641">
+                                Height="57.9641">
                             <Path Width="52.1771"
-                                Height="35.2064"
-                                Canvas.Left="0"
-                                Canvas.Top="0"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 52.1771,3.06373L 49.1133,0L 20.0345,29.0788L 3.06386,12.108L 0,15.1719L 20.0345,35.2064L 52.1771,3.06373 Z " />
+                                  Height="35.2064"
+                                  Canvas.Left="0"
+                                  Canvas.Top="0"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 52.1771,3.06373L 49.1133,0L 20.0345,29.0788L 3.06386,12.108L 0,15.1719L 20.0345,35.2064L 52.1771,3.06373 Z " />
                             <Path Width="10.2091"
-                                Height="18.0795"
-                                Canvas.Left="1.02427"
-                                Canvas.Top="39.8847"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 4.1024,42.2005L 8.54521,42.2005L 8.54521,51.7812C 8.54521,53.3144 8.33679,54.3672 7.92533,54.9115C 7.71773,55.19 7.4364,55.3887 7.06533,55.5181C 6.6852,55.6511 6.23853,55.7187 5.73853,55.7187C 4.97028,55.7187 4.19879,55.5619 3.4468,55.2532C 2.71373,54.9517 1.99174,54.4869 1.30174,53.8724L 1.02427,53.6249L 1.02427,56.8567L 1.12333,56.9011C 1.93054,57.2617 2.71773,57.5312 3.45986,57.7024C 4.1604,57.8763 4.93907,57.9641 5.77307,57.9641C 7.05361,57.9641 8.10708,57.7604 8.9032,57.3573C 9.7144,56.9479 10.3133,56.2753 10.6845,55.3593C 11.0484,54.4628 11.2333,53.2584 11.2333,51.7812L 11.2333,39.8847L 4.1024,39.8847L 4.1024,42.2005 Z " />
+                                  Height="18.0795"
+                                  Canvas.Left="1.02427"
+                                  Canvas.Top="39.8847"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 4.1024,42.2005L 8.54521,42.2005L 8.54521,51.7812C 8.54521,53.3144 8.33679,54.3672 7.92533,54.9115C 7.71773,55.19 7.4364,55.3887 7.06533,55.5181C 6.6852,55.6511 6.23853,55.7187 5.73853,55.7187C 4.97028,55.7187 4.19879,55.5619 3.4468,55.2532C 2.71373,54.9517 1.99174,54.4869 1.30174,53.8724L 1.02427,53.6249L 1.02427,56.8567L 1.12333,56.9011C 1.93054,57.2617 2.71773,57.5312 3.45986,57.7024C 4.1604,57.8763 4.93907,57.9641 5.77307,57.9641C 7.05361,57.9641 8.10708,57.7604 8.9032,57.3573C 9.7144,56.9479 10.3133,56.2753 10.6845,55.3593C 11.0484,54.4628 11.2333,53.2584 11.2333,51.7812L 11.2333,39.8847L 4.1024,39.8847L 4.1024,42.2005 Z " />
                             <Path Width="11.3405"
-                                Height="17.7416"
-                                Canvas.Left="20.9111"
-                                Canvas.Top="39.8847"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 30.6904,41.2441L 30.6891,41.2428C 29.6441,40.3417 28.1213,39.8847 26.1617,39.8847L 20.9111,39.8847L 20.9111,57.6263L 23.5999,57.6263L 23.5999,50.6301L 26.1617,50.6301C 28.1617,50.6301 29.6891,50.1732 30.702,49.2715C 31.73,48.3645 32.2516,47.0163 32.2516,45.2636C 32.2516,44.4237 32.1265,43.6568 31.8797,42.9849C 31.6297,42.3053 31.23,41.7193 30.6904,41.2441 Z M 23.5999,42.1536L 26.1617,42.1536C 27.2236,42.1536 28.0439,42.4244 28.6005,42.9596C 29.1695,43.4993 29.4579,44.2701 29.4579,45.2519C 29.4579,46.2331 29.1695,47.0045 28.6005,47.5443C 28.3375,47.7923 28.0035,47.9928 27.6076,48.1387C 27.2092,48.2864 26.7223,48.3613 26.1617,48.3613L 23.5999,48.3613L 23.5999,42.1536 Z " />
+                                  Height="17.7416"
+                                  Canvas.Left="20.9111"
+                                  Canvas.Top="39.8847"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 30.6904,41.2441L 30.6891,41.2428C 29.6441,40.3417 28.1213,39.8847 26.1617,39.8847L 20.9111,39.8847L 20.9111,57.6263L 23.5999,57.6263L 23.5999,50.6301L 26.1617,50.6301C 28.1617,50.6301 29.6891,50.1732 30.702,49.2715C 31.73,48.3645 32.2516,47.0163 32.2516,45.2636C 32.2516,44.4237 32.1265,43.6568 31.8797,42.9849C 31.6297,42.3053 31.23,41.7193 30.6904,41.2441 Z M 23.5999,42.1536L 26.1617,42.1536C 27.2236,42.1536 28.0439,42.4244 28.6005,42.9596C 29.1695,43.4993 29.4579,44.2701 29.4579,45.2519C 29.4579,46.2331 29.1695,47.0045 28.6005,47.5443C 28.3375,47.7923 28.0035,47.9928 27.6076,48.1387C 27.2092,48.2864 26.7223,48.3613 26.1617,48.3613L 23.5999,48.3613L 23.5999,42.1536 Z " />
                             <Path Width="12.0163"
-                                Height="18.3939"
-                                Canvas.Left="39.2476"
-                                Canvas.Top="39.5703"
-                                Stretch="Fill"
-                                Fill="#FF00C5CF"
-                                Data="F1 M 46.15,50.6301L 48.6799,50.6301L 48.6799,55.0585C 48.5459,55.1615 48.4045,55.25 48.2587,55.3223C 48.0913,55.4068 47.9149,55.4804 47.7359,55.5403C 47.3583,55.6588 46.9163,55.7187 46.4215,55.7187C 44.9215,55.7187 43.8465,55.1719 43.1344,54.0468C 42.7737,53.4831 42.4983,52.7663 42.3167,51.916C 42.1337,51.0567 42.0412,50.0071 42.0412,48.7961C 42.0412,46.4388 42.4208,44.6608 43.1688,43.5123C 43.9117,42.3704 44.9872,41.8157 46.4567,41.8157C 46.7932,41.8157 47.1403,41.8483 47.4872,41.9121C 47.8316,41.9759 48.1728,42.08 48.4989,42.2213C 48.7848,42.3489 49.0927,42.5215 49.4136,42.7331C 49.7327,42.9427 50.0601,43.2069 50.3883,43.5181L 50.6695,43.7864L 50.6695,40.8957L 50.5965,40.8463C 49.9807,40.4284 49.3147,40.1035 48.6155,39.8801C 47.9345,39.6744 47.1963,39.5703 46.4215,39.5703C 44.1936,39.5703 42.4195,40.388 41.1487,42.0007C 39.8869,43.6009 39.2476,45.8835 39.2476,48.7845C 39.2476,51.6387 39.8752,53.9049 41.1129,55.5208C 41.7248,56.3157 42.4807,56.9284 43.3603,57.3424C 44.2365,57.7552 45.2555,57.9641 46.3869,57.9641C 47.3368,57.9641 48.2281,57.8072 49.0328,57.4993C 49.8284,57.2051 50.5608,56.75 51.2105,56.1477L 51.2639,56.0983L 51.2639,48.3613L 46.15,48.3613L 46.15,50.6301 Z " />
+                                  Height="18.3939"
+                                  Canvas.Left="39.2476"
+                                  Canvas.Top="39.5703"
+                                  Stretch="Fill"
+                                  Fill="#FF00C5CF"
+                                  Data="F1 M 46.15,50.6301L 48.6799,50.6301L 48.6799,55.0585C 48.5459,55.1615 48.4045,55.25 48.2587,55.3223C 48.0913,55.4068 47.9149,55.4804 47.7359,55.5403C 47.3583,55.6588 46.9163,55.7187 46.4215,55.7187C 44.9215,55.7187 43.8465,55.1719 43.1344,54.0468C 42.7737,53.4831 42.4983,52.7663 42.3167,51.916C 42.1337,51.0567 42.0412,50.0071 42.0412,48.7961C 42.0412,46.4388 42.4208,44.6608 43.1688,43.5123C 43.9117,42.3704 44.9872,41.8157 46.4567,41.8157C 46.7932,41.8157 47.1403,41.8483 47.4872,41.9121C 47.8316,41.9759 48.1728,42.08 48.4989,42.2213C 48.7848,42.3489 49.0927,42.5215 49.4136,42.7331C 49.7327,42.9427 50.0601,43.2069 50.3883,43.5181L 50.6695,43.7864L 50.6695,40.8957L 50.5965,40.8463C 49.9807,40.4284 49.3147,40.1035 48.6155,39.8801C 47.9345,39.6744 47.1963,39.5703 46.4215,39.5703C 44.1936,39.5703 42.4195,40.388 41.1487,42.0007C 39.8869,43.6009 39.2476,45.8835 39.2476,48.7845C 39.2476,51.6387 39.8752,53.9049 41.1129,55.5208C 41.7248,56.3157 42.4807,56.9284 43.3603,57.3424C 44.2365,57.7552 45.2555,57.9641 46.3869,57.9641C 47.3368,57.9641 48.2281,57.8072 49.0328,57.4993C 49.8284,57.2051 50.5608,56.75 51.2105,56.1477L 51.2639,56.0983L 51.2639,48.3613L 46.15,48.3613L 46.15,50.6301 Z " />
                         </Canvas>
                     </Viewbox>
                 </Button>
-                <StackPanel x:Name="st_顏色工具列" Orientation="Horizontal" Height="50" Margin="0,-5">
-                    <Rectangle x:Name="re_顏色預覽" Fill="#FF00086A"  Width="20" Height="20" Margin="10,10,5,10" Stroke="#FF00C5CF"/>
+                <StackPanel x:Name="st_顏色工具列"
+                            Orientation="Horizontal"
+                            Height="50"
+                            Margin="0,-5">
+                    <Rectangle x:Name="re_顏色預覽"
+                               Fill="#FF00086A"
+                               Width="20"
+                               Height="20"
+                               Margin="10,10,5,10"
+                               Stroke="#FF00C5CF" />
                     <StackPanel VerticalAlignment="Center">
                         <Button x:Name="but_複製顏色_rgb"
-                            Height="25"
-                            BorderBrush="White"
-                            Foreground="Black"
-                            Background="#7F000000"
-                            ToolTip="Copy RGB">
-                            <Label x:Name="lab_複製顏色_rgb" Content="rgb(255,160,23)" Foreground="#FF00C5CF" FontSize="16" Margin="5,0" FontFamily="Microsoft YaHei UI Light" FontWeight="Normal" RenderTransformOrigin="0.5,0.5"/>
+                                Height="25"
+                                BorderBrush="White"
+                                Foreground="Black"
+                                Background="#7F000000"
+                                ToolTip="Copy RGB">
+                            <Label x:Name="lab_複製顏色_rgb"
+                                   Content="rgb(255,160,23)"
+                                   Foreground="#FF00C5CF"
+                                   FontSize="16"
+                                   Margin="5,0"
+                                   FontFamily="Microsoft YaHei UI Light"
+                                   FontWeight="Normal"
+                                   RenderTransformOrigin="0.5,0.5" />
                         </Button>
                         <Button x:Name="but_複製顏色_16"
-                            VerticalAlignment="Top"
-                            Height="25"
-                            BorderBrush="White"
-                            Foreground="Black"
-                            Background="#7F000000"
-                            ToolTip="Copy HEX">
-                            <Label x:Name="lab_複製顏色_16" Content="#FF62AC" Foreground="#FF00C5CF" FontSize="16" FontFamily="Microsoft YaHei UI Light" FontWeight="Normal"/>
+                                VerticalAlignment="Top"
+                                Height="25"
+                                BorderBrush="White"
+                                Foreground="Black"
+                                Background="#7F000000"
+                                ToolTip="Copy HEX">
+                            <Label x:Name="lab_複製顏色_16"
+                                   Content="#FF62AC"
+                                   Foreground="#FF00C5CF"
+                                   FontSize="16"
+                                   FontFamily="Microsoft YaHei UI Light"
+                                   FontWeight="Normal" />
                         </Button>
                     </StackPanel>
                 </StackPanel>
@@ -415,7 +468,73 @@
                    Width="60"
                    Cursor="Cross"
                    Fill="#00000000" />
-        <Label x:Name="lab_size" HorizontalAlignment="Left"  Content="200 ╳ 600" VerticalAlignment="Top" Margin="108,112,0,0" Foreground="White" FontSize="16" Padding="5" Background="#E51E1E1E" FontWeight="Normal" BorderBrush="#7F63FBFF" BorderThickness="1"/>
+        <StackPanel x:Name="st_size與放大鏡"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Margin="200,100,0,0">
+            <Label x:Name="lab_size"
+                   HorizontalAlignment="Left"
+                   Content="200 ╳ 600"
+                   VerticalAlignment="Top"
+                   Foreground="White"
+                   FontSize="16"
+                   Padding="5"
+                   Background="#E51E1E1E"
+                   FontWeight="Normal"
+                   BorderBrush="#7F63FBFF"
+                   BorderThickness="1" />
+            <Border x:Name="border_放大鏡"
+                    IsHitTestVisible="False"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    BorderThickness="1"
+                    BorderBrush="#7F63FBFF"
+                    Padding="0"
+                    Margin="0,5,0,0">
+                <Grid Margin="0">
+                    <Image x:Name="img_放大鏡"
+                           RenderOptions.BitmapScalingMode="NearestNeighbor"
+                           RenderOptions.ClearTypeHint="Enabled"
+                           Panel.ZIndex="27"
+                           Stretch="None"
+                           HorizontalAlignment="Left"
+                           VerticalAlignment="Top"
+                           RenderTransformOrigin="0,0">
+                        <Image.LayoutTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="5"
+                                                ScaleY="5" />
+                                <SkewTransform />
+                                <RotateTransform />
+                                <TranslateTransform />
+                            </TransformGroup>
+                        </Image.LayoutTransform>
+                    </Image>
+                    <Rectangle Fill="#FF63FBFF"
+                               HorizontalAlignment="Left"
+                               Width="1"
+                               Margin="74,0,0,0"
+                               Panel.ZIndex="56" />
+                    <Rectangle Fill="#FF63FBFF"
+                               HorizontalAlignment="Left"
+                               Width="1"
+                               Margin="80,0,0,0"
+                               Panel.ZIndex="56" />
+                    <Rectangle Fill="#FF63FBFF"
+                               Height="1"
+                               Margin="0,74,0,0"
+                               VerticalAlignment="Top"
+                               Panel.ZIndex="56" />
+                    <Rectangle Fill="#FF63FBFF"
+                               Height="1"
+                               Margin="0,80,0,0"
+                               VerticalAlignment="Top"
+                               Panel.ZIndex="56" />
+
+                </Grid>
+
+            </Border>
+        </StackPanel>
 
     </Grid>
 </Window>
