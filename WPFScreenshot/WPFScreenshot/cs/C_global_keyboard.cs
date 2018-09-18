@@ -35,11 +35,17 @@ namespace WPFScreenshot {
 
 
             if (M.w_截圖 != null) {
-                if (e.KeyCode == Keys.Escape) {
+                /*if (e.KeyCode == Keys.Escape) {
                     M.w_截圖.func_關閉程式();
                     e.Handled = true;
                     return;
-                }
+                }*/
+
+                M.w_截圖.func_key_down(e);
+
+
+                return;
+
             }
 
             if (M.w_設定 != null)

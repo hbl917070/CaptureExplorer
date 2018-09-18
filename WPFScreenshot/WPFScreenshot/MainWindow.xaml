@@ -346,8 +346,10 @@
                             </LinearGradientBrush>
                         </GridSplitter.Background>
                     </GridSplitter>
-                    <Border  Grid.ColumnSpan="2" Grid.Column="1" Background="White">
-                        <Border x:Name="border_web"  Margin="0,0,7,7">
+                    <Border x:Name="border_web_box"
+                            Grid.ColumnSpan="2" Grid.Column="1" Background="White">
+                        <Border x:Name="border_web"
+                                Margin="0,0,7,7">
                             <!--<WindowsFormsHost Margin="0,0,8,8">
                         <Forms:WebBrowser x:Name="web_資料夾"  />
                     </WindowsFormsHost>-->

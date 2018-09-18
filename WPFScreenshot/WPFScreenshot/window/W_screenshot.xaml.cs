@@ -46,6 +46,10 @@ namespace WPFScreenshot {
         private double d_螢幕_w = 0;
         private double d_螢幕_h = 0;
 
+        //按空白鍵 拖曳
+        private 拖曳模式 int_空白鍵記錄 = 拖曳模式.中心;
+        private Boolean bool_空白鍵記錄 = false;
+
         private MainWindow M;
         private WindowState ws_全螢幕前的狀態;
         private double d_記錄視窗位子 = 0;
@@ -114,10 +118,6 @@ namespace WPFScreenshot {
         /// 
         /// </summary>
         private void func_初始化(e_截圖類型 e_type) {
-
-
-
-
 
 
 
@@ -311,7 +311,7 @@ namespace WPFScreenshot {
 
             this.MouseLeftButtonUp += (object sender, MouseButtonEventArgs e) => {
 
-                if (transparentRect.Rect.Width == 0 || transparentRect.Rect.Height == 0) {
+                if (rg_遮罩.Rect.Width == 0 || rg_遮罩.Rect.Height == 0) {
                     func_重新();
                     return;
                 }
@@ -344,34 +344,13 @@ namespace WPFScreenshot {
             };
 
 
-            //按空白鍵 拖曳
-            拖曳模式 int_空白鍵記錄 = 拖曳模式.中心;
-            Boolean bool_空白鍵記錄 = false;
+
 
 
 
 
             this.KeyDown += (sender, e) => {
 
-                if (e.Key == Key.Escape) { //按esc結束
-                    //func_關閉程式();
-                    //改在全域按鍵偵測，避免程式在沒有焦點的情況下無法使用快速鍵
-                } else if (e.Key == Key.Enter) {
-                    fun_確認儲存("png");
-                }
-
-                if (int_拖曳模式 == 拖曳模式.none)
-                    return;
-
-                //按空白鍵 拖曳
-                if (bool_空白鍵記錄 == false)
-                    if (e.Key == Key.Space) {
-                        bool_空白鍵記錄 = true;
-                        d_xywh = new double[] { b_中心拖曳.Margin.Left, b_中心拖曳.Margin.Top, b_中心拖曳.ActualWidth, b_中心拖曳.ActualHeight };
-                        d_滑鼠xy = func_取得滑鼠();
-                        int_空白鍵記錄 = int_拖曳模式;
-                        int_拖曳模式 = 拖曳模式.中心;
-                    }
 
             };
             this.KeyUp += (object sender, KeyEventArgs e) => {
@@ -421,7 +400,6 @@ namespace WPFScreenshot {
                 } else {
                     func_重新();
                 }
-                this.Title = "+++";
             };
 
             button_關閉.Click += (sender, e) => {
@@ -458,6 +436,74 @@ namespace WPFScreenshot {
 
 
 
+
+
+        /// <summary>
+        /// 在全域的鍵盤偵測進行呼叫
+        /// </summary>
+        /// <param name="e"></param>
+        public void func_key_down(System.Windows.Forms.KeyEventArgs e) {
+
+            bool bool_ctrl = Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl);
+
+            var k = e.KeyCode;
+            if (k == System.Windows.Forms.Keys.Escape) { //按esc結束
+                func_關閉程式();
+                return;
+            }
+
+            if (k == System.Windows.Forms.Keys.C && bool_ctrl) {//複製
+                fun_確認儲存("copy");
+                return;
+            }
+            if (k == System.Windows.Forms.Keys.X && bool_ctrl) {//複製
+                fun_確認儲存("copy");
+                return;
+            }
+
+            if (k == System.Windows.Forms.Keys.D && bool_ctrl) {//取消選取
+                if (int_拖曳模式 != 拖曳模式.none) {
+                    func_重新();
+                    return;
+                }
+            }
+
+            if (k == System.Windows.Forms.Keys.S && bool_ctrl) {//直接儲存
+                if (int_拖曳模式 != 拖曳模式.none) {
+                    fun_確認儲存("png");
+                    return;
+                }
+            }
+
+            if (k == System.Windows.Forms.Keys.A && bool_ctrl) {//全選
+                func_全選();
+                return;
+            }
+
+
+            if (k == System.Windows.Forms.Keys.Enter) {//直接儲存
+                if (int_拖曳模式 != 拖曳模式.none) {
+                    fun_確認儲存("png");
+                    return;
+                }
+                return;
+            }
+
+            if (int_拖曳模式 == 拖曳模式.none)
+                return;
+
+            //按空白鍵 拖曳
+            if (bool_空白鍵記錄 == false)
+                if (k == System.Windows.Forms.Keys.Space) {
+                    bool_空白鍵記錄 = true;
+                    d_xywh = new double[] { b_中心拖曳.Margin.Left, b_中心拖曳.Margin.Top, b_中心拖曳.ActualWidth, b_中心拖曳.ActualHeight };
+                    d_滑鼠xy = func_取得滑鼠();
+                    int_空白鍵記錄 = int_拖曳模式;
+                    int_拖曳模式 = 拖曳模式.中心;
+                }
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -479,7 +525,7 @@ namespace WPFScreenshot {
             b_左下.Stroke = color_原始;
 
 
-            var rect = transparentRect.Rect;
+            var rect = rg_遮罩.Rect;
             var mouse = func_取得滑鼠();
 
             //判斷是「吸取顏色」，還是「截圖」
@@ -581,7 +627,7 @@ namespace WPFScreenshot {
             if (int_拖曳模式 == 拖曳模式.none)
                 return;
 
-            var t = transparentRect.Rect;
+            var t = rg_遮罩.Rect;
 
 
             if ((int)(t.Width) == 0 || (int)(t.Height) == 0)
@@ -592,8 +638,11 @@ namespace WPFScreenshot {
             /*System.Drawing.Bitmap img = KiCut(bimg, (int)(t.Left* d_解析度比例_x), (int)(t.Top* d_解析度比例_y),
                 (int)(t.Width* d_解析度比例_x), (int)(t.Height* d_解析度比例_y));*/
 
-            System.Drawing.Bitmap img = KiCut(bimg, (int)(t.Left), (int)(t.Top),
-         (int)(t.Width), (int)(t.Height));
+            System.Drawing.Bitmap img = KiCut(
+                bimg,
+                (int)(t.Left), (int)(t.Top),
+                (int)(t.Width), (int)(t.Height)
+            );
 
             //避免 寬度 or 高度 未滿50
             /*double dd = 60 / t.Width;
@@ -688,6 +737,42 @@ namespace WPFScreenshot {
         }
 
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private void func_全選() {
+
+
+            t_拖曳中.Enabled = false;
+
+
+
+            b_右上.Margin = new Thickness(this.ActualWidth - 10, -10, 0, 0);
+            b_右下.Margin = new Thickness(this.ActualWidth - 10, this.ActualHeight - 10, -10, 0);
+            b_左上.Margin = new Thickness(-10, -10, 0, 0);
+            b_左下.Margin = new Thickness(-10, this.ActualHeight - 10, 0, 0);
+
+            b_下.Margin = new Thickness(0, this.ActualHeight - 11, 0, 0);
+            b_右.Margin = new Thickness(this.ActualWidth - 11, 0, 0, 0);
+            b_上.Margin = new Thickness(0, -10, 0, 0);
+            b_左.Margin = new Thickness(-10, 0, 0, 0);
+
+
+            int_拖曳模式 = 拖曳模式.中心;
+            bool_初始 = false;
+
+            double L = b_左.Margin.Left + 10;
+            double T = b_上.Margin.Top + 10;
+            double W = b_右.Margin.Left - b_左.Margin.Left;
+            double H = b_下.Margin.Top - b_上.Margin.Top;
+            b_中心拖曳.Width = Math.Abs(W) - 10;
+            b_中心拖曳.Height = Math.Abs(H) - 10;
+            b_中心拖曳.Margin = new Thickness(L + 5, T + 5, 0, 0);
+            rg_遮罩.Rect = new Rect(L, T, Math.Abs(W) + 1, Math.Abs(H) + 1); //計算遮罩位置
+
+            fun_顯示按鈕();
+
+        }
 
         /// <summary>
         /// 
@@ -696,7 +781,7 @@ namespace WPFScreenshot {
 
 
             //計算遮罩位置
-            transparentRect.Rect = new Rect(0, 0, 0, 0);
+            rg_遮罩.Rect = new Rect(0, 0, 0, 0);
 
             b_右上.Margin = new Thickness(-100, 0, 0, 0);
             b_右下.Margin = new Thickness(-100, 0, 0, 0);
@@ -739,7 +824,10 @@ namespace WPFScreenshot {
 
 
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public System.Drawing.Point func_目前拖曳物件的坐標() {
 
             System.Drawing.Point p = new System.Drawing.Point();
@@ -927,6 +1015,12 @@ namespace WPFScreenshot {
             b_右上.Margin = new Thickness(b_右.Margin.Left, b_上.Margin.Top, 0, 0);
 
 
+          
+
+
+
+
+
             double L = b_左.Margin.Left + 10;
             double T = b_上.Margin.Top + 10;
             double W = b_右.Margin.Left - b_左.Margin.Left;
@@ -948,9 +1042,21 @@ namespace WPFScreenshot {
                 L = L + W;
 
             b_中心拖曳.Margin = new Thickness(L + 5, T + 5, 0, 0);
-            //計算遮罩位置
-            transparentRect.Rect = new Rect(L, T, Math.Abs(W) + 1, Math.Abs(H) + 1);
 
+            
+            rg_遮罩.Rect = new Rect(L, T, Math.Abs(W) + 1, Math.Abs(H) + 1);//計算遮罩位置
+
+
+            //矩形選取
+            if (Keyboard.IsKeyDown(Key.LeftShift)|| Keyboard.IsKeyDown(Key.RightShift)) {
+
+                if (rg_遮罩.Rect.Width > rg_遮罩.Rect.Height) {
+                    rg_遮罩.Rect = new Rect(L, T, Math.Abs(H) + 1, Math.Abs(H) + 1);
+                } else {
+                    rg_遮罩.Rect = new Rect(L, T, Math.Abs(W) + 1, Math.Abs(W) + 1);
+                }
+                 
+            }
 
             func_顯示size();
         }
@@ -964,7 +1070,7 @@ namespace WPFScreenshot {
         /// </summary>
         private void func_顯示size() {
 
-            var rect = transparentRect.Rect;
+            var rect = rg_遮罩.Rect;
             var mouse = func_取得滑鼠();
 
 

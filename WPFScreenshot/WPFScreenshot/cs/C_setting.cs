@@ -103,8 +103,8 @@ namespace WPFScreenshot {
             fun_儲存(X, "s_kb_focus", M.s_快速鍵_目前視窗);
             fun_儲存(X, "bool_specified_save_path", M.bool_自定儲存路徑.ToString());
             fun_儲存(X, "s_specified_save_path", M.s_自定儲存路徑);
+            fun_儲存(X, "bool_save_model_monolayer", M.bool_單層儲存路徑.ToString());
 
-          
             fun_儲存(X, "sub_folder", M.func_取得資料夾順序());
 
             //儲存目前選取的資料夾
@@ -172,7 +172,11 @@ namespace WPFScreenshot {
                     if (item.Attributes["name"].Value == "s_specified_save_path")
                         M.s_自定儲存路徑 = item.InnerText;
 
-
+                    //單層儲存路徑
+                    if (item.Attributes["name"].Value == "bool_save_model_monolayer")
+                        M.bool_單層儲存路徑 = item.InnerText.ToUpper() == "TRUE";
+    
+                    
 
 
                     //上次的資料夾順序

@@ -337,48 +337,68 @@
             </TabItem.Header>
 
             <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel Margin="20">
-                    <Label Content="儲存路徑"
-                           FontSize="24" />
-                    <RadioButton x:Name="radio_儲存路徑_預設"
-                                 Margin="0,10,0,0"
-                                 IsChecked="True">
-                        <TextBlock Foreground="White">預設：程式旁邊的「imgs」資料夾</TextBlock>
-                    </RadioButton>
-                    <RadioButton x:Name="radio_儲存路徑_自定"
-                                 Margin="0,10,0,0">
-                        <TextBlock Foreground="White">自定：</TextBlock>
+                <StackPanel Orientation="Vertical"
+                            Margin="20">
+                    <StackPanel>
+                        <Label Content="儲存路徑"
+                               FontSize="24" />
+                        <RadioButton x:Name="radio_儲存路徑_預設"
+                                     Margin="0,10,0,0"
+                                     IsChecked="True">
+                            <TextBlock Foreground="White"><Run Text="預設：程式旁邊的「imgs」資料夾" /></TextBlock>
+                        </RadioButton>
+                        <RadioButton x:Name="radio_儲存路徑_自定"
+                                     Margin="0,10,0,0">
+                            <TextBlock Foreground="White"><Run Text="自定：" /></TextBlock>
 
-                    </RadioButton>
-                    <Grid>
-                        <TextBox x:Name="text_自定儲存路徑"
-                                 Text="D:\imgs"
-                                 VerticalAlignment="Stretch"
-                                 HorizontalContentAlignment="Left"
-                                 Margin="24,3,0,0"
-                                 Padding="5,0,40,0"
-                                 ToolTip="點擊文字框後，直接點擊鍵盤來設定快速鍵"
-                                 IsTabStop="False"
-                                 Height="40"
-                                 Background="#FF333337"
-                                 BorderBrush="#66FFFFFF"
-                                 Foreground="White"
-                                 Template="{DynamicResource TextBox_01}" />
-                        <Button x:Name="but_自定路徑_選資料夾"
-                                Style="{DynamicResource but_title}"
-                                Width="40"
-                                Height="40"
-                                DockPanel.Dock="Right"
-                                Margin="0"
-                                Background="#FF4B8DF8"
-                                BorderBrush="{x:Null}"
-                                ToolTip="選擇資料夾"
-                                HorizontalAlignment="Right">
-                            <Image Source="/WPFScreenshot;component/imgs/directory.png"
-                                   Width="25"
-                                   Height="25"></Image>
-                        </Button>
-                    </Grid>
+                        </RadioButton>
+                        <Grid>
+                            <TextBox x:Name="text_自定儲存路徑"
+                                     Text="D:\imgs"
+                                     VerticalAlignment="Stretch"
+                                     HorizontalContentAlignment="Left"
+                                     Margin="24,3,0,0"
+                                     Padding="5,0,40,0"
+                                     ToolTip="點擊文字框後，直接點擊鍵盤來設定快速鍵"
+                                     IsTabStop="False"
+                                     Height="40"
+                                     Background="#FF333337"
+                                     BorderBrush="#66FFFFFF"
+                                     Foreground="White"
+                                     Template="{DynamicResource TextBox_01}" />
+                            <Button x:Name="but_自定路徑_選資料夾"
+                                    Style="{DynamicResource but_title}"
+                                    Width="40"
+                                    Height="40"
+                                    DockPanel.Dock="Right"
+                                    Margin="0"
+                                    Background="#FF4B8DF8"
+                                    BorderBrush="{x:Null}"
+                                    ToolTip="選擇資料夾"
+                                    HorizontalAlignment="Right">
+                                <Image Source="/WPFScreenshot;component/imgs/directory.png"
+                                       Width="25"
+                                       Height="25" />
+                            </Button>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Margin="0,40,0,0">
+                        <Label Content="儲存模式"
+                               FontSize="24" />
+                        <RadioButton x:Name="radio_儲存模式_雙層"
+                                     Margin="0,10,0,0"
+                                     IsChecked="True">
+                            <TextBlock Foreground="White"
+                                       TextWrapping="Wrap"><Run Text="雙層儲存路徑：透過多個資料來分類儲存的圖片" /></TextBlock>
+
+                        </RadioButton>
+                        <RadioButton x:Name="radio_儲存模式_單層"
+                                     Margin="0,10,0,0"
+                                     >
+                            <TextBlock Foreground="White"
+                                       TextWrapping="Wrap"><Run Text="單層儲存路徑：直接把圖片儲存在「儲存路徑」" /></TextBlock>
+                        </RadioButton>
+                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
 

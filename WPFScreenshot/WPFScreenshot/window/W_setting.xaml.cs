@@ -50,12 +50,20 @@ namespace WPFScreenshot.window {
                 radio_儲存路徑_預設.IsChecked = true;
             }
 
+            if (M.bool_單層儲存路徑) {
+                radio_儲存模式_單層.IsChecked = true;
+            } else {
+                radio_儲存模式_雙層.IsChecked = true;
+            }
+
+
             text_自定儲存路徑.TextChanged += (sender, e) => {
                 M.s_自定儲存路徑 = text_自定儲存路徑.Text;
                 if (Directory.Exists(M.s_自定儲存路徑)&& radio_儲存路徑_自定.IsChecked.Value) {
                     M.func_分頁重新整理();
                 }
             };
+
             radio_儲存路徑_自定.Checked += (sender, e) => {
                 M.bool_自定儲存路徑 = true;
                 if (Directory.Exists(M.s_自定儲存路徑) && radio_儲存路徑_自定.IsChecked.Value) {
@@ -64,6 +72,15 @@ namespace WPFScreenshot.window {
             };
             radio_儲存路徑_預設.Checked += (sender, e) => {
                 M.bool_自定儲存路徑 = false;
+                M.func_分頁重新整理();
+            };
+
+            radio_儲存模式_單層.Checked += (sender, e) => {
+                M.bool_單層儲存路徑 = true;
+                    M.func_分頁重新整理();         
+            };
+            radio_儲存模式_雙層.Checked += (sender, e) => {
+                M.bool_單層儲存路徑 = false;
                 M.func_分頁重新整理();
             };
 
@@ -107,7 +124,7 @@ namespace WPFScreenshot.window {
 
 
             text_關於.Text =
-                "版本：2.0.2 (2018 / 09 / 07)" + "\n" +
+                "版本：2.0.3 (2018 / 09 / 20)" + "\n" +
                 "作者：hbl917070 (深海異音)" + "\n" +
                 "信箱：hbl917070@gmail.com";
 

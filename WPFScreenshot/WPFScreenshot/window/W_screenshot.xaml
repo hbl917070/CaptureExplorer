@@ -44,7 +44,7 @@
                         <RectangleGeometry Rect="0,0,10000,10000" />
                     </CombinedGeometry.Geometry1>
                     <CombinedGeometry.Geometry2>
-                        <RectangleGeometry x:Name="transparentRect"
+                        <RectangleGeometry x:Name="rg_遮罩"
                                            Rect="200,200,20,20" />
                     </CombinedGeometry.Geometry2>
                 </CombinedGeometry>

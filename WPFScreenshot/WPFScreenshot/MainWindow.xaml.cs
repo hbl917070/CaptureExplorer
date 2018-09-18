@@ -36,6 +36,7 @@ namespace WPFScreenshot {
         public String s_快速鍵_全螢幕 = "PrtScrSysRq";//快速鍵預設值
         public String s_快速鍵_目前視窗 = "RAlt + PrtScrSysRq";//快速鍵預設值
         public bool bool_自定儲存路徑 = false;
+        public bool bool_單層儲存路徑 = false;
         public String s_自定儲存路徑 = "D:\\圖片";
 
 
@@ -73,6 +74,11 @@ namespace WPFScreenshot {
             //初始化頁籖物件
             Action<String> ac_點擊 = new Action<String>((String x) => {
                 String s_path = func_取得儲存根目錄() + "\\" + x;
+
+                if (bool_單層儲存路徑) {
+                     s_path = func_取得儲存根目錄();
+                }
+
                 if (Directory.Exists(s_path) == false) {
                     Directory.CreateDirectory(s_path);
                 }
@@ -233,6 +239,27 @@ namespace WPFScreenshot {
         }
 
 
+
+
+
+        public void func_單層目錄() {
+
+
+       
+
+            if (bool_單層儲存路徑) {
+                border_web_box.SetValue(Grid.ColumnProperty, 0);
+                border_web.Margin = new Thickness(7,0,7,7);
+            } else {
+                border_web_box.SetValue(Grid.ColumnProperty, 1);
+                border_web.Margin = new Thickness(0, 0, 7, 7);
+            }
+
+        }
+
+
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -274,6 +301,8 @@ namespace WPFScreenshot {
         /// 重新產生分頁的頁籖
         /// </summary>
         public void func_分頁重新整理(bool bool_第一次執行 = false) {
+
+            func_單層目錄();
 
 
             if (bool_第一次執行 == false) {
@@ -355,6 +384,10 @@ namespace WPFScreenshot {
 
             String p = func_取得儲存根目錄() + "\\" + c_分頁.b_but_text.Text;
 
+            if (bool_單層儲存路徑) {
+                p = func_取得儲存根目錄();
+            }
+
             if (Directory.Exists(p) == false) {
                 Directory.CreateDirectory(p);
                 func_重新整理資料夾();
@@ -386,11 +419,18 @@ namespace WPFScreenshot {
                 }
             }
 
-            //如果資料夾不存在，就新建
-            if (Directory.Exists(s_dir) == false) {
-                //新增資料夾
-                Directory.CreateDirectory(s_dir + "\\" + "New Folder 1");
+            if (bool_單層儲存路徑 == false) {
+
+
+                //如果資料夾不存在，就新建
+                if (Directory.Exists(s_dir) == false) {
+                    //新增資料夾
+                    Directory.CreateDirectory(s_dir + "\\" + "New Folder 1");
+                }
+
             }
+
+
 
             return s_dir;
         }
@@ -584,25 +624,47 @@ namespace WPFScreenshot {
         /// </summary>
         public void func_刪除目前資料夾() {
 
-            var w = new W_對話(this);
-            w.set_text("\n確定要把「" + c_分頁.b_but_text.Text + "」資料夾\n丟到「資源垃圾桶」？\n");
-            w.set_yes(() => {
+
+            if (bool_單層儲存路徑) {
+
+                var w = new W_對話(this);
+                w.set_text("\n確定要把「" + System.IO.Path.GetFileName(func_取得儲存資料夾()) + "」資料夾\n丟到「資源垃圾桶」？\n");
+                w.set_yes(() => {
+
+                    //把資料夾移到垃圾桶，並顯示詢問視窗
+                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(func_取得儲存資料夾(),
+                        Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs,
+                        Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin);
 
 
-                //把資料夾移到垃圾桶，並顯示詢問視窗
-                Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(func_取得儲存資料夾(),
-                    Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs,
-                    Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin);
+                });
+                w.fun_how(this);
 
-                c_分頁.fun_delete();
+            } else {
 
-                //如果已經沒有子資料夾，就新增一個
-                if (stackPanel_1.Children.Count == 0) {
-                    func_分頁重新整理();
-                }
+                var w = new W_對話(this);
+                w.set_text("\n確定要把「" + c_分頁.b_but_text.Text + "」資料夾\n丟到「資源垃圾桶」？\n");
+                w.set_yes(() => {
 
-            });
-            w.fun_how(this);
+
+                    //把資料夾移到垃圾桶，並顯示詢問視窗
+                    Microsoft.VisualBasic.FileIO.FileSystem.DeleteDirectory(func_取得儲存資料夾(),
+                        Microsoft.VisualBasic.FileIO.UIOption.OnlyErrorDialogs,
+                        Microsoft.VisualBasic.FileIO.RecycleOption.SendToRecycleBin);
+
+                    c_分頁.fun_delete();
+
+                    //如果已經沒有子資料夾，就新增一個
+                    if (stackPanel_1.Children.Count == 0) {
+                        func_分頁重新整理();
+                    }
+
+                });
+                w.fun_how(this);
+
+            }
+
+          
         }
 
 

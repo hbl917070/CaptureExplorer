@@ -6,6 +6,7 @@
   <item name="s_kb_focus">RAlt + PrtScrSysRq</item>
   <item name="bool_specified_save_path">False</item>
   <item name="s_specified_save_path">D:\圖片</item>
+  <item name="bool_save_model_monolayer">False</item>
   <item name="sub_folder">New Folder 1	</item>
   <item name="sub_folder_select">New Folder 1</item>
 </settings>

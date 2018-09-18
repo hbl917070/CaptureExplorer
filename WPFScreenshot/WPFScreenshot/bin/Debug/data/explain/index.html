@@ -25,8 +25,7 @@
             -ms-overflow-style: -ms-autohiding-scrollbar;
         }
 
-        body {
-        }
+        body {}
 
         .center {
             max-width: 600px;
@@ -63,15 +62,52 @@
             transition: all 0.5s;
         }
 
-            .box:hover {
-                /*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);*/
-                /*background-color: rgb(30,30,30);*/
-                border-left: 5px solid rgb(3, 222, 115);
-                transition: all 0s;
-            }
+        .box:hover {
+            /*box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);*/
+            /*background-color: rgb(30,30,30);*/
+            border-left: 5px solid rgb(3, 222, 115);
+            transition: all 0s;
+        }
+
+        .key_box {
+            display: inline-block;
+            padding: 0px 10px;
+            margin-right: 10px;
+         
+            border: 1px solid rgb(0,197,207);
+            color: rgb(0,197,207);
+        }
+
+        .key_div {
+           margin-bottom: 5px;
+        }
     </style>
 
     <div class="center">
+
+        <div class="t1">
+            選取截圖-快速鍵
+        </div>
+        <div class="box">
+            <div style="">
+                <div></div>
+                <div class="key_div"> <b class="key_box">Esc</b> 關閉視窗 </div>
+                <div class="key_div"> <b class="key_box">Ctrl + A</b> 全選 </div>
+                <div class="key_div"> <b class="key_box">Ctrl + C</b> 複製 </div>
+                <div class="key_div"> <b class="key_box">Ctrl + X</b> 複製 </div>
+                <div class="key_div"> <b class="key_box">Ctrl + D</b> 取消選取 </div>
+                <div class="key_div"> <b class="key_box">Ctrl + S</b> 儲存圖片(png) </div>
+                <div class="key_div"> <b class="key_box">Enter</b> 儲存圖片(png) </div>
+
+                <div class="key_div"> 修改範圍時按著 <b class="key_box">空白鍵</b>暫時變成拖曳 </div>
+                <div class="key_div"> 修改範圍時按著 <b class="key_box">Shift</b> 正方形選取 </div>
+
+                <div class="key_div"> <b class="key_box">滑鼠右鍵</b> 取消選取 or 關閉視窗</div>
+            </div>
+
+
+        </div>
+
 
 
         <div class="t1">
@@ -100,8 +136,7 @@
 
             <div class="t2">PNG 格式</div>
             <div>
-                檔案大、畫質高<br>
-                但顏色不多的話，檔案反而會比 JPG格式 更小
+                檔案大、畫質高<br> 但顏色不多的話，檔案反而會比 JPG格式 更小
             </div>
             <div>適合用於顏色較少的場合。例如：文件檔的截圖</div>
         </div>
@@ -114,9 +149,8 @@
         <div class="box">
             <div>
                 使用快速鍵進行截圖時，會取消原本按鍵的功能，因此可以放心的在任何按鍵上設定快速鍵
-                <br><br>
-                例如：<br>「F5」是瀏覽器的「重新整理」功能。<br>
-                把截圖快速鍵設定成「F5」或「Ctrl + F5」，使用快速鍵進行截圖時，並不會觸發瀏覽器的重新整理功能
+                <br><br> 例如：
+                <br>「F5」是瀏覽器的「重新整理」功能。<br> 把截圖快速鍵設定成「F5」或「Ctrl + F5」，使用快速鍵進行截圖時，並不會觸發瀏覽器的重新整理功能
             </div>
         </div>
 
@@ -126,10 +160,8 @@
         </div>
         <div class="box">
             <div>
-                可能有其他權限更高的程式攔截鍵盤訊號，解決方法：<br>
-                對程式按 右鍵→以系統管理員身份執行
-                <br><br>
-                注意：以系統管理員身份執行程式，將會無法使用拖曳至瀏覽器上傳圖片的功能
+                可能有其他權限更高的程式攔截鍵盤訊號，解決方法：<br> 對程式按 右鍵→以系統管理員身份執行
+                <br><br> 注意：以系統管理員身份執行程式，將會無法使用拖曳至瀏覽器上傳圖片的功能
             </div>
         </div>
 
