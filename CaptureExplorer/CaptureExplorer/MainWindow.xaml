@@ -1,0 +1,372 @@
+﻿<Window x:Class="CaptureExplorer.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaptureExplorer"
+        mc:Ignorable="d"
+        xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+        Title="Capture Explorer"
+        Style="{DynamicResource MyWindowStyle}"
+        Height="400"
+        Width="500"
+        Topmost="{Binding IsChecked, ElementName=checkBox_視窗置頂}"
+        MinWidth="200"
+        MinHeight="73"
+        ResizeMode="CanResize"
+        BorderThickness="1"
+        Icon="imgs/ICON.ico"
+        BorderBrush="#FFFF0A0A"
+        Background="{x:Null}" >
+
+    <Window.Resources>
+
+        <Style TargetType="{x:Type ToolTip}">
+
+
+            <Setter Property="Background"
+                    Value="#CC000000" />
+            <Setter Property="Foreground"
+                    Value="#FF4BC8FF" />
+            <Setter Property="BorderThickness"
+                    Value="1" />
+            <Setter Property="BorderBrush"
+                    Value="#664BC8FF" />
+            <Setter Property="Padding"
+                    Value="4" />
+
+        </Style>
+    </Window.Resources>
+
+
+    <Border BorderThickness="1"
+            BorderBrush="#FF4F4F4F">
+
+
+        <DockPanel Background="#D8222930">
+            <DockPanel DockPanel.Dock="Top" Height="30">
+                <Button x:Name="but_縮小至右下角"
+                    Height="30"
+                    Style="{DynamicResource but_鎖}"
+                    VerticalAlignment="Top"
+                    Width="40"
+                    DockPanel.Dock="Right"
+                    Background="#00000000"
+                    ToolTip="將程式縮小至工作列的圖示" Margin="0,0,120,0">
+                    <Canvas Width="12" Height="12" Margin="0,2,0,0">
+                        <Path Width="10.4051" Height="10.4051" Canvas.Left="1.91195" Canvas.Top="1.91185" Stretch="Fill" StrokeLineJoin="Round" Stroke="White" Data="F1 M 11.6504,2.57852L 11.6504,11.6502L 2.57861,11.6502"/>
+                        <Path Width="12.317" Height="12.3169" Canvas.Left="2.03252e-005" Canvas.Top="-1.01924e-005" Stretch="Fill" StrokeLineJoin="Round" Stroke="White" Data="F1 M 11.6504,11.6502L 0.666687,0.666656"/>
+                    </Canvas>
+                </Button>
+                <Button x:Name="but_鎖定視窗"
+                    Height="30"
+                    Style="{DynamicResource but_鎖}"
+                    Width="40"
+                    DockPanel.Dock="Right"
+                    Background="#00000000"
+                    ToolTip="將視窗鎖定在最上層">
+                    <Grid HorizontalAlignment="Center"
+                        Height="14"
+                        VerticalAlignment="Center"
+                        Width="14.786">
+                        <Path Data="M-98.948554,97.419313 L-90.11183,93.355557 -81.519767,97.419354"
+                            Height="5"
+                            Stretch="Fill"
+                            Stroke="White"
+                            VerticalAlignment="Top"
+                            d:LayoutOverrides="VerticalAlignment"
+                            Width="13" />
+                        <Path Data="M-55.75,21.5 L-55.75,10.035442"
+                            Stretch="Fill"
+                            Stroke="White"
+                            HorizontalAlignment="Center"
+                            Margin="0,0,0,4" />
+                        <Path Data="M-62.25,19.5 L-48.463684,19.5"
+                            Height="1"
+                            Stretch="Fill"
+                            Stroke="White"
+                            VerticalAlignment="Bottom" />
+                    </Grid>
+                </Button>
+                <Label x:Name="lab_標題列"
+                       Content="Capture Explorer"
+                    VerticalContentAlignment="Center"
+                
+                    Foreground="#FF969696" FontSize="16" FontWeight="Normal" Padding="7,0,0,0" />
+            </DockPanel>
+            <DockPanel>
+                <ScrollViewer x:Name="dockPanel_功能列" DockPanel.Dock="Top"
+                    VerticalScrollBarVisibility="Disabled"
+                    HorizontalScrollBarVisibility="Hidden"
+                    Focusable="False" Margin="0,0,0,5" Background="#00000000">
+                    <StackPanel Orientation="Horizontal"
+                        Margin="5,0,0,0"
+                        HorizontalAlignment="Left" Background="#00000000">
+                        <Button x:Name="but_截圖"
+                            Style="{DynamicResource but_title}"
+                            HorizontalAlignment="Left"
+                            FontSize="24"
+                            IsTabStop="False"
+                            Width="51"
+                           
+                            Height="35" BorderBrush="#00000000" Margin="0,0,5,0" >
+                            <Viewbox Height="25"
+                                Width="25">
+                                <Canvas Width="58.9688"
+                                    Height="58.9687">
+                                    <Path Width="50.9688"
+                                        Height="50.9686"
+                                        Canvas.Left="8"
+                                        Canvas.Top="0"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 16.4153,44.4388L 44.4389,16.4152L 44.4389,42.4387L 50.9688,42.4387C 50.9688,29.6616 50.9688,14.5297 50.9688,14.5297L 50.9688,9.88533L 57.0937,3.76039C 57.6145,3.23947 57.6145,2.39573 57.0937,1.87492C 56.5729,1.35413 55.7292,1.35413 55.2083,1.87492L 49.0833,8L 44.4389,8L 16.53,8L 16.53,14.5297L 42.5536,14.5297L 14.5297,42.5535L 14.5297,0L 8,0L 8,44.4388L 8,50.9686L 14.5297,50.9686L 58.9688,50.9686L 58.9688,44.4388L 16.4153,44.4388 Z " />
+                                    <Path Width="6.52987"
+                                        Height="6"
+                                        Canvas.Left="44.4389"
+                                        Canvas.Top="52.9687"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 44.4389,58.9687L 50.9688,58.9687C 50.9688,58.9687 50.9688,53.8459 50.9688,52.9687L 44.4389,52.9687L 44.4389,58.9687 Z " />
+                                    <Rectangle Width="6"
+                                        Height="6.52973"
+                                        Canvas.Left="0"
+                                        Canvas.Top="8"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF" />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
+                        <Button x:Name="but_開啟資料夾"
+                            Style="{DynamicResource but_title}"
+                            HorizontalAlignment="Left"
+                            FontSize="24"
+                            IsTabStop="False"
+                            Width="51"
+                            ToolTip="開啟目前選擇的資料夾"
+                            Height="35" BorderBrush="#00000000" Margin="0,0,5,0">
+                            <Viewbox Height="25"
+                                Width="25">
+                                <Path Stretch="Fill"
+                                    Fill="#FFFFFFFF"
+                                    Data="F1 M 47.7456,11.5538C 46.7508,10.1892 45.2117,9.40595 43.5229,9.40595L 39.6623,9.40595L 39.6623,4.86168C 39.6623,2.20741 37.5033,0.0486145 34.849,0.0486145L 11.7423,0.0486145C 11.5372,0.0486145 11.3412,-0.0276489 11.1908,-0.166985L 8.67913,-2.48525C 7.78786,-3.30818 6.62836,-3.76192 5.41416,-3.76192L -6.12686,-3.76192C -8.78122,-3.76192 -10.94,-1.60312 -10.94,1.05048L -10.94,40.505C -10.94,43.1586 -8.78122,45.3175 -6.12686,45.3175L -4.51227,45.3175L 34.849,45.3175L 35.3139,45.3175C 37.5893,45.3175 39.588,43.8624 40.2859,41.6964L 48.4956,16.2327C 49.0137,14.6247 48.7404,12.919 47.7456,11.5538 Z M -6.12686,0.238083L 5.41416,0.238083C 5.61924,0.238083 5.8152,0.314217 5.96559,0.453552L 8.47732,2.77182C 9.36858,3.59475 10.5281,4.04862 11.7423,4.04862L 34.849,4.04862C 35.2976,4.04862 35.6623,4.41315 35.6623,4.86168L 35.6623,9.40595L 3.69672,9.40595C 1.42002,9.40595 -0.57803,10.8617 -1.27595,13.0271L -6.94,30.5961L -6.94,1.05048C -6.94,0.602615 -6.57543,0.238083 -6.12686,0.238083 Z M 44.6883,15.0056L 36.4793,40.4685C 36.3158,40.9763 35.847,41.3175 35.3139,41.3175L 34.849,41.3175L -4.51227,41.3175C -5.05459,41.3175 -5.36514,41.0017 -5.50251,40.8135C -5.63923,40.626 -5.84431,40.2335 -5.67764,39.7178L 2.53134,14.2544C 2.69476,13.7472 3.16286,13.406 3.69672,13.406L 37.6623,13.406L 43.5229,13.406C 44.0645,13.406 44.3757,13.7211 44.5125,13.9093C 44.6492,14.0974 44.8549,14.4899 44.6883,15.0056 Z "
+                                    Height="49.079"
+                                    Width="59.692" />
+                            </Viewbox>
+                        </Button>
+                        <Button x:Name="but_重新整理"
+                            Style="{DynamicResource but_title}"
+                            HorizontalAlignment="Left"
+                            FontSize="24"
+                            IsTabStop="False"
+                            Width="51"
+                            ToolTip="重新整理"
+                            Height="35" BorderBrush="#00000000" Margin="0,0,5,0">
+                            <Viewbox Height="25"
+                                Width="25">
+                                <Path Stretch="Fill"
+                                    Fill="#FFFFFFFF"
+                                    Data="F1 M -412.614,330.268L -394.208,333.115L -391.368,314.756L -395.321,314.145L -397.183,326.182C -399.4,321.468 -402.87,317.391 -407.247,314.494C -413.606,310.283 -421.225,308.802 -428.701,310.322C -436.175,311.843 -442.61,316.183 -446.821,322.543C -455.512,335.672 -451.901,353.425 -438.772,362.117C -433.931,365.321 -428.465,366.852 -423.054,366.852C -413.786,366.852 -404.686,362.356 -399.198,354.067C -398.027,352.298 -397.054,350.406 -396.308,348.444L -400.045,347.02C -400.689,348.708 -401.526,350.336 -402.534,351.86C -410.006,363.151 -425.273,366.255 -436.564,358.781C -447.854,351.307 -450.959,336.041 -443.485,324.751C -436.01,313.461 -420.743,310.356 -409.455,317.83C -405.636,320.358 -402.619,323.93 -400.717,328.061L -412.002,326.315L -412.614,330.268 Z "
+                                    Height="57.111"
+                                    Width="60.188" />
+                            </Viewbox>
+                        </Button>
+                        <Button x:Name="but_清空"
+                            Style="{DynamicResource but_title}"
+                            HorizontalAlignment="Left"
+                            FontSize="24"
+                            IsTabStop="False"
+                            Width="51"
+                            ToolTip="刪除所有檔案"
+                            Height="35" BorderBrush="#00000000" Margin="0,0,5,0">
+                            <Viewbox Height="25"
+                                Width="25">
+                                <Canvas Width="52.6667"
+                                    Height="56.0807">
+                                    <Path Width="40.6341"
+                                        Height="40.6458"
+                                        Canvas.Left="6.01627"
+                                        Canvas.Top="15.4349"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 6.01627,56.0807L 46.6504,56.0807L 46.6504,15.4349L 6.01627,15.4349L 6.01627,56.0807 Z M 10.0163,19.4348L 42.6504,19.4348L 42.6504,52.08L 10.0163,52.08L 10.0163,19.4348 Z " />
+                                    <Path Width="52.6667"
+                                        Height="11.4583"
+                                        Canvas.Left="0"
+                                        Canvas.Top="0"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 37.2654,7.45829L 34.8783,0L 17.7884,0L 15.4013,7.45829L 0,7.45829L 0,11.4583L 14.1211,11.4583L 38.5456,11.4583L 52.6667,11.4583L 52.6667,7.45829L 37.2654,7.45829 Z M 19.6016,7.45829L 20.7077,4L 31.959,4L 33.0651,7.45829L 19.6016,7.45829 Z " />
+                                    <Rectangle Width="4"
+                                        Height="22.6706"
+                                        Canvas.Left="15.8353"
+                                        Canvas.Top="24.4218"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF" />
+                                    <Rectangle Width="4"
+                                        Height="22.6706"
+                                        Canvas.Left="24.3333"
+                                        Canvas.Top="24.4218"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF" />
+                                    <Rectangle Width="4"
+                                        Height="22.6706"
+                                        Canvas.Left="32.8314"
+                                        Canvas.Top="24.4218"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF" />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
+                        <CheckBox x:Name="checkBox_自動存入剪貼簿"
+                            Style="{DynamicResource check_but}"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Left"
+                            IsChecked="True"
+                            IsTabStop="False"
+                            Height="35"
+                            Width="51"
+                            ToolTip="截圖後，自動把圖片複製到剪貼簿"  Margin="0,0,5,0">
+                            <Viewbox Height="25"
+                                Width="25">
+                                <Canvas Width="58.0905"
+                                    Height="59.056">
+                                    <Path Width="58.0905"
+                                        Height="59.056"
+                                        Canvas.Left="0"
+                                        Canvas.Top="0"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 58.0905,0L 19.8132,0L 19.8132,10.2721L 0,10.2721L 0,59.056L 38.278,59.056L 38.278,48.7839L 58.0905,48.7839L 58.0905,0 Z M 34.278,55.056L 4,55.056L 4,14.2721L 21.8132,14.2721L 34.278,14.2721L 34.278,16.7995L 34.278,26.5495L 34.278,36.2995L 34.278,46.7839L 34.278,55.056 Z M 54.0905,44.7839L 38.278,44.7839L 38.278,38.2995L 49.1179,38.2995L 49.1179,34.2995L 38.278,34.2995L 38.278,28.5495L 49.1179,28.5495L 49.1179,24.5495L 38.278,24.5495L 38.278,18.7995L 49.1179,18.7995L 49.1179,14.7995L 38.278,14.7995L 38.278,10.2721L 23.8132,10.2721L 23.8132,4L 54.0905,4L 54.0905,44.7839 Z " />
+                                    <Path Width="20.3327"
+                                        Height="4"
+                                        Canvas.Left="8.97267"
+                                        Canvas.Top="25.0716"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 8.97267,25.0716L 8.97267,29.0716L 21.8132,29.0716L 29.3053,29.0716L 29.3053,25.0716L 21.8132,25.0716L 8.97267,25.0716 Z " />
+                                    <Path Width="20.3327"
+                                        Height="4"
+                                        Canvas.Left="8.97267"
+                                        Canvas.Top="34.8216"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 8.97267,34.8216L 8.97267,38.8216L 21.8132,38.8216L 29.3053,38.8216L 29.3053,34.8216L 21.8132,34.8216L 8.97267,34.8216 Z " />
+                                    <Path Width="20.3327"
+                                        Height="4"
+                                        Canvas.Left="8.97267"
+                                        Canvas.Top="44.5716"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 8.97267,44.5716L 8.97267,48.5716L 21.8132,48.5716L 29.3053,48.5716L 29.3053,44.5716L 21.8132,44.5716L 8.97267,44.5716 Z " />
+                                </Canvas>
+                            </Viewbox>
+                        </CheckBox>
+                        <!--<CheckBox x:Name="checkBox_視窗置頂"
+                              Style="{DynamicResource check_but}"
+                              VerticalAlignment="Center"
+                              HorizontalAlignment="Left"
+                              IsChecked="True"
+                              IsTabStop="False"
+                              Height="35"
+                              Width="51"
+                              ToolTip="將視窗鎖定在最上層"  Margin="0,0,5,0" Visibility="Collapsed">
+                        <Viewbox Height="25"
+                                 Width="25">
+                            <Canvas Width="61.7663"
+                                    Height="53.2904">
+                                <Path Width="61.7663"
+                                      Height="53.2904"
+                                      Canvas.Left="0"
+                                      Canvas.Top="0"
+                                      Stretch="Fill"
+                                      Fill="#FFFFFFFF"
+                                      Data="F1 M 61.7663,20.9063L 30.8828,0L 0,20.9063L 8.47893,26.6459L 0,32.3855L 30.8828,53.2904L 61.7663,32.3855L 53.2872,26.6459L 61.7663,20.9063 Z M 30.8828,4.8308L 54.6308,20.9063L 48.5983,24.9896L 30.8828,36.9805L 13.168,24.9896L 7.13534,20.9063L 30.8828,4.8308 Z M 30.8828,48.4597L 7.13534,32.3855L 12.0468,29.0609L 30.8828,41.8112L 49.7193,29.0609L 54.6308,32.3855L 30.8828,48.4597 Z " />
+                                <Path Width="23.0567"
+                                      Height="20.7031"
+                                      Canvas.Left="19.3548"
+                                      Canvas.Top="10.1707"
+                                      Stretch="Fill"
+                                      Fill="#FFFFFFFF"
+                                      Data="F1 M 28.8828,18.0913L 28.8828,30.8737L 32.8828,30.8737L 32.8828,18.0912L 39.5091,25.0756L 42.4115,22.3229L 30.8828,10.1707L 19.3548,22.3229L 22.2572,25.0756L 28.8828,18.0913 Z " />
+                            </Canvas>
+                        </Viewbox>
+                    </CheckBox>-->
+                        <Button x:Name="but_設定"
+                            Style="{DynamicResource but_title}"
+                            HorizontalAlignment="Left"
+                            FontSize="24"
+                            IsTabStop="False"
+                            Width="51"
+                            ToolTip="設定"
+                            Height="35" BorderBrush="#00000000" Margin="0,0,5,0">
+                            <Viewbox Height="25"
+                                Width="25">
+                                <Canvas Width="58.3125"
+                                    Height="58.1517">
+                                    <Path Width="57.9997"
+                                        Height="57.9994"
+                                        Canvas.Left="0.156133"
+                                        Canvas.Top="0.151629"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 30.5046,58.1511C 27.8945,58.1517 25.5873,56.6354 24.5515,54.2025L 23.4037,51.5033C 23.1244,50.8477 22.599,50.3575 21.9238,50.125C 21.2507,49.8939 20.5339,49.9558 19.9095,50.2989L 17.3425,51.7162C 14.9069,53.0625 11.9863,52.7383 9.90367,50.8933C 7.82027,49.0489 7.14653,46.1888 8.1868,43.6088L 9.28258,40.8893C 9.54949,40.2272 9.52411,39.5097 9.2116,38.8679C 8.89907,38.2265 8.3496,37.7644 7.66413,37.5671L 4.8464,36.7527C 2.1732,35.9817 0.337202,33.6888 0.168669,30.9115C 0,28.1341 1.54494,25.6361 4.1048,24.5463L 6.804,23.3984C 7.4596,23.1192 7.94987,22.5937 8.18227,21.9187C 8.41467,21.2441 8.35293,20.5287 8.00854,19.9043L 6.5912,17.3372C 5.24613,14.9011 5.56973,11.9812 7.41413,9.89841C 9.25848,7.81641 12.1198,7.14133 14.6986,8.1816L 17.418,9.27734C 18.0801,9.5436 18.7969,9.51961 19.4395,9.20641C 20.0807,8.89387 20.543,8.34441 20.7403,7.65894L 21.5547,4.8412C 22.3255,2.168 24.6185,0.332001 27.3959,0.163467C 30.1882,0 32.6719,1.54041 33.7611,4.0996L 34.9089,6.79881C 35.1882,7.45441 35.7136,7.94467 36.3887,8.17707C 37.0639,8.4108 37.7793,8.34773 38.4031,8.00333L 40.9701,6.586C 43.4069,5.24026 46.3261,5.56387 48.4089,7.40894C 50.4923,9.25333 51.166,12.1133 50.1257,14.6933L 49.03,17.4128C 48.7631,18.0749 48.7884,18.7924 49.1009,19.4343C 49.4135,20.0756 49.9629,20.5377 50.6484,20.7351L 53.4661,21.5495C 56.1387,22.3204 57.9753,24.6133 58.1432,27.39C 58.3125,30.1673 56.7676,32.666 54.2077,33.7559L 51.5085,34.9037C 50.8529,35.1829 50.3627,35.7084 50.1303,36.3835C 49.8979,37.058 49.9596,37.7735 50.304,38.3979L 51.7213,40.9649C 53.0664,43.4011 52.7428,46.3209 50.8984,48.4037C 49.0547,50.4864 46.1953,51.1628 43.614,50.1205L 40.8945,49.0248C 40.2331,48.7578 39.5149,48.7832 38.8731,49.0957C 38.2317,49.4082 37.7696,49.9577 37.5723,50.6433L 36.7579,53.461C 35.9869,56.1341 33.694,57.9701 30.9167,58.1387C 30.7787,58.1472 30.6406,58.1511 30.5046,58.1511 Z M 21.1146,45.9903C 21.8275,45.9903 22.5417,46.1068 23.2272,46.3431C 24.9603,46.9408 26.3659,48.2507 27.084,49.9375L 28.2324,52.6367C 28.8711,54.1374 30.2715,54.1713 30.6738,54.1465C 31.0853,54.1211 32.4629,53.918 32.9147,52.3516L 33.7292,49.5339C 34.237,47.7728 35.474,46.3028 37.1217,45.5C 38.7696,44.6967 40.6895,44.6303 42.39,45.3151L 45.1088,46.4108C 46.6192,47.0176 47.6303,46.0605 47.9036,45.752C 48.1771,45.4433 49.0079,44.3256 48.2201,42.8984L 46.8028,40.3315C 45.9167,38.7265 45.7513,36.8125 46.3483,35.0801C 46.946,33.3471 48.2559,31.9415 49.9427,31.2233L 52.642,30.0749C 54.1413,29.4369 54.1764,28.0443 54.1511,27.6328C 54.1263,27.2213 53.9225,25.8444 52.3568,25.3927L 49.5391,24.5781C 47.778,24.0704 46.308,22.8333 45.5052,21.1856C 44.7019,19.5377 44.6348,17.6179 45.3203,15.9173L 46.416,13.1985C 47.0255,11.6863 46.0657,10.6764 45.7572,10.4037C 45.448,10.1296 44.3288,9.29881 42.9036,10.0872L 40.3367,11.5045C 38.7324,12.3913 36.8171,12.556 35.0853,11.9591C 33.3522,11.3613 31.9466,10.0515 31.2285,8.36467L 30.0801,5.66534C 29.4421,4.16534 28.0475,4.14 27.6387,4.1556C 27.2272,4.18107 25.8496,4.38414 25.3978,5.95054L 24.5833,8.76826C 24.0755,10.5293 22.8386,11.9993 21.1908,12.8021C 19.543,13.6048 17.6231,13.6719 15.9225,12.9871L 13.2038,11.8913C 11.6895,11.2819 10.6817,12.2416 10.4089,12.5501C 10.1354,12.8588 9.30471,13.9765 10.0925,15.4037L 11.5098,17.9707C 12.3959,19.5756 12.5612,21.4896 11.9642,23.222C 11.3665,24.9551 10.0567,26.3607 8.36987,27.0788L 5.67054,28.2272C 4.1712,28.8652 4.13614,30.2572 4.1608,30.6687C 4.18627,31.0801 4.38933,32.4577 5.95573,32.9095L 8.77347,33.724C 10.5345,34.2317 12.0046,35.4688 12.8073,37.1165C 13.6107,38.7644 13.6777,40.6843 12.9922,42.3848L 11.8965,45.1036C 11.2871,46.6159 12.2468,47.6257 12.5554,47.8985C 12.8646,48.1713 13.9824,49.0013 15.4089,48.2149L 17.9759,46.7976C 18.9453,46.2624 20.028,45.9903 21.1146,45.9903 Z " />
+                                    <Path Width="20"
+                                        Height="20"
+                                        Canvas.Left="19.1563"
+                                        Canvas.Top="19.1511"
+                                        Stretch="Fill"
+                                        Fill="#FFFFFFFF"
+                                        Data="F1 M 29.1563,39.1511C 23.6419,39.1511 19.1563,34.6653 19.1563,29.1511C 19.1563,23.6368 23.6419,19.1511 29.1563,19.1511C 34.6706,19.1511 39.1563,23.6368 39.1563,29.1511C 39.1563,34.6653 34.6706,39.1511 29.1563,39.1511 Z M 29.1563,23.1511C 25.8477,23.1511 23.1563,25.8425 23.1563,29.1511C 23.1563,32.4596 25.8477,35.1511 29.1563,35.1511C 32.4649,35.1511 35.1563,32.4596 35.1563,29.1511C 35.1563,25.8425 32.4649,23.1511 29.1563,23.1511 Z " />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
+
+                    </StackPanel>
+
+                </ScrollViewer>
+                <Rectangle Fill="#19FFFFFF" Height="1" DockPanel.Dock="Top"/>
+                <Grid DockPanel.Dock="Bottom">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" MaxWidth="500"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <ScrollViewer VerticalScrollBarVisibility="Hidden"
+                                  Focusable="False"
+                                  Background="#00000000">
+                        <StackPanel x:Name="scroll_分頁捲軸容器" Orientation="Vertical" Background="#00000000" >
+                            <StackPanel x:Name="stackPanel_1"/>
+                            <Button x:Name="but_分頁_add"  Style="{DynamicResource but_title}" BorderBrush="{x:Null}" Height="35" Click="but_分頁_add_Click" ToolTip="新增資料夾">
+                                <Label Content="+" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                            </Button>
+                        </StackPanel>
+                    </ScrollViewer>
+                    <GridSplitter Width="15"
+                                  Focusable="False">
+                        <GridSplitter.Background>
+                            <LinearGradientBrush EndPoint="1,0" StartPoint="0,0">
+                                <GradientStop Color="#00000000" Offset="0.481"/>
+                                <GradientStop Color="#4C000000" Offset="1"/>
+                            </LinearGradientBrush>
+                        </GridSplitter.Background>
+                    </GridSplitter>
+                    <Border x:Name="border_web_box"
+                            Grid.ColumnSpan="2" Grid.Column="1" Background="White">
+                        <Border x:Name="border_web"
+                                Margin="0,0,7,7">
+                            <!--<WindowsFormsHost Margin="0,0,8,8">
+                        <Forms:WebBrowser x:Name="web_資料夾"  />
+                    </WindowsFormsHost>-->
+
+                        </Border>
+                    </Border>
+
+
+                </Grid>
+
+
+
+            </DockPanel>
+        </DockPanel>
+    </Border>
+</Window>

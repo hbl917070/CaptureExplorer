@@ -1,0 +1,77 @@
+﻿<Window x:Class="CaptureExplorer.window.W_頁籤新增"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CaptureExplorer.window"
+        mc:Ignorable="d"
+         Title="新增名單頁籤"
+        Height="180"
+        Width="250"
+        MinWidth="250"
+        MaxHeight="200"
+        MinHeight="180"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow" Background="#FF252526">
+    <DockPanel Margin="10">
+        <Label x:Name="label"
+               Content="資料夾名稱"
+               VerticalAlignment="Top"
+               DockPanel.Dock="Top"
+               Padding="0" Foreground="{DynamicResource sol_白}" FontSize="18" />
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="but_yes"
+                    Style="{DynamicResource but_一般}"
+                    VerticalAlignment="Center"
+                
+                    Background="{x:Null}"
+                    Margin="0,0,5,0">
+                <StackPanel Orientation="Horizontal"
+                            Margin="10,5,5,5">
+                    <Image Height="24"
+                           Width="24"
+                           Source="/imgs/yes.png" />
+                    <Label x:Name="lab_yes"
+                           Content="確定" Foreground="{DynamicResource sol_白}" FontSize="18" Padding="0" VerticalContentAlignment="Center" Margin="10,0,0,0" />
+                </StackPanel>
+            </Button>
+            <Button x:Name="but_no"
+                     Style="{DynamicResource but_一般}"
+                    VerticalAlignment="Center"
+                    Grid.Column="1"
+               
+                    Background="{x:Null}"
+                    BorderBrush="{DynamicResource sol_白40}" VerticalContentAlignment="Stretch" Margin="5,0,0,0">
+                <StackPanel Orientation="Horizontal"
+                            Margin="10,5,5,5">
+                    <Image Height="24"
+                           Width="24"
+                           Source="/imgs/no.png" />
+                    <Label Content="取消" Foreground="{DynamicResource sol_白}" FontSize="18" Padding="0" Margin="10,0,0,0" VerticalContentAlignment="Center" />
+                </StackPanel>
+            </Button>
+
+        </Grid>
+        <TextBox x:Name="textBox_tabName"
+                 Template="{DynamicResource TextBox_01}"
+                 Text="TextBox"
+                 Margin="0,0,0,10"
+                 VerticalAlignment="Stretch"
+                 VerticalContentAlignment="Center"
+                 BorderBrush="{DynamicResource sol_白40}"
+                 Background="#FF333337" Foreground="{DynamicResource sol_白}" FontSize="18">
+            <!--使用捲軸樣式的話，就會導致文字框無法垂直置中文字，所以需要用內嵌樣式複寫-->
+            <TextBox.Resources>
+                <Style TargetType="ScrollViewer">
+                    <Setter Property="VerticalContentAlignment"
+                            Value="Center"></Setter>
+                </Style>
+            </TextBox.Resources>
+        </TextBox>
+
+    </DockPanel>
+</Window>

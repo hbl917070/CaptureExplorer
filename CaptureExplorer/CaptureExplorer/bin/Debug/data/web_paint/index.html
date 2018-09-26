@@ -1,0 +1,319 @@
+﻿<!DOCTYPE html>
+<!-- saved from url=(0014)about:internet -->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <script src="wPaint/jquery.min.js"></script>
+    <script src="wPaint/jquery.ui.core.min.js" type="text/javascript"></script>
+    <script src="wPaint/jquery.ui.widget.min.js" type="text/javascript"></script>
+    <script src="wPaint/jquery.ui.mouse.min.js" type="text/javascript"></script>
+    <script src="wPaint/jquery.ui.draggable.min.js" type="text/javascript"></script>
+
+    <!-- wColorPicker -->
+    <link href="wPaint/wColorPicker.css" rel="Stylesheet" type="text/css">
+    <script src="wPaint/wColorPicker.js" type="text/javascript"></script>
+
+    <!-- wPaint -->
+    <link href="wPaint/wPaint.css" rel="Stylesheet" type="text/css">
+    <script src="wPaint/wPaint.js" type="text/javascript"></script>
+    <!-- <link href="wPaint/top.css" rel="stylesheet" type="text/css"> -->
+
+
+
+
+</head>
+
+<BODY>
+
+
+    <!-- <TABLE>
+        <TBODY>
+            <TR>
+                <TD>
+                    <DIV id="wPaint" style="background: rgb(202, 202, 202); border: 1px solid black; border-image: none; width: 1600px; height: 900px; position: relative;"></DIV>
+                </TD>
+                <TD>
+                    <IMG id="canvasImage" src="Demo%20for%20Websanova%20Paint.files/jQuery-Plugin-for-Simple-Drawing-Surface-wPaint.htm"></TD>
+            </TR>
+            <TR>
+                <TD colspan="2">
+                    <DIV><A href="javascript:loadImage_base64();">load image (base64 encoded)
+                        </A> | <A href="javascript:loadImage_png();">load image (png)</A>
+                        | <A href="javascript:loadImage_jpg();">load image (jpg)</A> | <A href="javascript:saveImage();">save
+                            image
+                        </A> | <A href="javascript:clearCanvas();">clear canvas</A>
+                        <INPUT onclick="upload_image('wPaint');" type="button" value="Upload Image">
+                    </DIV>
+                    <BR>image data:
+                    <INPUT id="canvasImageData" type="text"> down:
+                    <INPUT id="canvasDown" type="text"> move:
+                    <INPUT id="canvasMove" type="text"> up:
+                    <INPUT id="canvasUp" type="text"></TD>
+            </TR>
+        </TBODY>
+    </TABLE> -->
+
+    <style>
+        body {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        #div_save {
+            height: 40px;
+            float: left;
+        }
+
+            #div_save .but {
+                background-color: rgba(15, 15, 15, 0.3);
+                border: 1px solid #00C5CF;
+                color: #00C5CF;
+                border-radius: 0px;
+                height: 28px;
+                line-height: 28px;
+                padding: 0px 5px;
+                margin-top: 6px;
+                margin-left: 6px;
+                font-size: 16px;
+                font-weight: 900;
+                font-family: "Microsoft JhengHei";
+                float: left;
+                cursor: pointer;
+            }
+
+                #div_save .but:hover {
+                    border: 1px solid rgb(0, 207, 155);
+                    color: rgb(0, 207, 155);
+                }
+
+                #div_save .but:active {
+                    border: 1px solid rgb(46, 207, 0);
+                    color: rgb(46, 207, 0);
+                }
+    </style>
+
+
+    <div id="div_save">
+        <div class="but" onclick="func_save_copy()">Copy</div>
+        <div class="but" onclick="func_save_png()">Save PNG</div>
+        <div class="but" onclick="func_save_jpg()">Save JPG</div>
+    </div>
+
+    <!-- 放工具列的div，初始化完成後，由js產生工具列，並搬進來 -->
+    <div id="div_top">
+
+    </div>
+
+    <div class="div_center">
+        <div class="div_center_box">
+            <div id="wPaint" style="width:400px; height:400px;"></div>
+        </div>
+    </div>
+
+
+
+    <SCRIPT type="text/javascript">
+
+
+        //
+        try {
+            var net = window.external;//呼叫C#
+            net.func_初始化();//呼叫C#的初始化
+        } catch (e) { }
+
+
+
+
+        //產生畫布物件
+        var wp = $("#wPaint").wPaint({
+            image: "",
+            //drawDown: function (e, mode) { $("#canvasDown").val(this.settings.mode + ": " + e.pageX + ',' + e.pageY); },
+            //drawMove: function (e, mode) { $("#canvasMove").val(this.settings.mode + ": " + e.pageX + ',' + e.pageY); },
+            //drawUp: function (e, mode) { $("#canvasUp").val(this.settings.mode + ": " + e.pageX + ',' + e.pageY); },
+
+            //工具列順序
+            menu: new Array(
+                "clear",
+                "",
+                "undo",
+                "redo",
+                "",
+                "fillColor",
+                "strokeColor",
+                "lineWidth",
+                "",
+                "rectangle",
+                "ellipse",
+                "line",
+                "pencil",
+                "eraser",
+                "text",
+                ""
+            ),
+            lineWidth: '2',       // 筆刷大小
+            fillStyle: 'transparent', //實心顏色
+            strokeStyle: '#FF0000', // 框線顏色
+            //image:"https://upload.cc/i1/2018/09/01/Uj1Iym.jpg",//必須輸入base64
+            fontSize: '22',    // 文字size
+            //fontFamily: 'Arial', // 字體
+            fontBold: false,   // text input bold enable/disable
+            fontItalic: false,   // text input italic enable/disable
+            fontUnderline: false    // text input italic enable/disable
+        });
+
+
+        //把工具列移到指定的位置
+        document.getElementById("div_top").appendChild(document.getElementsByClassName("_wPaint_menu")[0]);
+        document.getElementById("div_top").appendChild(document.getElementsByClassName("_wPaint_menu")[1]);
+        document.getElementById("div_top").appendChild(document.getElementById("div_save"));
+
+
+
+
+
+        /**
+        * 初始化載入背景圖片，先透過上面的「 net.func_初始化()」來呼叫C#，然後C#caihui呼叫此函數
+        *
+        */
+        function func_load_img(base64, img_w, img_h) {
+            document.getElementById("wPaint").style.width = img_w + "px";
+            document.getElementById("wPaint").style.height = img_h + "px";
+            document.getElementById("wPaint").style.backgroundImage = "url(" + base64 + ")";
+        }
+
+
+
+        /**
+        * 呼畫布的圖片儲存成透明底的base64，然後由C#進行圖片合成
+        *
+        */
+        function func_save_jpg() {
+            var imageData = $("#wPaint").wPaint("image");
+            net.fun_save_jpg(imageData);
+        }
+
+
+        /**
+        * 把畫布的圖片儲存成透明底的base64，然後由C#進行圖片合成
+        *
+        */
+        function func_save_png() {
+            var imageData = $("#wPaint").wPaint("image");
+            net.fun_save_png(imageData);
+        }
+
+
+        /**
+        * 把畫布的圖片儲存成透明底的base64，然後由C#進行圖片合成
+        *
+        */
+        function func_save_copy() {
+            var imageData = $("#wPaint").wPaint("image");
+            net.fun_save_copy(imageData);
+        }
+
+
+
+
+
+
+        document.body.addEventListener("keydown", function (e) {
+            //e.preventDefault();
+            var key = e.keyCode;
+            var ctrl = e.ctrlKey;
+            var shift = e.shiftKey;
+            // alert(key)
+
+
+            if (key == 13) {//Enter
+
+            }
+            if (key == 27) {//ESC
+                $("#wPaint").wPaint("clear");//清空
+            }
+            if (key == 67 && ctrl) {//C
+                func_save_copy();//複製到剪貼簿
+                e.preventDefault();//取消按鍵
+            }
+            if (key == 83 && ctrl) {//S
+                func_save_png();//儲存
+                e.preventDefault();//取消按鍵
+            }
+
+            if (key == 90 && ctrl && shift) {//Z
+                document.getElementsByClassName("_wPaint_redo")[0].click();//下一步
+                return;
+            }
+            if (key == 89 && ctrl) {//Y
+                //$("#wPaint").wPaint("redo");
+                document.getElementsByClassName("_wPaint_redo")[0].click();
+                return;
+            }
+            if (key == 90 && ctrl) {//Z
+                document.getElementsByClassName("_wPaint_undo")[0].click();//上一步
+                return;
+            }
+
+
+            if (key == 116) {//F5
+                e.preventDefault();//取消按鍵
+            }
+            if (key == 79 && ctrl) {//O
+                e.preventDefault();
+            }
+            if (key == 79 && ctrl) {//P
+                e.preventDefault();
+            }
+            if (key == 87 && ctrl) {//W
+                e.preventDefault();
+            }
+
+        });
+
+
+
+            /*
+            function loadImage_base64() {
+                $("#wPaint").wPaint("image", "data:image/png;base64,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");
+            }
+
+            function loadImage_png() {
+                $("#wPaint").wPaint("image", "images/demo/wPaint.png");
+            }
+
+            function loadImage_jpg() {
+                $("#wPaint").wPaint("image", "images/demo/wPaint.jpg");
+            }
+
+            function clearCanvas() {
+                $("#wPaint").wPaint("clear");
+            }
+
+            function upload_image(id) {
+                var imageData = $("#" + id).wPaint("image");
+
+                $.ajax({
+                    url: '/wPaint/upload.php',
+                    data: { image: imageData },
+                    type: 'post',
+                    success: function (resp) {
+                        alert('successfully uploaded image!');
+                    }
+                });
+            }*/
+    </SCRIPT>
+
+
+
+</BODY>
+
+</html>
