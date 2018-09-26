@@ -1,9 +1,18 @@
 # WPF_Screenshot_tools
 
-名稱　　：截圖整理工具<br>
-開發工具：visual studio<br>
+名稱　　：Capture Explorer (截圖總管) <br>
 語言　　：C#、WPF<br>
 討論區　：https://forum.gamer.com.tw/C.php?bsn=60076&snA=4337057
+首頁　　：https://hbl917070.github.io/CaptureExplorer/web/index.html
+
+
+
+
+輕巧免安裝的開源截圖軟體，解壓縮後不到0.5M　<br>
+簡約直覺的界面，沒有任何意義不明的功能<br>
+使用資料夾來分類您的截圖，再也不用事後整理圖片<br>
+直接將圖片圖片拖曳至瀏覽器進行上傳 <br>
+
 
 <br><br>
 截圖<br>
