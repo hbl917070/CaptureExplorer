@@ -2,7 +2,7 @@
 
 名稱　　：Capture Explorer (截圖總管) <br>
 語言　　：C#、WPF<br>
-討論區　：https://forum.gamer.com.tw/C.php?bsn=60076&snA=4337057
+討論區　：https://forum.gamer.com.tw/C.php?bsn=60076&snA=4337057<br>
 首頁　　：https://hbl917070.github.io/CaptureExplorer/web/index.html
 
 
