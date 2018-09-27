@@ -10,7 +10,7 @@
     <!--頁籤上的圖示-->
     <link rel="Shortcut Icon" type="image/x-icon" href="imgs/logo.png" />
 
-    <meta name="Description" content="Capture Explorer (截圖總管)，輕巧免安裝的開源截圖軟體，解壓縮後不到0.5M，簡約直覺的界面，沒有任何意義不明的功能，使用資料夾來分類您的截圖，再也不用事後整理圖片，直接將圖片圖片拖曳至瀏覽器進行上傳"
+    <meta name="Description" content="Capture Explorer (截圖總管)，輕巧免安裝的開源截圖軟體，解壓縮後不到0.5M。簡約直覺的界面，沒有任何意義不明的功能。使用資料夾來分類截圖，再也不用事後整理圖片。直接將圖片拖曳至瀏覽器上，即可進行上傳"
     />
     <meta name="KeyWords" content="Capture Explorer,截圖總管,截圖程式,截圖軟體,截圖工具,截圖,hbl917070,深海異音" />
 
@@ -187,8 +187,8 @@
         <div style="text-align: center; line-height:1.5rem; color: #444;">
             <br> 輕巧免安裝的開源截圖軟體，解壓縮後不到0.5M
             <br> 簡約直覺的界面，沒有任何意義不明的功能
-            <br> 使用資料夾來分類您的截圖，再也不用事後整理圖片
-            <br> 直接將圖片圖片拖曳至瀏覽器進行上傳
+            <br> 使用資料夾來分類截圖，截圖完成即整理完成
+            <br> 直接將圖片拖曳至瀏覽器上，即可進行上傳
             <br>
         </div>
 
@@ -621,47 +621,9 @@
     <link rel="stylesheet" href="animate.css">
     <script src="wow.min.js"></script>
 
-    <script>
-
-        /***
-        * 平滑捲動
-        */
-        function animateScroll(element, speed) {
-            var rect = document.getElementById(element).getBoundingClientRect(); //獲取元素相對窗口的top值，此處應加上窗口本身的偏移 
-            var top = window.pageYOffset + rect.top;
-            var currentTop = 0;
-            var requestId; //採用requestAnimationFrame，平滑動畫 
-            function step(timestamp) {
-                currentTop += speed;
-                if (currentTop <= top) {
-                    window.scrollTo(0, currentTop);
-                    requestId = window.requestAnimationFrame(step);
-                } else {
-                    window.cancelAnimationFrame(requestId);
-                }
-            }
-            window.requestAnimationFrame(step);
-        }
-
-        //動畫特效
-        new WOW().init();
-
-    </script>
 
 
 
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-56186804-2', 'auto');
-        ga('send', 'pageview');
-
-    </script>
 
     <style>
         /* 點擊按鈕時，產生光暈動畫 */
@@ -696,8 +658,30 @@
     </style>
 
     <script>
+        /***
+         * 平滑捲動
+         */
+        function animateScroll(element, speed) {
+            var rect = document.getElementById(element).getBoundingClientRect(); //獲取元素相對窗口的top值，此處應加上窗口本身的偏移 
+            var top = window.pageYOffset + rect.top;
+            var currentTop = 0;
+            var requestId; //採用requestAnimationFrame，平滑動畫 
+            function step(timestamp) {
+                currentTop += speed;
+                if (currentTop <= top) {
+                    window.scrollTo(0, currentTop);
+                    requestId = window.requestAnimationFrame(step);
+                } else {
+                    window.cancelAnimationFrame(requestId);
+                }
+            }
+            window.requestAnimationFrame(step);
+        }
 
-        //點擊按鈕時，產生光暈動畫 
+
+        /***
+         * 點擊按鈕時，產生光暈動畫 
+         */
         var func_button_down_light = function (e) {
 
             //點擊的坐標
@@ -725,12 +709,30 @@
         var bool_phone = useragent.indexOf('iphone') != -1 || useragent.indexOf('ipad') != -1 || useragent.indexOf('ipod') != -1 || useragent.indexOf('android') != -1;//判斷是否為手機
         var bool_ie = useragent.indexOf('trident') != -1 || useragent.indexOf('msie') != -1;//判斷是否為IE
 
-        if (bool_phone == false) {//電腦才啟用點擊特效
+        //電腦才啟用點擊特效
+        if (bool_phone == false) {
             document.body.addEventListener("mousedown", func_button_down_light);
         }
 
+        //IE不使用動畫
+        if (bool_ie == false) {
+            new WOW().init();//動畫特效
+        }
     </script>
 
+
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-56186804-2', 'auto');
+        ga('send', 'pageview');
+
+    </script>
 
 
 </body>
