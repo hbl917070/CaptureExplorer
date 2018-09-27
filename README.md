@@ -14,7 +14,7 @@
 <br><br>
 
 支援直接把圖片拖曳至瀏覽器進行上傳<br>
-<img src="https://i.imgur.com/GJB3B7E.gif">
+<img src="https://i.imgur.com/nsINxwI.gif">
 <br><br><br>
 
 當然也支援「拖曳開啟」<br>
