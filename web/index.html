@@ -7,7 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Capture Explorer (截圖總管)</title>
 
-    <meta name="Description" content="Capture Explorer (截圖總管)，輕巧免安裝的開源截圖軟體，解壓縮後不到0.5M，簡約直覺的界面，沒有任何意義不明的功能，使用資料夾來分類您的截圖，再也不用事後整理圖片，直接將圖片圖片拖曳至瀏覽器進行上傳" />
+    <!--頁籤上的圖示-->
+    <link rel="Shortcut Icon" type="image/x-icon" href="imgs/logo.png" />
+
+    <meta name="Description" content="Capture Explorer (截圖總管)，輕巧免安裝的開源截圖軟體，解壓縮後不到0.5M，簡約直覺的界面，沒有任何意義不明的功能，使用資料夾來分類您的截圖，再也不用事後整理圖片，直接將圖片圖片拖曳至瀏覽器進行上傳"
+    />
     <meta name="KeyWords" content="Capture Explorer,截圖總管,截圖程式,截圖軟體,截圖工具,截圖,hbl917070,深海異音" />
 
 </head>
@@ -155,7 +159,7 @@
 
 
         <div class="top">
-            <div style="display: inline-block;">
+            <div style="display: inline-block;" class="wow fadeInLeft">
                 <a class="top_item" onclick="animateScroll('a_特色功能',100)">特色功能</a>
                 <a class="top_item" onclick="animateScroll('a_更新曆史',200)">更新曆史</a>
                 <a class="top_item" onclick="animateScroll('a_關於',400)">關於</a>
@@ -170,16 +174,9 @@
 
 
         <div style="height:50px;"></div>
-        <div class="wow tada">
-            <svg class="svg_logo" x="0px" y="0px" viewBox="0 0 255 255">
-                <path class="st0" d="M252.7,200.6l-25.9-2.3l-8.1-161.6L238,15.4L216.3,35L83.8,48.1l5.1-37.5L39.3,14l2,38.4l-15.7,1.6L3.3,62.2
-                    l38.5,0.2l4.2,82c-19.4,6.7-33.3,25.1-33.3,46.7c0,27.3,22.2,49.5,49.5,49.5c18.8,0,35.2-10.5,43.6-26l74-7.1l-2.3,32.1l50.5-16.5
-                    l-1-20.1L252.7,200.6z M90.8,191.1c0,12.2-7.8,22.7-18.6,26.7c-3.1,1.1-6.4,1.8-9.9,1.8c-1.6,0-3.1-0.1-4.6-0.4
-                    c-3.5-0.6-6.8-1.8-9.8-3.6c-8.4-5-14-14.1-14-24.5c0-10.2,5.4-19.1,13.4-24.2c4.4-2.7,9.5-4.3,15.1-4.3c2,0,4,0.2,5.9,0.6
-                    c1.6,0.3,3.2,0.8,4.7,1.4c3.6,1.4,6.8,3.6,9.5,6.3s4.8,5.9,6.3,9.5c0.7,1.8,1.3,3.8,1.6,5.7C90.6,187.8,90.8,189.4,90.8,191.1z
-                     M185.4,63l-95.9,86.7c-5.5-3.6-11.7-6.1-18.4-7.3l10.8-79.9L185.4,63z M111.7,188.1c-0.5-8.9-3.4-17.1-8-24.2L190,68.5l-9.1,125.7
-                    L111.7,188.1z" />
-            </svg>
+        <div class="wow flipInX">
+            <img class="svg_logo" src="imgs/logo.png" alt="logo">
+
         </div>
 
 
@@ -205,7 +202,8 @@
             <div style="text-align:left ; display:inline-block; color:#555;">
                 適用平台：win7、win8、win8.1、win10
                 <br> 運行需求：
-                <a href="https://www.microsoft.com/zh-TW/download/details.aspx?id=56116" target="_blank">.NET Framework 4.6.1 </a>(含以上) <br>
+                <a href="https://www.microsoft.com/zh-TW/download/details.aspx?id=56116" target="_blank">.NET Framework 4.6.1
+                </a>(含以上) <br>
             </div>
         </div>
 
@@ -239,9 +237,9 @@
                     display: flex;
                     -ms-flex-direction: column;
                     flex-direction: column;
-
+                    animation-duration: 0.8s !important;
                     margin: 20px;
-            
+
                 }
 
                 .box03_tiem:hover {
@@ -279,6 +277,20 @@
                     /* width: 100%; */
                     /* width:480px;
                     height:315px; */
+                }
+
+                @media screen and (max-width: 500px) {
+                    .box03_tiem {
+
+                        height: 380px;
+
+                    }
+                    .box03_tiem_img {
+
+                        /* height: auto; */
+
+                    }
+
                 }
             </style>
 
@@ -409,7 +421,7 @@
             .c2_box::after {
                 position: absolute;
                 top: 1px;
-                left: -21.5px;
+                left: -21.3px;
                 content: "";
                 width: 20px;
                 height: 20px;
@@ -651,7 +663,7 @@
 
     </script>
 
-    <!-- <style>
+    <style>
         /* 點擊按鈕時，產生光暈動畫 */
         .div_bottom_light {
             pointer-events: none;
@@ -659,7 +671,7 @@
             width: 200px;
             height: 200px;
             background-image: radial-gradient( rgba(0, 0, 0, 0) 10%,
-            rgba(0, 183, 255, 0.4) 30%,
+            rgba(255, 255, 255, 0.4) 30%,
             rgba(0, 0, 0, 0) 70%);
             animation-name: oxxo;
             animation-duration: 0.5s;
@@ -669,7 +681,7 @@
 
         @keyframes oxxo {
             0% {
-                transform: scale(1.2);
+                transform: scale(2);
                 opacity: 0;
             }
             50% {
@@ -677,7 +689,7 @@
                 opacity: 1;
             }
             100% {
-                transform: scale(1.2);
+                transform: scale(2);
                 opacity: 0;
             }
         }
@@ -704,8 +716,20 @@
             }, 600);
         };
 
-        document.body.addEventListener("mousedown", func_button_down_light);
-    </script> -->
+
+        ///
+        ///判斷是否為手機
+        ///
+        var useragent = navigator.userAgent;
+        useragent = useragent.toLowerCase();
+        var bool_phone = useragent.indexOf('iphone') != -1 || useragent.indexOf('ipad') != -1 || useragent.indexOf('ipod') != -1 || useragent.indexOf('android') != -1;//判斷是否為手機
+        var bool_ie = useragent.indexOf('trident') != -1 || useragent.indexOf('msie') != -1;//判斷是否為IE
+
+        if (bool_phone == false) {//電腦才啟用點擊特效
+            document.body.addEventListener("mousedown", func_button_down_light);
+        }
+
+    </script>
 
 
 

@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="設定"
         Height="529.993"
-        Width="536.167"
+        Width="630.755"
         Background="#FF252526"
         xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         WindowStartupLocation="CenterOwner"
@@ -392,8 +392,7 @@
 
                         </RadioButton>
                         <RadioButton x:Name="radio_儲存模式_單層"
-                                     Margin="0,10,0,0"
-                                     >
+                                     Margin="0,10,0,0">
                             <TextBlock Foreground="White"
                                        TextWrapping="Wrap"><Run Text="單層儲存路徑：直接把圖片儲存在「儲存路徑」" /></TextBlock>
                         </RadioButton>
@@ -459,14 +458,13 @@
                              IsReadOnly="True"
                              Margin="0,10,0,0"
                              BorderThickness="0" />
-                    <StackPanel Orientation="Horizontal"
-                                Margin="0,40,0,0"
-                                VerticalAlignment="Center"
-                                HorizontalAlignment="Center">
+                    <WrapPanel Margin="0,40,0,0"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center">
                         <Button x:Name="but_小屋"
                                 Style="{DynamicResource but_一般}"
                                 Height="40"
-                                Margin="0,0,20,0"
+                                Margin="10"
                                 Width="100"
                                 BorderBrush="{DynamicResource sol_白40}">
                             <Label VerticalAlignment="Center"
@@ -478,13 +476,36 @@
                                 Style="{DynamicResource but_一般}"
                                 Height="40"
                                 Width="100"
-                                BorderBrush="{DynamicResource sol_白40}">
+                                BorderBrush="{DynamicResource sol_白40}"
+                                Margin="10">
                             <Label VerticalAlignment="Center"
                                    HorizontalAlignment="Center"
                                    FontWeight="Normal"
                                    Content="討論區" />
                         </Button>
-                    </StackPanel>
+                        <Button x:Name="but_github"
+                                Style="{DynamicResource but_一般}"
+                                Height="40"
+                                Width="100"
+                                BorderBrush="{DynamicResource sol_白40}"
+                                Margin="10">
+                            <Label VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Normal"
+                                   Content="Github" />
+                        </Button>
+                        <Button x:Name="but_官方網站"
+                                Style="{DynamicResource but_一般}"
+                                Height="40"
+                                Width="100"
+                                BorderBrush="{DynamicResource sol_白40}"
+                                Margin="10">
+                            <Label VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Normal"
+                                   Content="官方網站" />
+                        </Button>
+                    </WrapPanel>
 
                 </StackPanel>
             </ScrollViewer>

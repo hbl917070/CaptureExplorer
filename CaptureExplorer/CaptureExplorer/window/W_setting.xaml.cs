@@ -109,7 +109,16 @@ namespace CaptureExplorer.window {
                     System.Diagnostics.Process.Start(@"https://forum.gamer.com.tw/C.php?bsn=60076&snA=4337057");
                 } catch { }
             };
-
+            but_github.Click += (sender, e) => {
+                try {
+                    System.Diagnostics.Process.Start(@"https://github.com/hbl917070/CaptureExplorer");
+                } catch { }
+            };
+            but_官方網站.Click += (sender, e) => {
+                try {
+                    System.Diagnostics.Process.Start(@"https://hbl917070.github.io/CaptureExplorer/web/index.html");
+                } catch { }
+            };
 
             but_自定路徑_選資料夾.Click += (sender, e) => {
 
