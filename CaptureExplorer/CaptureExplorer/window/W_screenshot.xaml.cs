@@ -157,7 +157,15 @@ namespace CaptureExplorer {
 
                 String s_儲存路徑 = M.func_取得儲存檔名("png");
 
-                bimg.Save(s_儲存路徑);
+                //轉換成 rgb24 ，才不會有破圖現象
+                var bmpOut = new System.Drawing.Bitmap(bimg.Width, bimg.Height, System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+                var g = System.Drawing.Graphics.FromImage(bmpOut);
+                g.DrawImage(bimg,
+                    new System.Drawing.Rectangle(0, 0, bimg.Width, bimg.Height),
+                    new System.Drawing.Rectangle(0, 0, bimg.Width, bimg.Height),
+                    System.Drawing.GraphicsUnit.Pixel
+                );
+                bmpOut.Save(s_儲存路徑);
 
                 //自動存入剪貼簿
                 try {
@@ -461,10 +469,12 @@ namespace CaptureExplorer {
             }
 
             if (k == System.Windows.Forms.Keys.C && bool_ctrl) {//複製
+                e.Handled = true;//遮蔽系統原生的快速鍵
                 fun_確認儲存("copy");
                 return;
             }
             if (k == System.Windows.Forms.Keys.X && bool_ctrl) {//複製
+                e.Handled = true;//遮蔽系統原生的快速鍵
                 fun_確認儲存("copy");
                 return;
             }
@@ -665,12 +675,12 @@ namespace CaptureExplorer {
 
 
 
-        
+
 
             if (type == "jpg" || type == "png") {
 
                 //儲存圖片
-                String s_儲存路徑 = M.func_取得儲存檔名(type);           
+                String s_儲存路徑 = M.func_取得儲存檔名(type);
                 func_SaveBitmap(img, type, s_儲存路徑);//存檔
 
 
