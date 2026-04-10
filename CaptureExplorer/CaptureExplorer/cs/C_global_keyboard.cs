@@ -34,18 +34,9 @@ namespace CaptureExplorer {
         private void HookManager_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e) {
 
 
-            if (M.w_截圖 != null) {
-                /*if (e.KeyCode == Keys.Escape) {
-                    M.w_截圖.func_關閉程式();
-                    e.Handled = true;
-                    return;
-                }*/
-
-                M.w_截圖.func_key_down(e);
-
-
+            if (M.ScreenCaptureSession != null) {
+                M.ScreenCaptureSession.HandleGlobalKeyDown(e);
                 return;
-
             }
 
             if (M.w_設定 != null)

@@ -504,27 +504,35 @@ namespace CaptureExplorer {
         }
 
 
-        public W_截圖 w_截圖;
+        public ScreenCaptureSessionController ScreenCaptureSession { get; set; }
 
 
         /// <summary>
         /// 
         /// </summary>
         public void func_截圖() {
-            if (w_截圖 != null)
+            if (ScreenCaptureSession != null)
                 return;
-            w_截圖 = new W_截圖(this, e_截圖類型.選取截圖);
+
+            ScreenCaptureSession = new ScreenCaptureSessionController(this);
+            ScreenCaptureSession.Start();
         }
 
         /// <summary>
         /// 
         /// </summary>
         public void func_截圖_全螢幕() {
-            /* if (w_截圖 != null)
-                 return;
-             w_截圖 = */
+            var captureBounds = GetVirtualDesktopBounds();
+            using (var image = CaptureVirtualDesktop(captureBounds)) {
+                String s_儲存路徑 = func_取得儲存檔名("png");
+                image.Save(s_儲存路徑);
 
-            new W_截圖(this, e_截圖類型.全螢幕截圖_png);
+                try {
+                    if (checkBox_自動存入剪貼簿.IsChecked.Value) {
+                        Clipboard.SetData(DataFormats.Bitmap, image);
+                    }
+                } catch { }
+            }
 
             var we = new W_sc_effects();
             we.Show();
@@ -575,6 +583,38 @@ namespace CaptureExplorer {
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
         private static extern IntPtr GetForegroundWindow();
+
+        /// <summary>
+        /// 取得整個虛擬桌面的範圍。
+        /// 多螢幕時會從最左上角一路包到最右下角，供全螢幕截圖使用。
+        /// </summary>
+        private static System.Drawing.Rectangle GetVirtualDesktopBounds() {
+            return new System.Drawing.Rectangle(
+                System.Windows.Forms.SystemInformation.VirtualScreen.Left,
+                System.Windows.Forms.SystemInformation.VirtualScreen.Top,
+                System.Windows.Forms.SystemInformation.VirtualScreen.Width,
+                System.Windows.Forms.SystemInformation.VirtualScreen.Height);
+        }
+
+        /// <summary>
+        /// 擷取整個虛擬桌面的畫面，作為全螢幕截圖輸出。
+        /// 這條路徑不再依賴舊的 W_screenshot 視窗。
+        /// </summary>
+        private static System.Drawing.Bitmap CaptureVirtualDesktop(System.Drawing.Rectangle bounds) {
+            var image = new System.Drawing.Bitmap(bounds.Width, bounds.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+
+            using (var graphics = System.Drawing.Graphics.FromImage(image)) {
+                graphics.CopyFromScreen(
+                    bounds.X,
+                    bounds.Y,
+                    0,
+                    0,
+                    bounds.Size,
+                    System.Drawing.CopyPixelOperation.SourceCopy);
+            }
+
+            return image;
+        }
 
 
 

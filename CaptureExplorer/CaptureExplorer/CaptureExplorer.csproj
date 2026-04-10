@@ -41,6 +41,9 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -69,6 +72,8 @@
     <Compile Include="cs\C_adapter.cs" />
     <Compile Include="cs\C_edit_img.cs" />
     <Compile Include="cs\C_setting.cs" />
+    <Compile Include="cs\ScreenCaptureContext.cs" />
+    <Compile Include="cs\ScreenCaptureSessionController.cs" />
     <Compile Include="cs\C_AERO.cs" />
     <Compile Include="cs\C_global_keyboard.cs" />
     <Compile Include="cs\FolderSelectDialog.cs" />
@@ -91,8 +96,8 @@
     <Compile Include="window\W_mesBox.xaml.cs">
       <DependentUpon>W_mesBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\W_screenshot.xaml.cs">
-      <DependentUpon>W_screenshot.xaml</DependentUpon>
+    <Compile Include="window\ScreenCaptureOverlayWindow.xaml.cs">
+      <DependentUpon>ScreenCaptureOverlayWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="window\W_sc_effects.xaml.cs">
       <DependentUpon>W_sc_effects.xaml</DependentUpon>
@@ -159,7 +164,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\W_screenshot.xaml">
+    <Page Include="window\ScreenCaptureOverlayWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -199,6 +204,7 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <None Include="Properties\app.manifest" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
