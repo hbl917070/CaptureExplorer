@@ -90,7 +90,7 @@ namespace CaptureExplorer.Windows {
             };
 
             aboutTextBox.Text =
-                "版本：2.0.3 (2018 / 09 / 28)" + "\n" +
+                "版本：2.0.4 (2026 / 04 / 12)" + "\n" +
                 "作者：hbl917070 (深海異音)" + "\n" +
                 "信箱：hbl917070@gmail.com";
 
