@@ -211,7 +211,7 @@ namespace CaptureExplorer {
         /// </summary>
         private void MainWindow_Loaded(object sender, RoutedEventArgs e) {
             var windowAeroEffect = new WindowAeroEffect();
-            windowAeroEffect.TryEnableBlur(this);
+            // windowAeroEffect.TryEnableBlur(this); // win 11 無法使用此效果
 
             new GlobalHotkeyMonitor(this);
 
