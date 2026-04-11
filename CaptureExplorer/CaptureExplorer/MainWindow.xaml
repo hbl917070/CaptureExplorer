@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         xmlns:Forms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
         Title="Capture Explorer"
-        Style="{DynamicResource MyWindowStyle}"
+        Style="{DynamicResource MainWindowStyle}"
         Height="400"
         Width="500"
         Topmost="{Binding IsChecked, ElementName=checkBox_視窗置頂}"
@@ -15,7 +15,7 @@
         MinHeight="73"
         ResizeMode="CanResize"
         BorderThickness="1"
-        Icon="imgs/ICON.ico"
+        Icon="Imgs/Icon.ico"
         BorderBrush="#FFFF0A0A"
         Background="{x:Null}" >
 
@@ -45,9 +45,9 @@
 
         <DockPanel Background="#D8222930">
             <DockPanel DockPanel.Dock="Top" Height="30">
-                <Button x:Name="but_縮小至右下角"
+                <Button x:Name="BtnMinimizeToTray"
                     Height="30"
-                    Style="{DynamicResource but_鎖}"
+                    Style="{DynamicResource LockButtonStyle}"
                     VerticalAlignment="Top"
                     Width="40"
                     DockPanel.Dock="Right"
@@ -58,9 +58,9 @@
                         <Path Width="12.317" Height="12.3169" Canvas.Left="2.03252e-005" Canvas.Top="-1.01924e-005" Stretch="Fill" StrokeLineJoin="Round" Stroke="White" Data="F1 M 11.6504,11.6502L 0.666687,0.666656"/>
                     </Canvas>
                 </Button>
-                <Button x:Name="but_鎖定視窗"
+                <Button x:Name="BtnLockWindow"
                     Height="30"
-                    Style="{DynamicResource but_鎖}"
+                    Style="{DynamicResource LockButtonStyle}"
                     Width="40"
                     DockPanel.Dock="Right"
                     Background="#00000000"
@@ -88,22 +88,22 @@
                             VerticalAlignment="Bottom" />
                     </Grid>
                 </Button>
-                <Label x:Name="lab_標題列"
+                <Label x:Name="LblTitle"
                        Content="Capture Explorer"
                     VerticalContentAlignment="Center"
                 
                     Foreground="#FF969696" FontSize="16" FontWeight="Normal" Padding="7,0,0,0" />
             </DockPanel>
             <DockPanel>
-                <ScrollViewer x:Name="dockPanel_功能列" DockPanel.Dock="Top"
+                <ScrollViewer x:Name="ToolbarScrollViewer" DockPanel.Dock="Top"
                     VerticalScrollBarVisibility="Disabled"
                     HorizontalScrollBarVisibility="Hidden"
                     Focusable="False" Margin="0,0,0,5" Background="#00000000">
                     <StackPanel Orientation="Horizontal"
                         Margin="5,0,0,0"
                         HorizontalAlignment="Left" Background="#00000000">
-                        <Button x:Name="but_截圖"
-                            Style="{DynamicResource but_title}"
+                         <Button x:Name="BtnCapture"
+                            Style="{DynamicResource TitleBarButtonStyle}"
                             HorizontalAlignment="Left"
                             FontSize="24"
                             IsTabStop="False"
@@ -137,8 +137,8 @@
                                 </Canvas>
                             </Viewbox>
                         </Button>
-                        <Button x:Name="but_開啟資料夾"
-                            Style="{DynamicResource but_title}"
+                         <Button x:Name="BtnOpenFolder"
+                            Style="{DynamicResource TitleBarButtonStyle}"
                             HorizontalAlignment="Left"
                             FontSize="24"
                             IsTabStop="False"
@@ -154,8 +154,8 @@
                                     Width="59.692" />
                             </Viewbox>
                         </Button>
-                        <Button x:Name="but_重新整理"
-                            Style="{DynamicResource but_title}"
+                         <Button x:Name="BtnRefresh"
+                            Style="{DynamicResource TitleBarButtonStyle}"
                             HorizontalAlignment="Left"
                             FontSize="24"
                             IsTabStop="False"
@@ -171,8 +171,8 @@
                                     Width="60.188" />
                             </Viewbox>
                         </Button>
-                        <Button x:Name="but_清空"
-                            Style="{DynamicResource but_title}"
+                         <Button x:Name="BtnClear"
+                            Style="{DynamicResource TitleBarButtonStyle}"
                             HorizontalAlignment="Left"
                             FontSize="24"
                             IsTabStop="False"
@@ -218,8 +218,8 @@
                                 </Canvas>
                             </Viewbox>
                         </Button>
-                        <CheckBox x:Name="checkBox_自動存入剪貼簿"
-                            Style="{DynamicResource check_but}"
+                        <CheckBox x:Name="ChkAutoCopyToClipboard"
+                            Style="{DynamicResource CheckBoxIndicatorStyle}"
                             VerticalAlignment="Center"
                             HorizontalAlignment="Left"
                             IsChecked="True"
@@ -263,7 +263,7 @@
                             </Viewbox>
                         </CheckBox>
                         <!--<CheckBox x:Name="checkBox_視窗置頂"
-                              Style="{DynamicResource check_but}"
+                              Style="{DynamicResource CheckBoxIndicatorStyle}"
                               VerticalAlignment="Center"
                               HorizontalAlignment="Left"
                               IsChecked="True"
@@ -292,8 +292,8 @@
                             </Canvas>
                         </Viewbox>
                     </CheckBox>-->
-                        <Button x:Name="but_設定"
-                            Style="{DynamicResource but_title}"
+                         <Button x:Name="BtnSettings"
+                            Style="{DynamicResource TitleBarButtonStyle}"
                             HorizontalAlignment="Left"
                             FontSize="24"
                             IsTabStop="False"
@@ -334,9 +334,9 @@
                     <ScrollViewer VerticalScrollBarVisibility="Hidden"
                                   Focusable="False"
                                   Background="#00000000">
-                        <StackPanel x:Name="scroll_分頁捲軸容器" Orientation="Vertical" Background="#00000000" >
-                            <StackPanel x:Name="stackPanel_1"/>
-                            <Button x:Name="but_分頁_add"  Style="{DynamicResource but_title}" BorderBrush="{x:Null}" Height="35" Click="but_分頁_add_Click" ToolTip="新增資料夾">
+                         <StackPanel x:Name="TabsScrollContainer" Orientation="Vertical" Background="#00000000" >
+                            <StackPanel x:Name="TabsStackPanel"/>
+                            <Button x:Name="BtnAddTab"  Style="{DynamicResource TitleBarButtonStyle}" BorderBrush="{x:Null}" Height="35" Click="BtnAddTab_Click" ToolTip="新增資料夾">
                                 <Label Content="+" VerticalAlignment="Center" HorizontalAlignment="Center" />
                             </Button>
                         </StackPanel>
@@ -350,7 +350,7 @@
                             </LinearGradientBrush>
                         </GridSplitter.Background>
                     </GridSplitter>
-                    <Border x:Name="border_web_box"
+                    <Border x:Name="WebContainerBorder"
                             Grid.ColumnSpan="2" Grid.Column="1" Background="White">
                         <Border x:Name="border_web"
                                 Margin="0,0,7,7">

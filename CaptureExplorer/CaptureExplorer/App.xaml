@@ -7,14 +7,12 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
 
-                <ResourceDictionary Source="style/style_color.xaml" />
-                <ResourceDictionary Source="style/style_1.xaml" />
-                <ResourceDictionary Source="style/style_menu.xaml" />
-                <ResourceDictionary Source="style/style_button.xaml" />
-                
-                <ResourceDictionary Source="style/style_window.xaml" />
-
-                <ResourceDictionary Source="style/style_scrollBar.xaml" />
+                <ResourceDictionary Source="Styles/ColorPalette.xaml" />
+                <ResourceDictionary Source="Styles/BaseStyles.xaml" />
+                <ResourceDictionary Source="Styles/ContextMenuStyles.xaml" />
+                <ResourceDictionary Source="Styles/ButtonStyles.xaml" />
+                <ResourceDictionary Source="Styles/WindowStyles.xaml" />
+                <ResourceDictionary Source="Styles/ScrollBarStyles.xaml" />
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

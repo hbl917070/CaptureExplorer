@@ -1,17 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2015
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11527.330 d18.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CaptureExplorer", "CaptureExplorer\CaptureExplorer.csproj", "{61BD05FA-9199-430B-A266-349AE64CF34E}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Global_keyboard", "Global_keyboard\Global_keyboard.shproj", "{8AB1AB32-0B3E-41B1-9363-53A009563094}"
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "GlobalInputHooks", "Global_keyboard\GlobalInputHooks.shproj", "{8AB1AB32-0B3E-41B1-9363-53A009563094}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Global_keyboard\Global_keyboard.projitems*{61bd05fa-9199-430b-a266-349ae64cf34e}*SharedItemsImports = 4
-		Global_keyboard\Global_keyboard.projitems*{8ab1ab32-0b3e-41b1-9363-53a009563094}*SharedItemsImports = 13
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -27,5 +23,9 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {24E5F1DA-935A-4A82-9564-1CD612F37147}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Global_keyboard\Global_keyboard.projitems*{61bd05fa-9199-430b-a266-349ae64cf34e}*SharedItemsImports = 4
+		Global_keyboard\Global_keyboard.projitems*{8ab1ab32-0b3e-41b1-9363-53a009563094}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal

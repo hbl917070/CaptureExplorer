@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 
-namespace Áä½L¥þ°ì°»´ú {
+namespace GlobalInputHooks {
 
     public static partial class HookManager {
         /// <summary>

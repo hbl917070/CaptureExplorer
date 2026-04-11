@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace 鍵盤全域偵測 {
+namespace GlobalInputHooks {
     /// <summary>
     /// Provides data for the MouseClickExt and MouseMoveExt events. It also provides a property Handled.
     /// Set this property to <b>true</b> to prevent further processing of the event in other applications.

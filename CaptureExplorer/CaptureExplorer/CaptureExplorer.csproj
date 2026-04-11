@@ -36,7 +36,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>imgs\ICON.ico</ApplicationIcon>
+    <ApplicationIcon>Imgs\Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject />
@@ -69,44 +69,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="cs\C_adapter.cs" />
-    <Compile Include="cs\C_edit_img.cs" />
-    <Compile Include="cs\C_setting.cs" />
-    <Compile Include="cs\ScreenCaptureContext.cs" />
-    <Compile Include="cs\ScreenCaptureSessionController.cs" />
-    <Compile Include="cs\C_AERO.cs" />
-    <Compile Include="cs\C_global_keyboard.cs" />
-    <Compile Include="cs\FolderSelectDialog.cs" />
-    <Compile Include="cs\nIcon.cs" />
-    <Compile Include="cs\C_window.cs" />
-    <Compile Include="cs\C_tabs.cs" />
-    <Compile Include="cs\WebBrowserOverlayWF.cs" />
-    <Compile Include="window\U_menu.xaml.cs">
-      <DependentUpon>U_menu.xaml</DependentUpon>
+    <Compile Include="Services\UiThreadAdapter.cs" />
+    <Compile Include="Interop\ImageEditorWindow.cs" />
+    <Compile Include="Services\SettingsService.cs" />
+    <Compile Include="Services\ScreenCaptureContext.cs" />
+    <Compile Include="Controllers\ScreenCaptureSessionController.cs" />
+    <Compile Include="Interop\WindowAeroEffect.cs" />
+    <Compile Include="Services\GlobalHotkeyMonitor.cs" />
+    <Compile Include="Interop\FolderSelectDialog.cs" />
+    <Compile Include="Controllers\TrayIconController.cs" />
+    <Compile Include="Controllers\WindowResizeController.cs" />
+    <Compile Include="Controllers\TabDragController.cs" />
+    <Compile Include="Interop\WebBrowserOverlayWF.cs" />
+    <Compile Include="Controls\TabContextMenu.xaml.cs">
+      <DependentUpon>TabContextMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\U_menu_item.xaml.cs">
-      <DependentUpon>U_menu_item.xaml</DependentUpon>
+    <Compile Include="Controls\TabContextMenuItem.xaml.cs">
+      <DependentUpon>TabContextMenuItem.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\U_tabs_item.xaml.cs">
-      <DependentUpon>U_tabs_item.xaml</DependentUpon>
+    <Compile Include="Controls\TabHeader.xaml.cs">
+      <DependentUpon>TabHeader.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\WebBrowserOverlay.xaml.cs">
+    <Compile Include="Windows\WebBrowserOverlay.xaml.cs">
       <DependentUpon>WebBrowserOverlay.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\W_mesBox.xaml.cs">
-      <DependentUpon>W_mesBox.xaml</DependentUpon>
+    <Compile Include="Dialogs\MessageDialog.xaml.cs">
+      <DependentUpon>MessageDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\ScreenCaptureOverlayWindow.xaml.cs">
+    <Compile Include="Windows\ScreenCaptureOverlayWindow.xaml.cs">
       <DependentUpon>ScreenCaptureOverlayWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\W_sc_effects.xaml.cs">
-      <DependentUpon>W_sc_effects.xaml</DependentUpon>
+    <Compile Include="Windows\ScreenshotFlashWindow.xaml.cs">
+      <DependentUpon>ScreenshotFlashWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\W_setting.xaml.cs">
-      <DependentUpon>W_setting.xaml</DependentUpon>
+    <Compile Include="Windows\SettingsWindow.xaml.cs">
+      <DependentUpon>SettingsWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="window\W_tabs_add.xaml.cs">
-      <DependentUpon>W_tabs_add.xaml</DependentUpon>
+    <Compile Include="Dialogs\TabFolderDialog.xaml.cs">
+      <DependentUpon>TabFolderDialog.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -120,63 +120,63 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="style\style_window.xaml">
+    <Page Include="Styles\WindowStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="style\style_1.xaml">
+    <Page Include="Styles\BaseStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="style\style_button.xaml">
+    <Page Include="Styles\ButtonStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="style\style_color.xaml">
+    <Page Include="Styles\ColorPalette.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="style\style_menu.xaml">
+    <Page Include="Styles\ContextMenuStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="style\style_ScrollBar.xaml">
+    <Page Include="Styles\ScrollBarStyles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\U_menu.xaml">
+    <Page Include="Controls\TabContextMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\U_menu_item.xaml">
+    <Page Include="Controls\TabContextMenuItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\U_tabs_item.xaml">
+    <Page Include="Controls\TabHeader.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\WebBrowserOverlay.xaml">
+    <Page Include="Windows\WebBrowserOverlay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\W_mesBox.xaml">
+    <Page Include="Dialogs\MessageDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\ScreenCaptureOverlayWindow.xaml">
+    <Page Include="Windows\ScreenCaptureOverlayWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\W_sc_effects.xaml">
+    <Page Include="Windows\ScreenshotFlashWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\W_setting.xaml">
+    <Page Include="Windows\SettingsWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="window\W_tabs_add.xaml">
+    <Page Include="Dialogs\TabFolderDialog.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -210,22 +210,94 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="data\**\*">
+    <Content Include="Data\Explain\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\index.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\clear.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_bold.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_ellipse.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_eraser.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_italic.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_line.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_pencil.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_rectangle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_text.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\icon_underline.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\redo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\redo_inactive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\undo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\images\undo_inactive.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\jquery.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\jquery.ui.core.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\jquery.ui.draggable.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\jquery.ui.mouse.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\jquery.ui.widget.min.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\wColorPicker.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\wColorPicker.js">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\wPaint.css">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Data\WebPaint\wPaint\wPaint.js">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imgs\ICON.ico" />
+    <Resource Include="Imgs\Icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imgs\no.png" />
-    <Resource Include="imgs\yes.png" />
+    <Resource Include="Imgs\No.png" />
+    <Resource Include="Imgs\Yes.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imgs\directory.png" />
+    <Resource Include="Imgs\Directory.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="imgs\ICON.png" />
+    <Resource Include="Imgs\Icon.png" />
   </ItemGroup>
   <Import Project="..\Global_keyboard\Global_keyboard.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

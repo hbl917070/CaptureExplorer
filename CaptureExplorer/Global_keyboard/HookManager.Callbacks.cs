@@ -4,10 +4,8 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
-namespace 龄絃办盎代
-{
-    public static partial class HookManager
-    {
+namespace GlobalInputHooks {
+    public static partial class HookManager {
         /// <summary>
         /// The CallWndProc hook procedure is an application-defined or library-defined callback 
         /// function used with the SetWindowsHookEx function. The HOOKPROC type defines a pointer 
@@ -83,10 +81,8 @@ namespace 龄絃办盎代
         /// hooks will not receive hook notifications and may behave incorrectly as a result. If the hook 
         /// procedure does not call CallNextHookEx, the return value should be zero. 
         /// </returns>
-        private static int MouseHookProc(int nCode, int wParam, IntPtr lParam)
-        {
-            if (nCode >= 0)
-            {
+        private static int MouseHookProc(int nCode, int wParam, IntPtr lParam) {
+            if (nCode >= 0) {
                 //Marshall the data from callback.
                 MouseLLHookStruct mouseHookStruct = (MouseLLHookStruct)Marshal.PtrToStructure(lParam, typeof(MouseLLHookStruct));
 
@@ -97,8 +93,7 @@ namespace 龄絃办盎代
                 bool mouseDown = false;
                 bool mouseUp = false;
 
-                switch (wParam)
-                {
+                switch (wParam) {
                     case WM_LBUTTONDOWN:
                         mouseDown = true;
                         button = MouseButtons.Left;
@@ -109,7 +104,7 @@ namespace 龄絃办盎代
                         button = MouseButtons.Left;
                         clickCount = 1;
                         break;
-                    case WM_LBUTTONDBLCLK: 
+                    case WM_LBUTTONDBLCLK:
                         button = MouseButtons.Left;
                         clickCount = 2;
                         break;
@@ -123,7 +118,7 @@ namespace 龄絃办盎代
                         button = MouseButtons.Right;
                         clickCount = 1;
                         break;
-                    case WM_RBUTTONDBLCLK: 
+                    case WM_RBUTTONDBLCLK:
                         button = MouseButtons.Right;
                         clickCount = 2;
                         break;
@@ -132,8 +127,8 @@ namespace 龄絃办盎代
                         //One wheel click is defined as WHEEL_DELTA, which is 120. 
                         //(value >> 16) & 0xffff; retrieves the high-order word from the given 32-bit value
                         mouseDelta = (short)((mouseHookStruct.MouseData >> 16) & 0xffff);
-                       
-                    //TODO: X BUTTONS (I havent them so was unable to test)
+
+                        //TODO: X BUTTONS (I havent them so was unable to test)
                         //If the message is WM_XBUTTONDOWN, WM_XBUTTONUP, WM_XBUTTONDBLCLK, WM_NCXBUTTONDOWN, WM_NCXBUTTONUP, 
                         //or WM_NCXBUTTONDBLCLK, the high-order word specifies which X button was pressed or released, 
                         //and the low-order word is reserved. This value can be one or more of the following values. 
@@ -150,59 +145,49 @@ namespace 龄絃办盎代
                                                    mouseDelta);
 
                 //Mouse up
-                if (s_MouseUp!=null && mouseUp)
-                {
+                if (s_MouseUp != null && mouseUp) {
                     s_MouseUp.Invoke(null, e);
                 }
 
                 //Mouse down
-                if (s_MouseDown != null && mouseDown)
-                {
+                if (s_MouseDown != null && mouseDown) {
                     s_MouseDown.Invoke(null, e);
                 }
 
                 //If someone listens to click and a click is heppened
-                if (s_MouseClick != null && clickCount>0)
-                {
+                if (s_MouseClick != null && clickCount > 0) {
                     s_MouseClick.Invoke(null, e);
                 }
 
                 //If someone listens to click and a click is heppened
-                if (s_MouseClickExt != null && clickCount > 0)
-                {
+                if (s_MouseClickExt != null && clickCount > 0) {
                     s_MouseClickExt.Invoke(null, e);
                 }
 
                 //If someone listens to double click and a click is heppened
-                if (s_MouseDoubleClick != null && clickCount == 2)
-                {
+                if (s_MouseDoubleClick != null && clickCount == 2) {
                     s_MouseDoubleClick.Invoke(null, e);
                 }
 
                 //Wheel was moved
-                if (s_MouseWheel!=null && mouseDelta!=0)
-                {
+                if (s_MouseWheel != null && mouseDelta != 0) {
                     s_MouseWheel.Invoke(null, e);
                 }
 
                 //If someone listens to move and there was a change in coordinates raise move event
-                if ((s_MouseMove!=null || s_MouseMoveExt!=null) && (m_OldX != mouseHookStruct.Point.X || m_OldY != mouseHookStruct.Point.Y))
-                {
+                if ((s_MouseMove != null || s_MouseMoveExt != null) && (m_OldX != mouseHookStruct.Point.X || m_OldY != mouseHookStruct.Point.Y)) {
                     m_OldX = mouseHookStruct.Point.X;
                     m_OldY = mouseHookStruct.Point.Y;
-                    if (s_MouseMove != null)
-                    {
+                    if (s_MouseMove != null) {
                         s_MouseMove.Invoke(null, e);
                     }
 
-                    if (s_MouseMoveExt != null)
-                    {
+                    if (s_MouseMoveExt != null) {
                         s_MouseMoveExt.Invoke(null, e);
                     }
                 }
 
-                if (e.Handled)
-                {
+                if (e.Handled) {
                     return -1;
                 }
             }
@@ -211,11 +196,9 @@ namespace 龄絃办盎代
             return CallNextHookEx(s_MouseHookHandle, nCode, wParam, lParam);
         }
 
-        private static void EnsureSubscribedToGlobalMouseEvents()
-        {
+        private static void EnsureSubscribedToGlobalMouseEvents() {
             // install Mouse hook only if it is not installed and must be installed
-            if (s_MouseHookHandle == 0)
-            {
+            if (s_MouseHookHandle == 0) {
                 //See comment of this field. To avoid GC to clean it up.
                 s_MouseDelegate = MouseHookProc;
                 //install hook
@@ -226,8 +209,7 @@ namespace 龄絃办盎代
                         Assembly.GetExecutingAssembly().GetModules()[0]),
                     0);
                 //If SetWindowsHookEx fails.
-                if (s_MouseHookHandle == 0)
-                {
+                if (s_MouseHookHandle == 0) {
                     //Returns the error code returned by the last unmanaged function called using platform invoke that has the DllImportAttribute.SetLastError flag set. 
                     int errorCode = Marshal.GetLastWin32Error();
                     //do cleanup
@@ -238,8 +220,7 @@ namespace 龄絃办盎代
             }
         }
 
-        private static void TryUnsubscribeFromGlobalMouseEvents()
-        {
+        private static void TryUnsubscribeFromGlobalMouseEvents() {
             //if no subsribers are registered unsubsribe from hook
             if (s_MouseClick == null &&
                 s_MouseDown == null &&
@@ -247,16 +228,13 @@ namespace 龄絃办盎代
                 s_MouseUp == null &&
                 s_MouseClickExt == null &&
                 s_MouseMoveExt == null &&
-                s_MouseWheel == null)
-            {
+                s_MouseWheel == null) {
                 ForceUnsunscribeFromGlobalMouseEvents();
             }
         }
 
-        private static void ForceUnsunscribeFromGlobalMouseEvents()
-        {
-            if (s_MouseHookHandle != 0)
-            {
+        private static void ForceUnsunscribeFromGlobalMouseEvents() {
+            if (s_MouseHookHandle != 0) {
                 //uninstall hook
                 int result = UnhookWindowsHookEx(s_MouseHookHandle);
                 //reset invalid handle
@@ -264,8 +242,7 @@ namespace 龄絃办盎代
                 //Free up for GC
                 s_MouseDelegate = null;
                 //if failed and exception must be thrown
-                if (result == 0)
-                {
+                if (result == 0) {
                     //Returns the error code returned by the last unmanaged function called using platform invoke that has the DllImportAttribute.SetLastError flag set. 
                     int errorCode = Marshal.GetLastWin32Error();
                     //Initializes and throws a new instance of the Win32Exception class with the specified error. 
@@ -273,7 +250,7 @@ namespace 龄絃办盎代
                 }
             }
         }
-        
+
         #endregion
 
         //##############################################################################
@@ -316,18 +293,15 @@ namespace 龄絃办盎代
         /// hooks will not receive hook notifications and may behave incorrectly as a result. If the hook 
         /// procedure does not call CallNextHookEx, the return value should be zero. 
         /// </returns>
-        private static int KeyboardHookProc(int nCode, Int32 wParam, IntPtr lParam)
-        {
+        private static int KeyboardHookProc(int nCode, Int32 wParam, IntPtr lParam) {
             //indicates if any of underlaing events set e.Handled flag
             bool handled = false;
 
-            if (nCode >= 0)
-            {
+            if (nCode >= 0) {
                 //read structure KeyboardHookStruct at lParam
                 KeyboardHookStruct MyKeyboardHookStruct = (KeyboardHookStruct)Marshal.PtrToStructure(lParam, typeof(KeyboardHookStruct));
                 //raise KeyDown
-                if (s_KeyDown != null && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN))
-                {
+                if (s_KeyDown != null && (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)) {
                     Keys keyData = (Keys)MyKeyboardHookStruct.VirtualKeyCode;
                     KeyEventArgs e = new KeyEventArgs(keyData);
                     s_KeyDown.Invoke(null, e);
@@ -335,8 +309,7 @@ namespace 龄絃办盎代
                 }
 
                 // raise KeyPress
-                if (s_KeyPress != null && wParam == WM_KEYDOWN)
-                {
+                if (s_KeyPress != null && wParam == WM_KEYDOWN) {
                     bool isDownShift = ((GetKeyState(VK_SHIFT) & 0x80) == 0x80 ? true : false);
                     bool isDownCapslock = (GetKeyState(VK_CAPITAL) != 0 ? true : false);
 
@@ -347,8 +320,7 @@ namespace 龄絃办盎代
                               MyKeyboardHookStruct.ScanCode,
                               keyState,
                               inBuffer,
-                              MyKeyboardHookStruct.Flags) == 1)
-                    {
+                              MyKeyboardHookStruct.Flags) == 1) {
                         char key = (char)inBuffer[0];
                         if ((isDownCapslock ^ isDownShift) && Char.IsLetter(key)) key = Char.ToUpper(key);
                         KeyPressEventArgs e = new KeyPressEventArgs(key);
@@ -358,8 +330,7 @@ namespace 龄絃办盎代
                 }
 
                 // raise KeyUp
-                if (s_KeyUp != null && (wParam == WM_KEYUP || wParam == WM_SYSKEYUP))
-                {
+                if (s_KeyUp != null && (wParam == WM_KEYUP || wParam == WM_SYSKEYUP)) {
                     Keys keyData = (Keys)MyKeyboardHookStruct.VirtualKeyCode;
                     KeyEventArgs e = new KeyEventArgs(keyData);
                     s_KeyUp.Invoke(null, e);
@@ -376,11 +347,9 @@ namespace 龄絃办盎代
             return CallNextHookEx(s_KeyboardHookHandle, nCode, wParam, lParam);
         }
 
-        private static void EnsureSubscribedToGlobalKeyboardEvents()
-        {
+        private static void EnsureSubscribedToGlobalKeyboardEvents() {
             // install Keyboard hook only if it is not installed and must be installed
-            if (s_KeyboardHookHandle == 0)
-            {
+            if (s_KeyboardHookHandle == 0) {
                 //See comment of this field. To avoid GC to clean it up.
                 s_KeyboardDelegate = KeyboardHookProc;
                 //install hook
@@ -391,8 +360,7 @@ namespace 龄絃办盎代
                         Assembly.GetExecutingAssembly().GetModules()[0]),
                     0);
                 //If SetWindowsHookEx fails.
-                if (s_KeyboardHookHandle == 0)
-                {
+                if (s_KeyboardHookHandle == 0) {
                     //Returns the error code returned by the last unmanaged function called using platform invoke that has the DllImportAttribute.SetLastError flag set. 
                     int errorCode = Marshal.GetLastWin32Error();
                     //do cleanup
@@ -403,21 +371,17 @@ namespace 龄絃办盎代
             }
         }
 
-        private static void TryUnsubscribeFromGlobalKeyboardEvents()
-        {
+        private static void TryUnsubscribeFromGlobalKeyboardEvents() {
             //if no subsribers are registered unsubsribe from hook
             if (s_KeyDown == null &&
                 s_KeyUp == null &&
-                s_KeyPress == null)
-            {
+                s_KeyPress == null) {
                 ForceUnsunscribeFromGlobalKeyboardEvents();
             }
         }
 
-        private static void ForceUnsunscribeFromGlobalKeyboardEvents()
-        {
-            if (s_KeyboardHookHandle != 0)
-            {
+        private static void ForceUnsunscribeFromGlobalKeyboardEvents() {
+            if (s_KeyboardHookHandle != 0) {
                 //uninstall hook
                 int result = UnhookWindowsHookEx(s_KeyboardHookHandle);
                 //reset invalid handle
@@ -425,8 +389,7 @@ namespace 龄絃办盎代
                 //Free up for GC
                 s_KeyboardDelegate = null;
                 //if failed and exception must be thrown
-                if (result == 0)
-                {
+                if (result == 0) {
                     //Returns the error code returned by the last unmanaged function called using platform invoke that has the DllImportAttribute.SetLastError flag set. 
                     int errorCode = Marshal.GetLastWin32Error();
                     //Initializes and throws a new instance of the Win32Exception class with the specified error. 

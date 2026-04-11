@@ -1,9 +1,8 @@
 using System;
 using System.Runtime.InteropServices;
 
-namespace Áä½L¥þ°ì°»´ú {
-    public static partial class HookManager
-    {
+namespace GlobalInputHooks {
+    public static partial class HookManager {
         #region Windows constants
 
         //values from Winuser.h in Microsoft SDK.
